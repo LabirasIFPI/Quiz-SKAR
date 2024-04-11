@@ -1,12 +1,20 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Códigos/QuizMain.gd" type="Script" id=1]
-[ext_resource path="res://Assets/Fontes/matolha/Matolha-Regular.ttf" type="DynamicFontData" id=2]
-[ext_resource path="res://Assets/FreeGUI/png/BG.png" type="Texture" id=3]
-[ext_resource path="res://Assets/FreeGUI/png/Buotoes/Button_empty_blue.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Fontes/tmj_by_mallagueta_pepper-d62rr8r.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://Assets/FreeGUI/png/bg2.jpeg" type="Texture" id=3]
+[ext_resource path="res://Assets/FreeGUI/png/eptyred.png" type="Texture" id=4]
 
 [sub_resource type="DynamicFont" id=1]
-size = 120
+size = 200
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 100
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 100
 font_data = ExtResource( 2 )
 
 [node name="QuizMain" type="Node2D"]
@@ -47,15 +55,33 @@ flat = true
 expand_icon = true
 
 [node name="Pergutas_teste" type="Label" parent="."]
-margin_left = 1157.0
-margin_top = 356.0
-margin_right = 1854.0
-margin_bottom = 583.0
+margin_left = 300.0
+margin_top = 284.0
+margin_right = 2700.0
+margin_bottom = 493.0
 custom_fonts/font = SubResource( 1 )
 text = "perguntas"
+autowrap = true
+uppercase = true
 
 [node name="Options" type="Node2D" parent="."]
 
 [node name="TLPR" type="Timer" parent="."]
+
+[node name="pontos_p1" type="Label" parent="."]
+margin_left = 38.0
+margin_top = -4.0
+margin_right = 336.0
+margin_bottom = 116.0
+custom_fonts/font = SubResource( 2 )
+text = "0 p1"
+
+[node name="pontos_p2" type="Label" parent="."]
+margin_left = 2773.0
+margin_top = 12.0
+margin_right = 3067.0
+margin_bottom = 150.0
+custom_fonts/font = SubResource( 3 )
+text = "0 p2"
 
 [connection signal="timeout" from="TLPR" to="." method="_on_TLPR_timeout"]
