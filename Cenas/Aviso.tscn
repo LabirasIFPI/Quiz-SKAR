@@ -1,8 +1,12 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Códigos/ sobre_avisos.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Fontes/tmj_by_mallagueta_pepper-d62rr8r.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://Assets/FreeGUI/png/bg_branco.jpeg" type="Texture" id=3]
+[ext_resource path="res://Data/QuizMain.tres" type="Gradient" id=4]
+
+[sub_resource type="GradientTexture2D" id=5]
+gradient = ExtResource( 4 )
 
 [sub_resource type="DynamicFont" id=3]
 size = 200
@@ -12,32 +16,53 @@ font_data = ExtResource( 2 )
 size = 500
 font_data = ExtResource( 2 )
 
-[node name="Aviso" type="Node2D"]
+[node name="Aviso" type="Control"]
+margin_right = 1920.0
+margin_bottom = 1080.0
 script = ExtResource( 1 )
 
-[node name="Bg" type="Sprite" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -1
+follow_viewport_enable = true
+
+[node name="Bg" type="TextureRect" parent="CanvasLayer"]
 self_modulate = Color( 1, 0.713726, 0.713726, 1 )
-position = Vector2( 1511, 908 )
+margin_right = 3000.0
+margin_bottom = 1800.0
 texture = ExtResource( 3 )
 
+[node name="color-bg" type="TextureRect" parent="CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 2997.0
+margin_bottom = 1796.0
+texture = SubResource( 5 )
+expand = true
+flip_h = true
+
 [node name="aviso" type="Label" parent="."]
-margin_left = 531.0
-margin_top = 200.0
-margin_right = 2577.0
-margin_bottom = 409.0
+anchor_right = 1.0
+margin_bottom = 209.0
 custom_fonts/font = SubResource( 3 )
-text = "Seu quiz irá começar em..."
+text = "Seu quiz irá
+começar em..."
+align = 1
 
 [node name="tempo_label" type="Label" parent="."]
-margin_left = 1364.0
-margin_top = 601.0
-margin_right = 3300.0
-margin_bottom = 1123.0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -968.0
+margin_top = -114.0
+margin_right = 968.0
+margin_bottom = 408.0
 mouse_default_cursor_shape = 6
 size_flags_vertical = 6
 size_flags_stretch_ratio = 0.0
 custom_fonts/font = SubResource( 2 )
 text = "0"
+align = 1
 valign = 2
 
 [node name="Timer" type="Timer" parent="."]

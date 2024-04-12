@@ -36,10 +36,14 @@ global="*res://Códigos/Global.gd"
 
 [display]
 
-window/size/width=3000
-window/size/height=1800
+window/size/width=1920
+window/size/height=1080
 window/stretch/mode="viewport"
 window/stretch/aspect="keep"
+
+[global]
+
+size=false
 
 [gui]
 

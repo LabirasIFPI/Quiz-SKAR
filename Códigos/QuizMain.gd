@@ -1,5 +1,5 @@
 extends Node2D
-#INFORMAÇÃO: TLPR significa tempo limite por pergunat
+# INFORMAÇÃO: TLPR significa tempo limite por pergunat
 
 
 ## Banco de dados de perguntas:
@@ -98,7 +98,12 @@ var actualQuestionInd = 0;
 #Cena de alternativas
 onready var optionsNode = get_node("Options");
 
+onready var _points_p1 = get_node("pontos_p1")
+onready var _points_p2 = get_node("pontos_p2")
+
 onready var optionScene = preload("res://Cenas/alternativa.tscn");
+
+var colorProgress: float = 0.0;
 
 func _ready() -> void:
 	randomize()
@@ -163,6 +168,8 @@ func checkIfHasRightAnswer(_array):
 
 
 func _process(delta: float) -> void:
+	_points_p1.text = "P1: " + (str(global.pontos_p1))
+	_points_p2.text = "P2: " + (str(global.pontos_p2))
 	# Para fins de teste, avançar pergunta
 	if Input.is_action_just_pressed("ui_page_up") and global.resp_p1 == 1:
 		actualQuestionInd += 1
@@ -171,6 +178,7 @@ func _process(delta: float) -> void:
 		global.pontos_p1 += 1
 		global.resp_p1 = 0;
 		global.resp_p2 = 0;
+		
 	if Input.is_action_just_pressed("ui_page_up") and global.resp_p2 == 1:
 		actualQuestionInd += 1
 		gerarNovaPergunta()
@@ -179,6 +187,12 @@ func _process(delta: float) -> void:
 		global.resp_p1 = 0;
 		global.resp_p2 = 0;
 	input_signal_players();
+	
+	updateBgColor();
+	
+	if Input.is_action_just_pressed("ui_down"):
+		change_color_back();
+	
 
 
 func limparExibicao():
@@ -205,8 +219,43 @@ func _on_TLPR_timeout() -> void:
 #de "impedimento" (esp ja tem) ==> @WILLDO
 func input_signal_players():
 	if Input.is_action_just_pressed("JogadorAzul"):
-		global.resp_p1 = 1
+		global.resp_p1 = 1;
+		changeBackgroundByPlayer();
 		
 	if Input.is_action_just_pressed("JogadorVermelho"):
-		global.resp_p2 = 1
+		global.resp_p2 = 1;
+		changeBackgroundByPlayer();
+		
+func change_color_back():
+	var _back_grad = get_node("bg_color")
+	#Testanto funções do gradient
+	#@TODO pudar a cor do fundo em umam espécie de animação de acordo com o jogador que apertou
+#	_back_grad.get_texture().get_gradient().set_color(0, Color(1,0,0,0.7))#vermelho
+#	_back_grad.get_texture().get_gradient().set_offsets([0, 0.7])
+
+	_back_grad.get_texture().get_gradient().set_color(1, Color(0,0.74,1,0.7))#azul
+	_back_grad.get_texture().get_gradient().set_offsets([1, 0.3])
+
+	print(_back_grad.get_texture().get_gradient().get_color(0))
+
+
+func changeBackgroundByPlayer():
+	var _bgText = get_node("CanvasLayer/CorRespondedor").texture.gradient as Gradient;
+	colorProgress = 0.0;
+	
+	if global.resp_p1 and not global.resp_p2:
+		_bgText.colors[0] = Color(0,0.7,1);
+	elif global.resp_p2 and not global.resp_p1:
+		_bgText.colors[0] = Color(1,0.2,0.2);
+	else:
+		_bgText.colors[0] = Color.white;
+		
+
+func updateBgColor():
+	# Se alguem tiver apertado: 
+	if global.resp_p1 or global.resp_p2:
+		colorProgress = move_toward(colorProgress, 1.0, 0.068);
+		
+	var _bgText = get_node("CanvasLayer/CorRespondedor").texture.gradient as Gradient;
+	_bgText.colors[0].a = colorProgress;
 		
