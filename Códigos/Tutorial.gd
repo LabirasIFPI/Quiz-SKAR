@@ -17,4 +17,8 @@ func _ready():
 
 
 func _on_voltar_pressed():
+	pass
+
+
+func _on_voltar3_pressed():
 	get_tree().change_scene("res://Cenas/Menu.tscn")

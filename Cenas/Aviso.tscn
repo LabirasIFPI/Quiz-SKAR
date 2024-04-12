@@ -26,16 +26,23 @@ layer = -1
 follow_viewport_enable = true
 
 [node name="Bg" type="TextureRect" parent="CanvasLayer"]
-self_modulate = Color( 1, 0.713726, 0.713726, 1 )
-margin_right = 3000.0
-margin_bottom = 1800.0
+self_modulate = Color( 1, 0.905882, 0.905882, 1 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -968.0
+margin_top = -538.0
+margin_right = 2032.0
+margin_bottom = 1262.0
+rect_scale = Vector2( 0.644, 0.6 )
 texture = ExtResource( 3 )
 
 [node name="color-bg" type="TextureRect" parent="CanvasLayer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = 2997.0
-margin_bottom = 1796.0
+margin_right = 431.0
+margin_bottom = 1675.0
 texture = SubResource( 5 )
 expand = true
 flip_h = true

@@ -1,9 +1,8 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Códigos/QuizMain.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Fontes/tmj_by_mallagueta_pepper-d62rr8r.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://Assets/FreeGUI/png/bg_branco.jpeg" type="Texture" id=3]
-[ext_resource path="res://Assets/FreeGUI/png/eptyred.png" type="Texture" id=4]
 [ext_resource path="res://Data/QuizMain.tres" type="Gradient" id=5]
 
 [sub_resource type="Gradient" id=6]
@@ -13,7 +12,20 @@ colors = PoolColorArray( 0, 1, 0.0392157, 1, 0, 0, 0, 0 )
 gradient = SubResource( 6 )
 fill = 1
 fill_from = Vector2( 0.5, 1 )
-fill_to = Vector2( 0.5, 0 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 94
+outline_size = 5
+outline_color = Color( 0.254902, 0.772549, 1, 1 )
+extra_spacing_char = 6
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 94
+outline_size = 5
+outline_color = Color( 1, 0.341176, 0.341176, 1 )
+extra_spacing_char = 8
+font_data = ExtResource( 2 )
 
 [sub_resource type="GradientTexture2D" id=5]
 gradient = ExtResource( 5 )
@@ -21,15 +33,9 @@ fill_from = Vector2( 1, 0 )
 fill_to = Vector2( 0, 0 )
 
 [sub_resource type="DynamicFont" id=1]
-size = 150
-font_data = ExtResource( 2 )
-
-[sub_resource type="DynamicFont" id=2]
 size = 100
-font_data = ExtResource( 2 )
-
-[sub_resource type="DynamicFont" id=3]
-size = 100
+outline_size = 5
+outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 2 )
 
 [node name="QuizMain" type="Node2D"]
@@ -51,6 +57,24 @@ anchor_bottom = 1.0
 texture = SubResource( 7 )
 expand = true
 
+[node name="pontos_p1" type="Label" parent="CanvasLayer"]
+margin_left = 32.0
+margin_top = 32.0
+margin_right = 32.0
+margin_bottom = 120.0
+custom_fonts/font = SubResource( 2 )
+text = "0 p1"
+
+[node name="pontos_p2" type="Label" parent="CanvasLayer"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -262.0
+margin_top = 39.0
+margin_right = -70.0
+margin_bottom = 138.0
+custom_fonts/font = SubResource( 3 )
+text = "0 p2"
+
 [node name="bg_color" type="TextureRect" parent="."]
 visible = false
 margin_right = 3001.0
@@ -58,64 +82,20 @@ margin_bottom = 1801.0
 texture = SubResource( 5 )
 expand = true
 
-[node name="Opcoes_botoes" type="Node2D" parent="."]
-visible = false
-
-[node name="op_1" type="Button" parent="Opcoes_botoes"]
-margin_left = 100.0
-margin_top = 1000.0
-margin_right = 208.0
-margin_bottom = 1106.0
-icon = ExtResource( 4 )
-flat = true
-expand_icon = true
-
-[node name="op_2" type="Button" parent="Opcoes_botoes"]
-margin_left = 100.0
-margin_top = 1200.0
-margin_right = 200.0
-margin_bottom = 1300.0
-icon = ExtResource( 4 )
-flat = true
-expand_icon = true
-
-[node name="op_3" type="Button" parent="Opcoes_botoes"]
-margin_left = 100.0
-margin_top = 1400.0
-margin_right = 200.0
-margin_bottom = 1500.0
-icon = ExtResource( 4 )
-flat = true
-expand_icon = true
-
 [node name="Pergutas_teste" type="Label" parent="."]
-margin_left = 193.0
-margin_top = 149.0
-margin_right = 2771.0
-margin_bottom = 358.0
+margin_left = 174.0
+margin_top = 122.0
+margin_right = 1649.0
+margin_bottom = 331.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_fonts/font = SubResource( 1 )
 text = "perguntas"
+align = 1
 autowrap = true
 uppercase = true
 
 [node name="Options" type="Node2D" parent="."]
 
 [node name="TLPR" type="Timer" parent="."]
-
-[node name="pontos_p1" type="Label" parent="."]
-margin_left = 38.0
-margin_top = -4.0
-margin_right = 336.0
-margin_bottom = 116.0
-custom_fonts/font = SubResource( 2 )
-text = "0 p1"
-
-[node name="pontos_p2" type="Label" parent="."]
-margin_left = 2773.0
-margin_top = 12.0
-margin_right = 3067.0
-margin_bottom = 150.0
-custom_fonts/font = SubResource( 3 )
-text = "0 p2"
 
 [connection signal="timeout" from="TLPR" to="." method="_on_TLPR_timeout"]
