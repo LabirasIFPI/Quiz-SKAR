@@ -277,6 +277,8 @@ var perguntaExibida = null;
 
 # Indice da pergunta atual
 var actualQuestionInd = 0;
+
+var tlpr_out = false#variavel pro time acabar
 #Cena de alternativas
 onready var optionsNode = get_node("Options");
 
@@ -288,6 +290,7 @@ onready var optionScene = preload("res://Cenas/alternativa.tscn");
 var colorProgress: float = 0.0;
 
 func _ready() -> void:
+	$TLPR.start(5)
 	randomize()
 	
 	# Define qual pergunta será exibida
@@ -353,18 +356,23 @@ func checkIfHasRightAnswer(_array):
 
 ##############################################################
 func _process(delta: float) -> void:
+	var _tempo_label = get_node("CanvasLayer/tempo_por_resp")
+
+	_tempo_label.text = str(int($TLPR.time_left))
 	_points_p1.text = "J1: " + (str(global.pontos_p1))
 	_points_p2.text = "J2: " + (str(global.pontos_p2))
 	# Para fins de teste, avançar pergunta
-	if Input.is_action_just_pressed("ui_page_up") and global.resp_p1 == true:
+	if Input.is_action_just_pressed("ui_page_up") and global.resp_p1 == true and tlpr_out == false:
 		actualQuestionInd += 1
 		gerarNovaPergunta()
+		$TLPR.start(5)
 		#reseta as variavies de definição de recebimento dos pontos
 		ponto_blue()
 
-	if Input.is_action_just_pressed("ui_page_up") and global.resp_p2 == true:
+	if Input.is_action_just_pressed("ui_page_up") and global.resp_p2 == true and tlpr_out == false:
 		actualQuestionInd += 1
 		gerarNovaPergunta()
+		$TLPR.start(5)
 		#reseta as variavies de definição de recebimento dos pontos
 		ponto_red()
 
@@ -397,7 +405,14 @@ func gerarNovaPergunta(ind = actualQuestionInd):
 
 
 func _on_TLPR_timeout() -> void:
-	pass # Replace with function body.
+	$TLPR.stop()
+	tlpr_out = true
+	#mudar o tamanha e colocar em variavel essa label
+	$CanvasLayer/add_point.visible = true
+	$CanvasLayer/add_point.set_modulate(Color.green)
+	$CanvasLayer/add_point.text = "Vosso tempo acabou :("
+#	gerarNovaPergunta()
+
 	
 #Para definir quem receberá pontos ao responder a pergunta(apertar em algum botão de alternativa)
 #Futuramente será quem enviar o sinal via wu-fi primero, por isso não foi colocado uma condiçao
@@ -446,13 +461,26 @@ func alt_C():
 		global.resposta = 'C'
 
 
-func ponto_red():
+func ponto_red():#WILLDO confiderar se a reszposta foi errada
 	global.pontos_p2 += 1
 	global.resp_p1 = 0;
 	global.resp_p2 = 0;
+	var _label_ponto = get_node("CanvasLayer/add_point")
+	_label_ponto.visible = true
+	_label_ponto.set_modulate(Color.red)
+	$Timer.start(0.5)
 		
-func ponto_blue():
+func ponto_blue(): #futuramente considerar se a resposta foi errada
 	global.pontos_p1 += 1
 	global.resp_p1 = 0;
 	global.resp_p2 = 0;
+	var _label_ponto = get_node("CanvasLayer/add_point")
+	_label_ponto.visible = true
+	_label_ponto.set_modulate(Color.dodgerblue)
+	$Timer.start(0.5)
+	
 		
+
+
+func _on_Timer_timeout() -> void:
+	$CanvasLayer/add_point.visible = false

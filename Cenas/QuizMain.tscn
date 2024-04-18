@@ -1,9 +1,21 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Códigos/QuizMain.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Fontes/tmj_by_mallagueta_pepper-d62rr8r.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://Assets/FreeGUI/png/bg_branco.jpeg" type="Texture" id=3]
+[ext_resource path="res://Assets/Fontes/marela.ttf" type="DynamicFontData" id=4]
 [ext_resource path="res://Data/QuizMain.tres" type="Gradient" id=5]
+
+[sub_resource type="GradientTexture2D" id=5]
+gradient = ExtResource( 5 )
+fill_from = Vector2( 1, 0 )
+fill_to = Vector2( 0, 0 )
+
+[sub_resource type="DynamicFont" id=1]
+size = 100
+outline_size = 5
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 2 )
 
 [sub_resource type="Gradient" id=6]
 colors = PoolColorArray( 0, 1, 0.0392157, 1, 0, 0, 0, 0 )
@@ -27,19 +39,43 @@ outline_color = Color( 1, 0.341176, 0.341176, 1 )
 extra_spacing_char = 8
 font_data = ExtResource( 2 )
 
-[sub_resource type="GradientTexture2D" id=5]
-gradient = ExtResource( 5 )
-fill_from = Vector2( 1, 0 )
-fill_to = Vector2( 0, 0 )
-
-[sub_resource type="DynamicFont" id=1]
-size = 100
-outline_size = 5
+[sub_resource type="DynamicFont" id=8]
+size = 400
+outline_size = 10
 outline_color = Color( 0, 0, 0, 1 )
-font_data = ExtResource( 2 )
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=9]
+size = 30
+font_data = ExtResource( 4 )
 
 [node name="QuizMain" type="Node2D"]
 script = ExtResource( 1 )
+
+[node name="bg_color" type="TextureRect" parent="."]
+visible = false
+margin_right = 3001.0
+margin_bottom = 1801.0
+texture = SubResource( 5 )
+expand = true
+
+[node name="Pergutas_teste" type="Label" parent="."]
+margin_left = 174.0
+margin_top = 122.0
+margin_right = 1649.0
+margin_bottom = 331.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "perguntas"
+align = 1
+autowrap = true
+uppercase = true
+
+[node name="Options" type="Node2D" parent="."]
+
+[node name="TLPR" type="Timer" parent="."]
+
+[node name="Timer" type="Timer" parent="."]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = -1
@@ -75,27 +111,23 @@ margin_bottom = 138.0
 custom_fonts/font = SubResource( 3 )
 text = "0 p2"
 
-[node name="bg_color" type="TextureRect" parent="."]
+[node name="add_point" type="Label" parent="CanvasLayer"]
 visible = false
-margin_right = 3001.0
-margin_bottom = 1801.0
-texture = SubResource( 5 )
-expand = true
+margin_left = 633.0
+margin_top = 187.0
+margin_right = 1267.0
+margin_bottom = 872.0
+custom_fonts/font = SubResource( 8 )
+text = "+1"
 
-[node name="Pergutas_teste" type="Label" parent="."]
-margin_left = 174.0
-margin_top = 122.0
-margin_right = 1649.0
-margin_bottom = 331.0
-custom_colors/font_color = Color( 1, 1, 1, 1 )
-custom_fonts/font = SubResource( 1 )
-text = "perguntas"
-align = 1
-autowrap = true
-uppercase = true
-
-[node name="Options" type="Node2D" parent="."]
-
-[node name="TLPR" type="Timer" parent="."]
+[node name="tempo_por_resp" type="Label" parent="CanvasLayer"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -54.5
+margin_right = 54.5
+margin_bottom = 52.0
+custom_fonts/font = SubResource( 9 )
+text = "00:00"
 
 [connection signal="timeout" from="TLPR" to="." method="_on_TLPR_timeout"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
