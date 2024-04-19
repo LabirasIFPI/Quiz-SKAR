@@ -36,8 +36,7 @@ var questions: Array = [
 			"Eu não sei porque ele não veio.",
 		]
 	},
-	
-  {
+	{
 		"id": 4,
 		"question": "Qual é a raiz quadrada de 144?",
 		"options": [
@@ -45,9 +44,8 @@ var questions: Array = [
 			"10",
 			"14",
 			"16"]
-	
-  },
-  {
+	},	
+	{
 		"id": 5,
 		"question": "Qual é o processo pelo qual as plantas convertem a luz solar em energia química?",
 		"options": [
@@ -56,8 +54,8 @@ var questions: Array = [
 			"Fermentação",
 			"Oxidação"]
 		
-  },
-  {
+	},
+	{
 		"id": 6,
 		"question": "Qual período da história romana é marcado pelo governo de imperadores?",
 		"options": [
@@ -66,8 +64,8 @@ var questions: Array = [
 			"Monarquia Romana",
 			"Era das Invasões Bárbaras"]
 	
-  },
-  {
+	},
+	{
 		"id": 7,
 		"question": "Qual é o símbolo químico para o elemento oxigênio?",
 		"options": [
@@ -75,10 +73,8 @@ var questions: Array = [
 			"Ox",
 			"Os",
 			"O2"]
-
-  },
-  {
-
+	},
+	{
 		"id": 8,
 		"question": "Qual é o nome dado à linha imaginária que divide a Terra em Hemisfério Oriental e Hemisfério Ocidental?",
 		"options": [
@@ -86,16 +82,15 @@ var questions: Array = [
 			"Trópico de Câncer",
 			"Linha do Equador",
 			"Meridiano de Primeiro de Janeiro"]
-  },
-
-		{
-	"id": 9,
-	"question": "Qual o valor de π (pi)?",
-	"options": [
-		"3,14",
-		"2,71",
-		"1,61",
-		"4,20"
+	},
+	{
+		"id": 9,
+		"question": "Qual o valor de π (pi)?",
+		"options": [
+			"3,14",
+			"2,71",
+			"1,61",
+			"4,20"
 	]
 },
 	{
@@ -268,29 +263,27 @@ var questions: Array = [
 		"Rio Colorado"
 	]
 }
-
 ]
 
-
+onready var _label_aviso = get_node("CanvasLayer2/aviso")
 ## Dicionario de pergunta atualmente sendo exibido.
 var perguntaExibida = null;
 
 # Indice da pergunta atual
 var actualQuestionInd = 0;
 
-var tlpr_out = false#variavel pro time acabar
 #Cena de alternativas
 onready var optionsNode = get_node("Options");
 
 onready var _points_p1 = get_node("CanvasLayer/pontos_p1")
 onready var _points_p2 = get_node("CanvasLayer/pontos_p2")
 
-onready var optionScene = preload("res://Cenas/alternativa.tscn");
+## Cena da alternativa
+onready var optionScene: PackedScene = preload("res://Cenas/alternativa.tscn");
 
 var colorProgress: float = 0.0;
 
 func _ready() -> void:
-	$TLPR.start(5)
 	randomize()
 	
 	# Define qual pergunta será exibida
@@ -336,7 +329,7 @@ func atualizarExibicao():
 	for i in range(min(3, len(_optionsArray))):
 		var _thisOptionDict = _optionsArray[i];
 		var _opt = optionScene.instance();
-		_opt.text = _thisOptionDict.text;
+		_opt.get_node("Label").text = _thisOptionDict.text;
 		_opt.optionID = _thisOptionDict.id;
 		
 		# Definir posição de cada alternativa: 
@@ -356,23 +349,43 @@ func checkIfHasRightAnswer(_array):
 
 ##############################################################
 func _process(delta: float) -> void:
+	var correta 
 	var _tempo_label = get_node("CanvasLayer/tempo_por_resp")
 
 	_tempo_label.text = str(int($TLPR.time_left))
 	_points_p1.text = "J1: " + (str(global.pontos_p1))
 	_points_p2.text = "J2: " + (str(global.pontos_p2))
+	
 	# Para fins de teste, avançar pergunta
-	if Input.is_action_just_pressed("ui_page_up") and global.resp_p1 == true and tlpr_out == false:
+	
+	
+	#LEMBRAR: pageup substitui alguma alternativa
+	if global.resp_p1 or global.resp_p2:
+		alt_A()
+		alt_B()
+		alt_C()
+		if global.resposta != -1:
+			if checarResposta(global.resposta):
+				correta = 1
+				print("Acertou");
+			else:
+				correta = 0
+				print("Errrouuu");
+
+
+	if global.resp_p1 == true and Input.is_action_just_pressed("ui_page_up"):
+		$TLPR.stop()
+		_label_aviso.text = ""
 		actualQuestionInd += 1
 		gerarNovaPergunta()
-		$TLPR.start(5)
 		#reseta as variavies de definição de recebimento dos pontos
 		ponto_blue()
 
-	if Input.is_action_just_pressed("ui_page_up") and global.resp_p2 == true and tlpr_out == false:
+	if global.resp_p2 == true and Input.is_action_just_pressed("ui_page_up"):
+		$TLPR.stop()
+		_label_aviso.text = ""
 		actualQuestionInd += 1
 		gerarNovaPergunta()
-		$TLPR.start(5)
 		#reseta as variavies de definição de recebimento dos pontos
 		ponto_red()
 
@@ -380,10 +393,7 @@ func _process(delta: float) -> void:
 	
 	updateBgColor();
 	
-	if global.resp_p1 or global.resp_p2:
-		alt_A()
-		alt_B()
-		alt_C()
+	# Detectar entrada de alternativa se tiver um jogador ingressado
 
 ###########################################################end
 
@@ -405,14 +415,16 @@ func gerarNovaPergunta(ind = actualQuestionInd):
 
 
 func _on_TLPR_timeout() -> void:
+	if global.resp_p1:
+		print("zuuullllll")
+		ponto_red()
+	else:
+		print("reedddd")
+		ponto_blue()
 	$TLPR.stop()
-	tlpr_out = true
-	#mudar o tamanha e colocar em variavel essa label
-	$CanvasLayer/add_point.visible = true
-	$CanvasLayer/add_point.set_modulate(Color.green)
-	$CanvasLayer/add_point.text = "Vosso tempo acabou :("
-#	gerarNovaPergunta()
-
+	_label_aviso.text = str("Seu tempo acabou :(")
+	$next_fortime.start(2)
+	
 	
 #Para definir quem receberá pontos ao responder a pergunta(apertar em algum botão de alternativa)
 #Futuramente será quem enviar o sinal via wu-fi primero, por isso não foi colocado uma condiçao
@@ -420,10 +432,12 @@ func _on_TLPR_timeout() -> void:
 func input_signal_players():
 	if Input.is_action_just_pressed("JogadorAzul"):
 		global.resp_p1 = true;
+		$TLPR.start(10)
 		changeBackgroundByPlayer();
 		
 	if Input.is_action_just_pressed("JogadorVermelho"):
 		global.resp_p2 = true;
+		$TLPR.start(10)
 		changeBackgroundByPlayer();
 		
 
@@ -451,21 +465,33 @@ func updateBgColor():
 
 #Essas funções serão atribuídas aos sinais que serão recebidos pelo Esp32
 func alt_A():
-	if Input.is_action_just_pressed("A"):#substituida por sinais
-		global.resposta = 'A'
+	if Input.is_action_just_pressed("A"):#substituida por sinais(será o novo "pageup")
+		global.resposta = 0;
+		$TLPR.stop()
+		
 func alt_B():
 	if Input.is_action_just_pressed("B"):
-		global.resposta = 'B'
+		global.resposta = 1;
+		$TLPR.stop()		
+		
 func alt_C():
 	if Input.is_action_just_pressed("C"):
-		global.resposta = 'C'
+		global.resposta = 2;
+		$TLPR.stop()
+		
+## Confere se a alternativa selecionada é a correta.
+func checarResposta(ind):
+	var _optionToCheck = optionsNode.get_child(ind) as Alternativa;
+	if _optionToCheck:
+		return _optionToCheck.optionID == 0
+	return false
 
 
 func ponto_red():#WILLDO confiderar se a reszposta foi errada
 	global.pontos_p2 += 1
 	global.resp_p1 = 0;
 	global.resp_p2 = 0;
-	var _label_ponto = get_node("CanvasLayer/add_point")
+	var _label_ponto = get_node("CanvasLayer2/add_point")
 	_label_ponto.visible = true
 	_label_ponto.set_modulate(Color.red)
 	$Timer.start(0.5)
@@ -474,13 +500,22 @@ func ponto_blue(): #futuramente considerar se a resposta foi errada
 	global.pontos_p1 += 1
 	global.resp_p1 = 0;
 	global.resp_p2 = 0;
-	var _label_ponto = get_node("CanvasLayer/add_point")
+	var _label_ponto = get_node("CanvasLayer2/add_point")
 	_label_ponto.visible = true
 	_label_ponto.set_modulate(Color.dodgerblue)
 	$Timer.start(0.5)
 	
-		
-
 
 func _on_Timer_timeout() -> void:
-	$CanvasLayer/add_point.visible = false
+	$CanvasLayer2/add_point.visible = false
+
+
+func _on_next_fortime_timeout() -> void: #pra retornar às perguntas normalmwengte :( :(
+	global.resp_p1 = false
+	global.resp_p2 = false
+	_label_aviso.text = str("")
+	$next_fortime.stop()
+	actualQuestionInd += 1
+	gerarNovaPergunta()
+	$TLPR.stop()
+

@@ -1,6 +1,6 @@
 extends Node
 #Muda quando um botão de alternativa for pressionado
-var resposta : = '';
+var resposta : = -1;
 #contagem de pontos do jogador 1 (azul)
 var pontos_p1 : = 0;
 #contagem de pontos do jogador 2 (vermelho)
