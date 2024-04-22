@@ -265,7 +265,7 @@ var questions: Array = [
 }
 ]
 
-onready var _label_aviso = get_node("CanvasLayer2/aviso")
+onready var _label_aviso = get_node("CanvasLayer2/aviso") as Label
 ## Dicionario de pergunta atualmente sendo exibido.
 var perguntaExibida = null;
 
@@ -347,56 +347,44 @@ func checkIfHasRightAnswer(_array):
 	return have
 		
 
-##############################################################
+## Função do loop principal do jogo.
 func _process(delta: float) -> void:
-	var correta 
-	var _tempo_label = get_node("CanvasLayer/tempo_por_resp")
-
-	_tempo_label.text = str(int($TLPR.time_left))
-	_points_p1.text = "J1: " + (str(global.pontos_p1))
-	_points_p2.text = "J2: " + (str(global.pontos_p2))
 	
-	# Para fins de teste, avançar pergunta
+	# Atualizar texto do tempo.
+	var _tempo_label = get_node("CanvasLayer/tempo_por_resp");
+	_tempo_label.text = str(int($TLPR.time_left));
 	
+	# Atualizar pontuação dos jogadores
+	_points_p1.text = "J1: " + (str(global.pontos[0]));
+	_points_p2.text = "J2: " + (str(global.pontos[1]));
 	
-	#LEMBRAR: pageup substitui alguma alternativa
-	if global.resp_p1 or global.resp_p2:
-		alt_A()
-		alt_B()
-		alt_C()
+	# Detectar alternativa caso tenha um jogador ingressado.
+	if global.temJogadorNaVez():
+		global.resposta = detectarComando();
 		if global.resposta != -1:
+			$TLPR.stop();
 			if checarResposta(global.resposta):
-				correta = 1
 				print("Acertou");
 			else:
-				correta = 0
 				print("Errrouuu");
-
-
-	if global.resp_p1 == true and Input.is_action_just_pressed("ui_page_up"):
-		$TLPR.stop()
-		_label_aviso.text = ""
-		actualQuestionInd += 1
-		gerarNovaPergunta()
-		#reseta as variavies de definição de recebimento dos pontos
-		ponto_blue()
-
-	if global.resp_p2 == true and Input.is_action_just_pressed("ui_page_up"):
-		$TLPR.stop()
-		_label_aviso.text = ""
-		actualQuestionInd += 1
-		gerarNovaPergunta()
-		#reseta as variavies de definição de recebimento dos pontos
-		ponto_red()
-
+		
+		# Para fins de teste, avançar pergunta com PAGEUP
+		# LEMBRAR: pageup substitui alguma alternativa
+		if Input.is_action_just_pressed("ui_page_up"):
+			$TLPR.stop();
+			_label_aviso.text = "";
+			actualQuestionInd += 1;
+			gerarNovaPergunta();
+			adicionarPonto(global.jogadorAtual);
+			global.jogadorAtual = -1;
+	
+	# Detectar entrada de jogadores na vez
 	input_signal_players();
 	
-	updateBgColor();
+	# Atualiza cor do plano de fundo
+	changeBackgroundByPlayer();
+	updateBgColorAlpha();
 	
-	# Detectar entrada de alternativa se tiver um jogador ingressado
-
-###########################################################end
-
 
 func limparExibicao():
 	$Pergutas_teste.text = "";
@@ -414,13 +402,14 @@ func gerarNovaPergunta(ind = actualQuestionInd):
 	atualizarExibicao()
 
 
+## Tempo da pergunta se esgotou
 func _on_TLPR_timeout() -> void:
-	if global.resp_p1:
-		print("zuuullllll")
-		ponto_red()
-	else:
-		print("reedddd")
-		ponto_blue()
+	# Se houver um jogador na vez, o ponto vai para o jogador oposto.
+	if global.temJogadorNaVez():
+		# Obter índice do jogador oposto.
+		var _sinal = 1 - 2 * global.jogadorAtual;
+		var ganhador = global.jogadorAtual + 1  * _sinal;
+		adicionarPonto(ganhador);
 	$TLPR.stop()
 	_label_aviso.text = str("Seu tempo acabou :(")
 	$next_fortime.start(2)
@@ -430,54 +419,67 @@ func _on_TLPR_timeout() -> void:
 #Futuramente será quem enviar o sinal via wu-fi primero, por isso não foi colocado uma condiçao
 #de "impedimento" (esp ja tem) ==> @WILLDO
 func input_signal_players():
-	if Input.is_action_just_pressed("JogadorAzul"):
-		global.resp_p1 = true;
+	var _atual = -1;
+	var _comandos = ["JogadorAzul", "JogadorVermelho"];
+	for i in range(len(_comandos)):
+		if Input.is_action_just_pressed(_comandos[i]):
+			_atual += i + 1;
+	
+	# Se apenas um jogador apertou:
+	if _atual >= 0 and _atual < 2:
+		global.definirJogadorAtual(_atual);
+		colorProgress = 0.0;
 		$TLPR.start(10)
-		changeBackgroundByPlayer();
-		
-	if Input.is_action_just_pressed("JogadorVermelho"):
-		global.resp_p2 = true;
-		$TLPR.start(10)
-		changeBackgroundByPlayer();
-		
+	else:
+		# Aconteceu de ninguém apertar, ou dos dois apertarem no mesmo instante.
+		pass
 
 
 func changeBackgroundByPlayer():
 	var _bgText = get_node("CanvasLayer/CorRespondedor").texture.gradient as Gradient;
-	colorProgress = 0.0;
 	
-	if global.resp_p1 and not global.resp_p2:
+	if global.jogadorAtual == 0:
 		_bgText.colors[0] = Color(0,0.7,1, 0.21);
-	elif global.resp_p2 and not global.resp_p1:
+	elif global.jogadorAtual == 1:
 		_bgText.colors[0] = Color(1,0.2,0.2, 0.21);
 	else:
 		_bgText.colors[0] = Color.white;
 		
 
-func updateBgColor():
+func updateBgColorAlpha():
 	# Se alguem tiver apertado: 
-	if global.resp_p1 or global.resp_p2:
-		colorProgress = move_toward(colorProgress, 1.08, 0.068);
+	colorProgress = move_toward(colorProgress, float(global.temJogadorNaVez()), 0.068);
 		
 	var _bgText = get_node("CanvasLayer/CorRespondedor").texture.gradient as Gradient;
 	_bgText.colors[0].a = colorProgress;
 		
 
+# Funções desativadas por enquanto, pois foram substituidas pela detectarComando --- checar se vão ser necessarias
 #Essas funções serão atribuídas aos sinais que serão recebidos pelo Esp32
-func alt_A():
-	if Input.is_action_just_pressed("A"):#substituida por sinais(será o novo "pageup")
-		global.resposta = 0;
-		$TLPR.stop()
-		
-func alt_B():
-	if Input.is_action_just_pressed("B"):
-		global.resposta = 1;
-		$TLPR.stop()		
-		
-func alt_C():
-	if Input.is_action_just_pressed("C"):
-		global.resposta = 2;
-		$TLPR.stop()
+#func alt_A():
+#	if Input.is_action_just_pressed("A"):#substituida por sinais(será o novo "pageup")
+#		global.resposta = 0;
+#		$TLPR.stop()
+#
+#func alt_B():
+#	if Input.is_action_just_pressed("B"):
+#		global.resposta = 1;
+#		$TLPR.stop()		
+#
+#func alt_C():
+#	if Input.is_action_just_pressed("C"):
+#		global.resposta = 2;
+#		$TLPR.stop()
+
+
+## Detecta os comandos das alternativas e retorna  o indice selecionado.
+func detectarComando():
+	var comandos = ["A", "B", "C"];
+	for i in range(len(comandos)):
+		if Input.is_action_just_pressed(comandos[i]):
+			return i;
+	return -1;
+
 		
 ## Confere se a alternativa selecionada é a correta.
 func checarResposta(ind):
@@ -486,36 +488,29 @@ func checarResposta(ind):
 		return _optionToCheck.optionID == 0
 	return false
 
+## Torna visivel efeitos de acerto de acordo com o jogador desejado.
+func exibirEfeitoDeAcerto(indJogador):
+	var _label_ponto = get_node("CanvasLayer2/add_point");
+	_label_ponto.visible = true;
+	var _colors = [Color.dodgerblue, Color.red]
+	_label_ponto.set_modulate(_colors[indJogador]);
 
-func ponto_red():#WILLDO confiderar se a reszposta foi errada
-	global.pontos_p2 += 1
-	global.resp_p1 = 0;
-	global.resp_p2 = 0;
-	var _label_ponto = get_node("CanvasLayer2/add_point")
-	_label_ponto.visible = true
-	_label_ponto.set_modulate(Color.red)
-	$Timer.start(0.5)
-		
-func ponto_blue(): #futuramente considerar se a resposta foi errada
-	global.pontos_p1 += 1
-	global.resp_p1 = 0;
-	global.resp_p2 = 0;
-	var _label_ponto = get_node("CanvasLayer2/add_point")
-	_label_ponto.visible = true
-	_label_ponto.set_modulate(Color.dodgerblue)
-	$Timer.start(0.5)
+## Adiciona um ou mais pontos para o jogador desejado
+func adicionarPonto(indJogador, qntPontos = 1):
+	global.pontos[indJogador] += qntPontos;
+	exibirEfeitoDeAcerto(indJogador);
+	$AddPointEffectTimer.start(0.5)
 	
 
-func _on_Timer_timeout() -> void:
+## Retorna a pergunta novamente
+func _on_next_fortime_timeout() -> void:
+	global.jogadorAtual = -1;
+	_label_aviso.text = str("");
+	$next_fortime.stop();
+	actualQuestionInd += 1;
+	gerarNovaPergunta();
+	$TLPR.stop();
+
+## Sinaliza quando o efeito de adição de pontos se encerrar.
+func _onAddPointEffectTimerTimeout():
 	$CanvasLayer2/add_point.visible = false
-
-
-func _on_next_fortime_timeout() -> void: #pra retornar às perguntas normalmwengte :( :(
-	global.resp_p1 = false
-	global.resp_p2 = false
-	_label_aviso.text = str("")
-	$next_fortime.stop()
-	actualQuestionInd += 1
-	gerarNovaPergunta()
-	$TLPR.stop()
-

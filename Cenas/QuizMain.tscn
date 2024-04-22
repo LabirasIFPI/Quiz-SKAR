@@ -83,7 +83,7 @@ uppercase = true
 
 [node name="TLPR" type="Timer" parent="."]
 
-[node name="Timer" type="Timer" parent="."]
+[node name="AddPointEffectTimer" type="Timer" parent="."]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = -1
@@ -151,5 +151,5 @@ custom_fonts/font = SubResource( 8 )
 text = "+1"
 
 [connection signal="timeout" from="TLPR" to="." method="_on_TLPR_timeout"]
-[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="timeout" from="AddPointEffectTimer" to="." method="_onAddPointEffectTimerTimeout"]
 [connection signal="timeout" from="next_fortime" to="." method="_on_next_fortime_timeout"]
