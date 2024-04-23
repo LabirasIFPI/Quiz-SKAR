@@ -364,8 +364,16 @@ func _process(delta: float) -> void:
 		if global.resposta != -1:
 			$TLPR.stop();
 			if checarResposta(global.resposta):
+				$TLPR.stop();
+				_label_aviso.text = "";
+				actualQuestionInd += 1;
+				gerarNovaPergunta();
+				adicionarPonto(global.jogadorAtual);
+				global.jogadorAtual = -1;
 				print("Acertou");
 			else:
+				_label_aviso.text = "Errou";
+				$next_fortime.start(2)
 				print("Errrouuu");
 		
 		# Para fins de teste, avançar pergunta com PAGEUP

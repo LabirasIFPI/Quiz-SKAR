@@ -48,7 +48,6 @@ font_data = ExtResource( 4 )
 [sub_resource type="DynamicFont" id=10]
 size = 150
 outline_size = 5
-outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 2 )
 
 [sub_resource type="DynamicFont" id=8]
@@ -138,7 +137,7 @@ margin_left = 323.0
 margin_top = 207.0
 margin_right = 1698.0
 margin_bottom = 364.0
-custom_colors/font_color = Color( 0.984314, 1, 0.454902, 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_fonts/font = SubResource( 10 )
 
 [node name="add_point" type="Label" parent="CanvasLayer2"]
