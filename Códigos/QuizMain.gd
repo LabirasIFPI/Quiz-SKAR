@@ -292,6 +292,48 @@ func _ready() -> void:
 	# Atualiza a exibição
 	atualizarExibicao();
 	
+	
+## Função do loop principal do jogo.
+func _process(delta: float) -> void:
+	# Atualizar texto do tempo.
+	var _tempo_label = get_node("CanvasLayer/tempo_por_resp");
+	_tempo_label.text = str(int($TLPR.time_left));
+	
+	# Atualizar pontuação dos jogadores
+	_points_p1.text = "J1: " + (str(global.pontos[0]));
+	_points_p2.text = "J2: " + (str(global.pontos[1]));
+#	print(global.resposta)
+	# Detectar alternativa caso tenha um jogador ingressado.
+	if global.temJogadorNaVez():
+		global.resposta = detectarComando();
+		if global.resposta != -1:
+			$TLPR.stop();
+			if checarResposta(global.resposta):
+				$TLPR.stop();
+				_label_aviso.text = "";
+				actualQuestionInd += 1;
+				gerarNovaPergunta();
+				adicionarPonto(global.jogadorAtual);
+				global.jogadorAtual = -1;
+				print("Acertou");
+			else:
+				_label_aviso.text = "Errou";
+				$next_fortime.start(2)
+				print("Errrouuu");
+
+##################################################################
+
+
+
+	# Detectar entrada de jogadores na vez
+	input_signal_players();
+	
+	# Atualiza cor do plano de fundo
+	changeBackgroundByPlayer();
+	updateBgColorAlpha();
+	
+	
+	
 ## Atualiza os elementos da tela para receberem as informações da pergunta atual.
 func atualizarExibicao():
 	var _questions_array= []
@@ -302,7 +344,6 @@ func atualizarExibicao():
 	#@TODO apos acabar sessão de testess, mudar a spritename
 	var _questionLabel = get_node("Pergutas_teste");
 	_questionLabel.text = _pergunta;
-	
 	# ALTERNATIVAS:
 	
 	# Cria estrutura de cada pergunta e adiciona num array.
@@ -347,52 +388,6 @@ func checkIfHasRightAnswer(_array):
 	return have
 		
 
-## Função do loop principal do jogo.
-func _process(delta: float) -> void:
-	
-	# Atualizar texto do tempo.
-	var _tempo_label = get_node("CanvasLayer/tempo_por_resp");
-	_tempo_label.text = str(int($TLPR.time_left));
-	
-	# Atualizar pontuação dos jogadores
-	_points_p1.text = "J1: " + (str(global.pontos[0]));
-	_points_p2.text = "J2: " + (str(global.pontos[1]));
-	
-	# Detectar alternativa caso tenha um jogador ingressado.
-	if global.temJogadorNaVez():
-		global.resposta = detectarComando();
-		if global.resposta != -1:
-			$TLPR.stop();
-			if checarResposta(global.resposta):
-				$TLPR.stop();
-				_label_aviso.text = "";
-				actualQuestionInd += 1;
-				gerarNovaPergunta();
-				adicionarPonto(global.jogadorAtual);
-				global.jogadorAtual = -1;
-				print("Acertou");
-			else:
-				_label_aviso.text = "Errou";
-				$next_fortime.start(2)
-				print("Errrouuu");
-		
-		# Para fins de teste, avançar pergunta com PAGEUP
-		# LEMBRAR: pageup substitui alguma alternativa
-		if Input.is_action_just_pressed("ui_page_up"):
-			$TLPR.stop();
-			_label_aviso.text = "";
-			actualQuestionInd += 1;
-			gerarNovaPergunta();
-			adicionarPonto(global.jogadorAtual);
-			global.jogadorAtual = -1;
-	
-	# Detectar entrada de jogadores na vez
-	input_signal_players();
-	
-	# Atualiza cor do plano de fundo
-	changeBackgroundByPlayer();
-	updateBgColorAlpha();
-	
 
 func limparExibicao():
 	$Pergutas_teste.text = "";
@@ -408,6 +403,7 @@ func gerarNovaPergunta(ind = actualQuestionInd):
 	perguntaExibida = questions[ind];2
 	
 	atualizarExibicao()
+	var _questionLabel = get_node("Pergutas_teste");
 
 
 ## Tempo da pergunta se esgotou
@@ -415,7 +411,7 @@ func _on_TLPR_timeout() -> void:
 	# Se houver um jogador na vez, o ponto vai para o jogador oposto.
 	if global.temJogadorNaVez():
 		# Obter índice do jogador oposto.
-		var _sinal = 1 - 2 * global.jogadorAtual;
+		var _sinal = 1 - 2 * global.jogadorAtual;#se vermelho: -1, se azul: 1
 		var ganhador = global.jogadorAtual + 1  * _sinal;
 		adicionarPonto(ganhador);
 	$TLPR.stop()

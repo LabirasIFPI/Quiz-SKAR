@@ -22,7 +22,8 @@ var jogadorAtual = -1;
 func _ready():
 	pass 
 func _process(delta):
-	print(resposta)
+	pass
+#	print(resposta)
 
 ## Define o jogador da vez para o indice desejado
 func definirJogadorAtual(ind):

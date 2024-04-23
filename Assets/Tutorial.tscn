@@ -1,0 +1,109 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://Assets/Fontes/marela.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Assets/FreeGUI/png/Buotoes/Button_back].png" type="Texture" id=2]
+[ext_resource path="res://Assets/Fontes/tmj_by_mallagueta_pepper-d62rr8r.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://Assets/FreeGUI/png/bg_branco.jpeg" type="Texture" id=4]
+[ext_resource path="res://Códigos/Tutorial.gd" type="Script" id=5]
+[ext_resource path="res://Assets/FreeGUI/png/rigth.png" type="Texture" id=6]
+[ext_resource path="res://Assets/FreeGUI/png/X_gray.png" type="Texture" id=7]
+
+[sub_resource type="DynamicFont" id=1]
+size = 30
+outline_size = 2
+outline_color = Color( 0, 0, 0, 1 )
+extra_spacing_bottom = 20
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 50
+outline_size = 8
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 150
+outline_size = 8
+font_data = ExtResource( 3 )
+
+[node name="Tutorial" type="Node2D"]
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_horizontal_guides_": [ 742.0 ]
+}
+
+[node name="bg" type="TextureRect" parent="."]
+margin_right = 1920.0
+margin_bottom = 1080.0
+texture = ExtResource( 4 )
+expand = true
+
+[node name="Info" type="Label" parent="."]
+margin_right = 49.0
+margin_bottom = 17.0
+
+[node name="Control" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="esquerda" type="Button" parent="Control"]
+margin_left = 6.0
+margin_top = 722.0
+margin_right = 237.0
+margin_bottom = 973.0
+icon = ExtResource( 2 )
+flat = true
+expand_icon = true
+
+[node name="direita" type="Button" parent="Control"]
+margin_left = 1689.0
+margin_top = 720.0
+margin_right = 1901.0
+margin_bottom = 958.0
+icon = ExtResource( 6 )
+flat = true
+expand_icon = true
+
+[node name="out" type="Button" parent="Control"]
+margin_left = 18.0
+margin_top = 4.0
+margin_right = 148.0
+margin_bottom = 132.0
+custom_fonts/font = SubResource( 1 )
+text = "A"
+icon = ExtResource( 7 )
+flat = true
+icon_align = 1
+expand_icon = true
+
+[node name="PassosImagem" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="Informação" type="CanvasLayer" parent="."]
+
+[node name="informação" type="Label" parent="Informação"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -156.0
+margin_top = -26.0
+margin_right = 97.0
+margin_bottom = 27.0
+custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 2 )
+text = "jogo quis"
+
+[node name="titulo" type="Label" parent="Informação"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -314.0
+margin_right = 314.0
+margin_bottom = 157.0
+custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 3 )
+text = "TUTORIAL"
+
+[connection signal="pressed" from="Control/esquerda" to="." method="_on_avancar_esquerda_pressed"]
+[connection signal="pressed" from="Control/direita" to="." method="_on_avancar_direita_pressed"]
+[connection signal="pressed" from="Control/out" to="." method="_on_sair_pressed"]
