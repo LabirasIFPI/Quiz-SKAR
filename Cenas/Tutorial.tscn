@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Assets/Fontes/tmj_by_mallagueta_pepper-d62rr8r.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Códigos/Tutorial.gd" type="Script" id=2]
@@ -7,6 +7,8 @@
 [ext_resource path="res://Assets/FreeGUI/png/X_gray.png" type="Texture" id=5]
 [ext_resource path="res://Assets/FreeGUI/png/Buotoes/Button_back].png" type="Texture" id=6]
 [ext_resource path="res://Assets/FreeGUI/png/rigth.png" type="Texture" id=7]
+[ext_resource path="res://Assets/FreeGUI/svg/box-removebg-preview.png" type="Texture" id=8]
+[ext_resource path="res://Assets/FreeGUI/svg/box2-removebg-preview.png" type="Texture" id=9]
 
 [sub_resource type="DynamicFont" id=2]
 size = 60
@@ -73,6 +75,17 @@ expand_icon = true
 [node name="PassosImagem" type="Control" parent="."]
 margin_right = 40.0
 margin_bottom = 40.0
+
+[node name="caixa_onoff" type="Sprite" parent="PassosImagem"]
+position = Vector2( 767, 514 )
+scale = Vector2( 1.5, 1.5 )
+texture = ExtResource( 9 )
+
+[node name="caixa" type="Sprite" parent="PassosImagem"]
+visible = false
+position = Vector2( 948, 589 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 8 )
 
 [node name="Informação" type="CanvasLayer" parent="."]
 
