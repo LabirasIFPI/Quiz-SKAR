@@ -285,6 +285,8 @@ var colorProgress: float = 0.0;
 
 func _ready() -> void:
 	randomize()
+	##Retorna a variavel ao valor original(pois também é usada no "tutorial" pra um só dinal n mexer em duas var)
+	global.jogadorAtual = -1
 	
 	# Define qual pergunta será exibida
 	perguntaExibida = questions[0];
@@ -317,6 +319,7 @@ func _process(delta: float) -> void:
 				global.jogadorAtual = -1;
 				print("Acertou");
 			else:
+				#@TODO adicionar ponto pro outro jogador
 				_label_aviso.text = "Errou";
 				$next_fortime.start(2)
 				print("Errrouuu");
