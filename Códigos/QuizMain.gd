@@ -319,6 +319,10 @@ func _process(delta: float) -> void:
 				global.jogadorAtual = -1;
 				print("Acertou");
 			else:
+		# Obter índice do jogador oposto.
+				var _sinal = 1 - 2 * global.jogadorAtual;#se vermelho: -1, se azul: 1
+				var ganhador = global.jogadorAtual + 1  * _sinal;
+				adicionarPonto(ganhador);
 				#@TODO adicionar ponto pro outro jogador
 				_label_aviso.text = "Errou";
 				$next_fortime.start(2)

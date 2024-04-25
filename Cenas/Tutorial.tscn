@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Assets/Fontes/tmj_by_mallagueta_pepper-d62rr8r.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Códigos/Tutorial.gd" type="Script" id=2]
@@ -9,6 +9,8 @@
 [ext_resource path="res://Assets/FreeGUI/png/rigth.png" type="Texture" id=7]
 [ext_resource path="res://Assets/FreeGUI/svg/box-removebg-preview.png" type="Texture" id=8]
 [ext_resource path="res://Assets/FreeGUI/svg/box2-removebg-preview.png" type="Texture" id=9]
+[ext_resource path="res://Assets/FreeGUI/tutorial_img/pessoas2.png" type="Texture" id=10]
+[ext_resource path="res://Assets/FreeGUI/tutorial_img/pessoas1.png" type="Texture" id=11]
 
 [sub_resource type="DynamicFont" id=2]
 size = 60
@@ -77,6 +79,7 @@ margin_right = 40.0
 margin_bottom = 40.0
 
 [node name="caixa_onoff" type="Sprite" parent="PassosImagem"]
+visible = false
 position = Vector2( 767, 514 )
 scale = Vector2( 1.5, 1.5 )
 texture = ExtResource( 9 )
@@ -86,6 +89,18 @@ visible = false
 position = Vector2( 948, 589 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 8 )
+
+[node name="Pessoas1" type="Sprite" parent="PassosImagem"]
+visible = false
+position = Vector2( 606, 550 )
+scale = Vector2( 1.5, 1.5 )
+texture = ExtResource( 11 )
+
+[node name="Pessoas2" type="Sprite" parent="PassosImagem"]
+visible = false
+position = Vector2( 1299, 537 )
+scale = Vector2( 1.5, 1.5 )
+texture = ExtResource( 10 )
 
 [node name="Informação" type="CanvasLayer" parent="."]
 

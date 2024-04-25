@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/box2-removebg-preview.png-95dbefeb43d1664c94de12684528f2c5.stex"
+path="res://.import/box2-removebg-preview.png-79e7c470b4a4d7ef398c6acbb820c1c4.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/FreeGUI/svg/box2-removebg-preview.png"
-dest_files=[ "res://.import/box2-removebg-preview.png-95dbefeb43d1664c94de12684528f2c5.stex" ]
+source_file="res://Assets/FreeGUI/tutorial_img/box2-removebg-preview.png"
+dest_files=[ "res://.import/box2-removebg-preview.png-79e7c470b4a4d7ef398c6acbb820c1c4.stex" ]
 
 [params]
 
