@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Assets/Fontes/tmj_by_mallagueta_pepper-d62rr8r.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Códigos/Tutorial.gd" type="Script" id=2]
@@ -8,9 +8,11 @@
 [ext_resource path="res://Assets/FreeGUI/png/Buotoes/Button_back].png" type="Texture" id=6]
 [ext_resource path="res://Assets/FreeGUI/png/rigth.png" type="Texture" id=7]
 [ext_resource path="res://Assets/FreeGUI/svg/box-removebg-preview.png" type="Texture" id=8]
-[ext_resource path="res://Assets/FreeGUI/svg/box2-removebg-preview.png" type="Texture" id=9]
+[ext_resource path="res://Assets/FreeGUI/tutorial_img/box2-removebg-preview.png" type="Texture" id=9]
 [ext_resource path="res://Assets/FreeGUI/tutorial_img/pessoas2.png" type="Texture" id=10]
 [ext_resource path="res://Assets/FreeGUI/tutorial_img/pessoas1.png" type="Texture" id=11]
+[ext_resource path="res://Assets/FreeGUI/svg/efeitos1-removebg-preview.png" type="Texture" id=12]
+[ext_resource path="res://Assets/FreeGUI/tutorial_img/passes6.jpeg" type="Texture" id=13]
 
 [sub_resource type="DynamicFont" id=2]
 size = 60
@@ -79,7 +81,6 @@ margin_right = 40.0
 margin_bottom = 40.0
 
 [node name="caixa_onoff" type="Sprite" parent="PassosImagem"]
-visible = false
 position = Vector2( 767, 514 )
 scale = Vector2( 1.5, 1.5 )
 texture = ExtResource( 9 )
@@ -102,6 +103,23 @@ position = Vector2( 1299, 537 )
 scale = Vector2( 1.5, 1.5 )
 texture = ExtResource( 10 )
 
+[node name="Passes6" type="Sprite" parent="PassosImagem"]
+position = Vector2( 1422, 632 )
+scale = Vector2( 0.506427, 0.49 )
+texture = ExtResource( 13 )
+
+[node name="caixaAnimada" type="Node2D" parent="PassosImagem"]
+visible = false
+position = Vector2( 1076, 612 )
+
+[node name="Sprite" type="Sprite" parent="PassosImagem/caixaAnimada"]
+texture = ExtResource( 9 )
+
+[node name="Sprite2" type="Sprite" parent="PassosImagem/caixaAnimada"]
+position = Vector2( -156, -90 )
+rotation = 0.358391
+texture = ExtResource( 12 )
+
 [node name="Informação" type="CanvasLayer" parent="."]
 
 [node name="informação" type="Label" parent="Informação"]
@@ -115,7 +133,7 @@ margin_right = 893.0
 margin_bottom = 28.56
 custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
 custom_fonts/font = SubResource( 2 )
-text = "jogo quis"
+text = "jogo quiz"
 align = 1
 valign = 1
 autowrap = true

@@ -1,7 +1,7 @@
 extends Node2D
 
-
 var controle = 0;
+onready var imagesNode: Control = get_node("PassosImagem");
 
 onready var _label_texto = get_node("Informação/informação")
 
@@ -15,20 +15,40 @@ var informacoes: Array = [
 	"Vence aquele que somar mais pontos no final da rodada. Bom JOGO e bons ESTUDOS!!!<3"
 ]
 
+onready var images: Array = [
+	imagesNode.get_node("Passes6"),
+	imagesNode.get_node("caixa"),
+	imagesNode.get_node("Pessoas2"),
+	null,
+	imagesNode.get_node("Pessoas2"),
+	imagesNode.get_node("Pessoas1")
+]
+
 func _ready():
-	pass 
+	print("Tuto iniciado");
+	updateScreen();
+	
+
+## Atualiza o texto e exibe a imagem correspondente
+func updateScreen():
+	# Atualizar texto exibido
+	_label_texto.text = informacoes[controle]
+	# Atualizar imagem
+	for node in imagesNode.get_children():
+		node.visible = node == images[controle]
+
 
 func _process(delta: float) -> void:
-
-	print("contrlole: ",  controle)
-	_label_texto.text = informacoes[controle]
+	pass
+	
+		
 
 func DefinirTextoPorPagina():
 	var _operacao = 1 - 2 * global.jogadorAtual;#se esquerda(red): -1, se dir(azul): 1
 	print(_operacao)
 	if (_operacao > 0 and controle <= (informacoes.size() - 2)) or (_operacao < 0 and controle >= 1):
 		controle += _operacao
-		_label_texto.text = informacoes[controle]
+		updateScreen()
 
 func _on_avancar_esquerda_pressed() -> void:
 	#Essa atribuição só existe a fim de testes. Ela representa o sinal recebido.
