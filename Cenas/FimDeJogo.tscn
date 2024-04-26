@@ -1,0 +1,103 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://Temas/FonteAlternativa.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Assets/FreeGUI/png/bg_branco.jpeg" type="Texture" id=2]
+[ext_resource path="res://Assets/FreeGUI/svg/Window.png" type="Texture" id=3]
+[ext_resource path="res://Assets/FreeGUI/png/emptyblue.png" type="Texture" id=4]
+[ext_resource path="res://Assets/FreeGUI/png/eptyred.png" type="Texture" id=5]
+[ext_resource path="res://Assets/FreeGUI/svg/Window (2).png" type="Texture" id=6]
+[ext_resource path="res://Assets/FreeGUI/svg/Window (1).png" type="Texture" id=7]
+[ext_resource path="res://Assets/Fontes/tmj_by_mallagueta_pepper-d62rr8r.ttf" type="DynamicFontData" id=8]
+[ext_resource path="res://Códigos/FimDeJogo.gd" type="Script" id=9]
+[ext_resource path="res://Assets/FreeGUI/png/red.png" type="Texture" id=10]
+
+[sub_resource type="DynamicFont" id=1]
+size = 90
+outline_size = 4
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 8 )
+
+[node name="FimDeJogo" type="Node2D"]
+script = ExtResource( 9 )
+
+[node name="BgBranco" type="Sprite" parent="."]
+position = Vector2( 960.25, 540 )
+scale = Vector2( 0.64, 0.6 )
+texture = ExtResource( 2 )
+
+[node name="Menu" type="CanvasLayer" parent="."]
+layer = 0
+
+[node name="Window" type="Sprite" parent="Menu"]
+position = Vector2( 960, 540 )
+texture = ExtResource( 3 )
+
+[node name="fim" type="Label" parent="Menu"]
+margin_left = 769.0
+margin_top = 181.0
+margin_right = 1160.0
+margin_bottom = 266.0
+custom_fonts/font = ExtResource( 1 )
+text = "Fim de jogo!"
+
+[node name="Janelas" type="Node2D" parent="Menu"]
+position = Vector2( 880, 332 )
+
+[node name="Window(1)" type="Sprite" parent="Menu/Janelas"]
+position = Vector2( -131, 102 )
+texture = ExtResource( 7 )
+
+[node name="Window(2)" type="Sprite" parent="Menu/Janelas"]
+position = Vector2( -112, 97 )
+texture = ExtResource( 6 )
+
+[node name="Window(1)2" type="Sprite" parent="Menu/Janelas"]
+position = Vector2( 266, 105 )
+texture = ExtResource( 7 )
+
+[node name="Window(2)2" type="Sprite" parent="Menu/Janelas"]
+position = Vector2( 285, 100 )
+texture = ExtResource( 6 )
+
+[node name="Emptyblue" type="Sprite" parent="Menu/Janelas"]
+position = Vector2( -253, 98 )
+scale = Vector2( 0.6, 0.6 )
+texture = ExtResource( 4 )
+
+[node name="Eptyred" type="Sprite" parent="Menu/Janelas"]
+position = Vector2( 135, 104 )
+scale = Vector2( 0.6, 0.6 )
+texture = ExtResource( 5 )
+
+[node name="p1" type="Label" parent="Menu/Janelas"]
+margin_left = -148.0
+margin_top = 57.0
+margin_right = -108.0
+margin_bottom = 142.0
+custom_fonts/font = ExtResource( 1 )
+text = "0"
+
+[node name="p2" type="Label" parent="Menu/Janelas"]
+margin_left = 266.0
+margin_top = 60.0
+margin_right = 306.0
+margin_bottom = 233.0
+custom_fonts/font = ExtResource( 1 )
+text = "0
+"
+
+[node name="Sinais" type="CanvasLayer" parent="."]
+
+[node name="Back" type="Button" parent="Sinais"]
+margin_left = 750.0
+margin_top = 750.0
+margin_right = 1187.0
+margin_bottom = 941.0
+custom_colors/font_color_disabled = Color( 0, 0.811765, 1, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "retornar"
+icon = ExtResource( 10 )
+flat = true
+icon_align = 1
+
+[connection signal="pressed" from="Sinais/Back" to="." method="_on_Back_pressed"]

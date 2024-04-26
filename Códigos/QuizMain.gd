@@ -17,13 +17,14 @@ var questions: Array = [
 	},
 	{
 		"id": 2,
-		"question": "Pessoa mais estranha do laboratorio?",
+		"question": "Quais as medidas do conhecido Triângulo Pitagórico Primitivo?",
 		"options": [
-			"Fabricio",
-			"Patrocinio",
-			"Ryan",
-			"Sofia",
-			"Ravena"
+			"5² = 4² + 3² ",
+			"4² = 5² + 6²",
+			"3² = 2² + 1²",
+			"4² = 3² + 2²",
+			"5² = 4² + 2²",
+			"4² = 3² + 5²"
 		]
 	},
 	{
@@ -328,6 +329,9 @@ func _process(delta: float) -> void:
 				$next_fortime.start(2)
 				print("Errrouuu");
 
+	if global.pontos[global.jogadorAtual] == 3:
+		print("alguem ganhou")
+
 ##################################################################
 
 
@@ -465,22 +469,6 @@ func updateBgColorAlpha():
 	_bgText.colors[0].a = colorProgress;
 		
 
-# Funções desativadas por enquanto, pois foram substituidas pela detectarComando --- checar se vão ser necessarias
-#Essas funções serão atribuídas aos sinais que serão recebidos pelo Esp32
-#func alt_A():
-#	if Input.is_action_just_pressed("A"):#substituida por sinais(será o novo "pageup")
-#		global.resposta = 0;
-#		$TLPR.stop()
-#
-#func alt_B():
-#	if Input.is_action_just_pressed("B"):
-#		global.resposta = 1;
-#		$TLPR.stop()		
-#
-#func alt_C():
-#	if Input.is_action_just_pressed("C"):
-#		global.resposta = 2;
-#		$TLPR.stop()
 
 
 ## Detecta os comandos das alternativas e retorna  o indice selecionado.
@@ -525,3 +513,6 @@ func _on_next_fortime_timeout() -> void:
 ## Sinaliza quando o efeito de adição de pontos se encerrar.
 func _onAddPointEffectTimerTimeout():
 	$CanvasLayer2/add_point.visible = false
+
+func FimDeJogo():
+	pass

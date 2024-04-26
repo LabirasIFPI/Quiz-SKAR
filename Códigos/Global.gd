@@ -1,14 +1,11 @@
 extends Node
 #Muda quando um botão de alternativa for pressionado
-var resposta : = -1;
-#contagem de pontos do jogador 1 (azul)
-var pontos_p1 : = 0;
-#contagem de pontos do jogador 2 (vermelho)
-var pontos_p2: = 0;
+var resposta : = -1
 
 # pontos[0] --- pontuação do jogador 1
 # pontos[1] --- pontuação do jogador 2
 var pontos: Array = [0, 0];
+
 
 # Armazena o indice do jogador da vez. -1 = ninguem, 0 = azul, 1 = vermelho
 var jogadorAtual = -1;

@@ -470,7 +470,6 @@ scale = Vector2( 0.6, 0.6 )
 texture = ExtResource( 20 )
 
 [node name="AspaAmarela" type="Sprite" parent="PassosImagem/Pessoas2"]
-visible = false
 position = Vector2( -233.5, -41.5 )
 rotation = -1.48617
 scale = Vector2( 0.35, 0.32 )
