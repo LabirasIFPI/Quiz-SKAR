@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/efeitos8-removebg-preview.png-3e1f848137b8991a59896aa84f85ad31.stex"
+path="res://.import/passo1.jpeg-930b7b77335e97d7d81dd015194e16ac.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/FreeGUI/svg/efeitos8-removebg-preview.png"
-dest_files=[ "res://.import/efeitos8-removebg-preview.png-3e1f848137b8991a59896aa84f85ad31.stex" ]
+source_file="res://Assets/FreeGUI/tutorial_img/passo1.jpeg"
+dest_files=[ "res://.import/passo1.jpeg-930b7b77335e97d7d81dd015194e16ac.stex" ]
 
 [params]
 

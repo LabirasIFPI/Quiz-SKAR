@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/efeitos1-removebg-preview.png-e1394e20c23aa7875683c72bd7adbefe.stex"
+path="res://.import/aspa_amarela.png-fbaa2cac5c9e43d1559edf638fa22fa6.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/FreeGUI/svg/efeitos1-removebg-preview.png"
-dest_files=[ "res://.import/efeitos1-removebg-preview.png-e1394e20c23aa7875683c72bd7adbefe.stex" ]
+source_file="res://Assets/FreeGUI/tutorial_img/aspa_amarela.png"
+dest_files=[ "res://.import/aspa_amarela.png-fbaa2cac5c9e43d1559edf638fa22fa6.stex" ]
 
 [params]
 

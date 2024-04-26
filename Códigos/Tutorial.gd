@@ -6,22 +6,25 @@ onready var imagesNode: Control = get_node("PassosImagem");
 onready var _label_texto = get_node("Informação/informação")
 
 var informacoes: Array = [
-	"Primeiramente, ligue e reinicie a 'caixa de resposta' e entre na rede 'SKAR_Quiz'",
+	"Primeiramente, ligue e reinicie a 'caixa de resposta' e entre na rede 'Rede_SKAR'",
 	"Agora configure com sua rede WIFI!",
+	"Agora sua rede está salva!",
 	"Tudo pronto?! Agora vamos aprender como JOGAR!!!",
 	"Este é um jogo para dois jogadores: o azul e o vermelho.     SE POSICIONEM!",
-	"Responde a pergunta aquele que apertar primeiro o botão de sua respectiva cor. Cada pergunta tem seu tempo pra resposta, responda entes que o tempo acabe!",
+	"Responde a pergunta aquele que apertar primeiro o botão de sua respectiva cor. Cada pergunta tem seu tempo pra resposta, responda antes que o tempo acabe!",
 	"Estes botões representam sua resposta, sendo eles 'A','B' e'C'. Cada resposta correta soma ponto(s), uma resposta errada ou vazia irá somar ponto(s) ao seu oponente.",
 	"Vence aquele que somar mais pontos no final da rodada. Bom JOGO e bons ESTUDOS!!!<3"
 ]
 
 onready var images: Array = [
-	imagesNode.get_node("Passes6"),
-	imagesNode.get_node("caixa"),
-	imagesNode.get_node("Pessoas2"),
-	null,
-	imagesNode.get_node("Pessoas2"),
-	imagesNode.get_node("Pessoas1")
+	imagesNode.get_node("caixa_onoff"),
+	imagesNode.get_node("Fundo1"),
+	imagesNode.get_node("Passo3"),
+	imagesNode.get_node("Pessoas1"),
+	imagesNode.get_node("PessoaLuta"),
+	imagesNode.get_node("Caixa1"),
+	imagesNode.get_node("Caixa2"),
+	imagesNode.get_node("Pessoas2")
 ]
 
 func _ready():

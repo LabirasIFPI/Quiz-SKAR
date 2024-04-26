@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/pessoas1.png-b305f055b0b5c8f8b905a6dc096d6b7e.stex"
+path="res://.import/aspa_azul.png-bf424a1d58222674789ae5b7cecdd12a.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/FreeGUI/tutorial_img/pessoas1.png"
-dest_files=[ "res://.import/pessoas1.png-b305f055b0b5c8f8b905a6dc096d6b7e.stex" ]
+source_file="res://Assets/FreeGUI/tutorial_img/aspa_azul.png"
+dest_files=[ "res://.import/aspa_azul.png-bf424a1d58222674789ae5b7cecdd12a.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

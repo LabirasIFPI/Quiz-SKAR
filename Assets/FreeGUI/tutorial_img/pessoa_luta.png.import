@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/pessoas1.png-b305f055b0b5c8f8b905a6dc096d6b7e.stex"
+path="res://.import/pessoa_luta.png-c49333ca9097af689abce5725a00ae88.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/FreeGUI/tutorial_img/pessoas1.png"
-dest_files=[ "res://.import/pessoas1.png-b305f055b0b5c8f8b905a6dc096d6b7e.stex" ]
+source_file="res://Assets/FreeGUI/tutorial_img/pessoa_luta.png"
+dest_files=[ "res://.import/pessoa_luta.png-c49333ca9097af689abce5725a00ae88.stex" ]
 
 [params]
 

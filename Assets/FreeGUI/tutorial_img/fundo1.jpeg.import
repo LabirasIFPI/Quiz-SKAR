@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/passes3.jpeg-ecc4df6866892a362cc3630aad2462f7.stex"
+path="res://.import/fundo1.jpeg-1df02efb90c2e05f5479016398df6ba7.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/FreeGUI/tutorial_img/passes3.jpeg"
-dest_files=[ "res://.import/passes3.jpeg-ecc4df6866892a362cc3630aad2462f7.stex" ]
+source_file="res://Assets/FreeGUI/tutorial_img/fundo1.jpeg"
+dest_files=[ "res://.import/fundo1.jpeg-1df02efb90c2e05f5479016398df6ba7.stex" ]
 
 [params]
 

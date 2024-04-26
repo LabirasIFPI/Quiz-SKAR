@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=38 format=2]
 
 [ext_resource path="res://Assets/Fontes/tmj_by_mallagueta_pepper-d62rr8r.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Códigos/Tutorial.gd" type="Script" id=2]
@@ -11,8 +11,250 @@
 [ext_resource path="res://Assets/FreeGUI/tutorial_img/box2-removebg-preview.png" type="Texture" id=9]
 [ext_resource path="res://Assets/FreeGUI/tutorial_img/pessoas2.png" type="Texture" id=10]
 [ext_resource path="res://Assets/FreeGUI/tutorial_img/pessoas1.png" type="Texture" id=11]
-[ext_resource path="res://Assets/FreeGUI/svg/efeitos1-removebg-preview.png" type="Texture" id=12]
-[ext_resource path="res://Assets/FreeGUI/tutorial_img/passes6.jpeg" type="Texture" id=13]
+[ext_resource path="res://Assets/Fontes/marela.ttf" type="DynamicFontData" id=12]
+[ext_resource path="res://Assets/FreeGUI/tutorial_img/fundo2.jpeg" type="Texture" id=13]
+[ext_resource path="res://Assets/FreeGUI/svg/efeitos6-removebg-preview.png" type="Texture" id=14]
+[ext_resource path="res://Assets/FreeGUI/tutorial_img/box-removebg-preview.png" type="Texture" id=15]
+[ext_resource path="res://Assets/FreeGUI/tutorial_img/passo2.jpeg" type="Texture" id=16]
+[ext_resource path="res://Assets/FreeGUI/tutorial_img/passo1.jpeg" type="Texture" id=17]
+[ext_resource path="res://Assets/FreeGUI/tutorial_img/fundo1.jpeg" type="Texture" id=18]
+[ext_resource path="res://Assets/FreeGUI/tutorial_img/passo3.jpeg" type="Texture" id=19]
+[ext_resource path="res://Assets/FreeGUI/tutorial_img/coroa.png" type="Texture" id=20]
+[ext_resource path="res://Assets/FreeGUI/tutorial_img/aspa_amarela.png" type="Texture" id=21]
+[ext_resource path="res://Assets/FreeGUI/tutorial_img/aspa_azul.png" type="Texture" id=22]
+[ext_resource path="res://Assets/FreeGUI/svg/efeitos3-removebg-preview.png" type="Texture" id=23]
+[ext_resource path="res://Assets/FreeGUI/tutorial_img/caixa3.png" type="Texture" id=24]
+[ext_resource path="res://Assets/FreeGUI/tutorial_img/player2.png" type="Texture" id=25]
+[ext_resource path="res://Assets/FreeGUI/tutorial_img/player1.png" type="Texture" id=26]
+
+[sub_resource type="Animation" id=6]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("seta:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 54.022 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("aspa_amarela:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("aspa_amarela:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "aspa"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("seta:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ -10.0, 10.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("aspa_amarela:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.7 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("aspa_amarela:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.0672907, 0.8 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ -343.811, -343.811 ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "set_aspa"
+length = 1.5
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("seta:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 0.8, 1.1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 34.0, 64.0, 64.0, 34.0 ]
+}
+
+[sub_resource type="Animation" id=4]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("aspa:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 21.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("aspa_vermelha:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 8.22354 ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "efeito_azul"
+length = 1.2
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("aspa:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ -12.0, 21.0, -12.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("aspa_vermelha:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.0388232, 0.5, 1.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 250.0, 290.0, 250.0 ]
+}
+
+[sub_resource type="Animation" id=9]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("AspaAmarela:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=10]
+resource_name = "aspas"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("AspaAmarela:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.1, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("AspaAmarela2:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.1, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("AspaAmarela3:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.1, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[sub_resource type="DynamicFont" id=11]
+size = 19
+outline_size = 3
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 12 )
+
+[sub_resource type="Animation" id=12]
+resource_name = "aspa"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("AspaAmarela:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
 
 [sub_resource type="DynamicFont" id=2]
 size = 60
@@ -31,12 +273,6 @@ script = ExtResource( 2 )
 __meta__ = {
 "_edit_horizontal_guides_": [ 742.0 ]
 }
-
-[node name="bg" type="TextureRect" parent="."]
-margin_right = 1920.0
-margin_bottom = 1080.0
-texture = ExtResource( 4 )
-expand = true
 
 [node name="Info" type="Label" parent="."]
 margin_right = 49.0
@@ -81,44 +317,171 @@ margin_right = 40.0
 margin_bottom = 40.0
 
 [node name="caixa_onoff" type="Sprite" parent="PassosImagem"]
-position = Vector2( 767, 514 )
-scale = Vector2( 1.5, 1.5 )
+visible = false
+position = Vector2( 953, 540 )
+scale = Vector2( 2, 2 )
 texture = ExtResource( 9 )
 
-[node name="caixa" type="Sprite" parent="PassosImagem"]
+[node name="efec_amarelo" type="AnimationPlayer" parent="PassosImagem/caixa_onoff"]
+autoplay = "aspa"
+anims/RESET = SubResource( 6 )
+anims/aspa = SubResource( 7 )
+anims/set_aspa = SubResource( 8 )
+
+[node name="aspa_amarela" type="Sprite" parent="PassosImagem/caixa_onoff"]
 visible = false
-position = Vector2( 948, 589 )
-scale = Vector2( 2, 2 )
-texture = ExtResource( 8 )
+position = Vector2( -263.5, 92.5 )
+scale = Vector2( 0.2, 0.2 )
+texture = ExtResource( 21 )
+offset = Vector2( 20, 20 )
+
+[node name="seta" type="Sprite" parent="PassosImagem/caixa_onoff"]
+position = Vector2( 106.5, -36.5 )
+rotation = 0.942861
+scale = Vector2( 0.3, 0.3 )
+texture = ExtResource( 14 )
+
+[node name="Fundo1" type="Sprite" parent="PassosImagem"]
+visible = false
+position = Vector2( 583, 679 )
+scale = Vector2( 0.72526, 0.713867 )
+texture = ExtResource( 18 )
+
+[node name="Passo1" type="Sprite" parent="PassosImagem/Fundo1"]
+position = Vector2( 2.75772, -4.20251 )
+scale = Vector2( 0.83, 0.73 )
+texture = ExtResource( 17 )
+
+[node name="Fundo2" type="Sprite" parent="PassosImagem/Fundo1"]
+position = Vector2( 1082.37, -39.2231 )
+scale = Vector2( 0.919592, 1.08665 )
+texture = ExtResource( 13 )
+
+[node name="Passo2" type="Sprite" parent="PassosImagem/Fundo1"]
+position = Vector2( 1087.89, -39.2231 )
+scale = Vector2( 0.912764, 0.838304 )
+texture = ExtResource( 16 )
+
+[node name="Passo3" type="Sprite" parent="PassosImagem"]
+visible = false
+position = Vector2( 964, 626 )
+texture = ExtResource( 19 )
+
+[node name="Fundo2" type="Sprite" parent="PassosImagem/Passo3"]
+position = Vector2( -6.99994, 5.5 )
+scale = Vector2( 1.54167, 0.661133 )
+z_index = -1
+texture = ExtResource( 13 )
 
 [node name="Pessoas1" type="Sprite" parent="PassosImagem"]
 visible = false
-position = Vector2( 606, 550 )
+position = Vector2( 910, 600 )
 scale = Vector2( 1.5, 1.5 )
 texture = ExtResource( 11 )
 
+[node name="PessoaLuta" type="Sprite" parent="PassosImagem"]
+position = Vector2( 962, 691 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 24 )
+
+[node name="P1" type="Sprite" parent="PassosImagem/PessoaLuta"]
+position = Vector2( -175.5, -38 )
+texture = ExtResource( 25 )
+
+[node name="P2" type="Sprite" parent="PassosImagem/PessoaLuta"]
+position = Vector2( 158, -35.5 )
+scale = Vector2( 0.903382, 0.981544 )
+texture = ExtResource( 26 )
+
+[node name="Caixa1" type="Sprite" parent="PassosImagem"]
+visible = false
+position = Vector2( 907, 725 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 8 )
+
+[node name="anim" type="AnimationPlayer" parent="PassosImagem/Caixa1"]
+autoplay = "efeito_azul"
+anims/RESET = SubResource( 4 )
+anims/efeito_azul = SubResource( 5 )
+
+[node name="aspa" type="Sprite" parent="PassosImagem/Caixa1"]
+position = Vector2( -109, 9.5 )
+rotation = 0.366519
+scale = Vector2( 0.4, 0.4 )
+texture = ExtResource( 22 )
+offset = Vector2( -20, -40 )
+
+[node name="aspa_vermelha" type="Sprite" parent="PassosImagem/Caixa1"]
+position = Vector2( 137, 12.5 )
+rotation = 0.143528
+scale = Vector2( 0.4, 0.4 )
+texture = ExtResource( 23 )
+offset = Vector2( -10, 40 )
+flip_v = true
+
+[node name="Caixa2" type="Sprite" parent="PassosImagem"]
+visible = false
+position = Vector2( 909, 720 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 15 )
+
+[node name="anim" type="AnimationPlayer" parent="PassosImagem/Caixa2"]
+autoplay = "aspas"
+anims/RESET = SubResource( 9 )
+anims/aspas = SubResource( 10 )
+
+[node name="AspaAmarela" type="Sprite" parent="PassosImagem/Caixa2"]
+visible = false
+position = Vector2( -75, -104 )
+scale = Vector2( 0.2, 0.2 )
+texture = ExtResource( 21 )
+
+[node name="AspaAmarela2" type="Sprite" parent="PassosImagem/Caixa2"]
+position = Vector2( 19, -55.5 )
+rotation = -2.75078
+scale = Vector2( 0.2, 0.2 )
+texture = ExtResource( 21 )
+
+[node name="AspaAmarela3" type="Sprite" parent="PassosImagem/Caixa2"]
+position = Vector2( 106, -103 )
+rotation = 0.894887
+scale = Vector2( 0.2, 0.2 )
+texture = ExtResource( 21 )
+
+[node name="Label" type="Label" parent="PassosImagem/Caixa2"]
+margin_left = -70.0
+margin_top = -98.0
+margin_right = 102.0
+margin_bottom = -65.0
+custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 11 )
+text = "a        b       c"
+
 [node name="Pessoas2" type="Sprite" parent="PassosImagem"]
 visible = false
-position = Vector2( 1299, 537 )
-scale = Vector2( 1.5, 1.5 )
+position = Vector2( 936, 588 )
+scale = Vector2( 2, 2 )
 texture = ExtResource( 10 )
 
-[node name="Passes6" type="Sprite" parent="PassosImagem"]
-position = Vector2( 1422, 632 )
-scale = Vector2( 0.506427, 0.49 )
-texture = ExtResource( 13 )
+[node name="Coroa" type="Sprite" parent="PassosImagem/Pessoas2"]
+position = Vector2( -145.5, -146.5 )
+rotation = -0.244749
+scale = Vector2( 0.6, 0.6 )
+texture = ExtResource( 20 )
+
+[node name="AspaAmarela" type="Sprite" parent="PassosImagem/Pessoas2"]
+visible = false
+position = Vector2( -233.5, -41.5 )
+rotation = -1.48617
+scale = Vector2( 0.35, 0.32 )
+texture = ExtResource( 21 )
+
+[node name="anim" type="AnimationPlayer" parent="PassosImagem/Pessoas2"]
+autoplay = "aspa"
+anims/aspa = SubResource( 12 )
 
 [node name="caixaAnimada" type="Node2D" parent="PassosImagem"]
-visible = false
 position = Vector2( 1076, 612 )
-
-[node name="Sprite" type="Sprite" parent="PassosImagem/caixaAnimada"]
-texture = ExtResource( 9 )
-
-[node name="Sprite2" type="Sprite" parent="PassosImagem/caixaAnimada"]
-position = Vector2( -156, -90 )
-rotation = 0.358391
-texture = ExtResource( 12 )
 
 [node name="Informação" type="CanvasLayer" parent="."]
 
@@ -147,6 +510,17 @@ margin_bottom = 157.0
 custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
 custom_fonts/font = SubResource( 3 )
 text = "TUTORIAL"
+
+[node name="Back" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="bg" type="TextureRect" parent="Back"]
+margin_left = -4.0
+margin_top = -3.0
+margin_right = 1916.0
+margin_bottom = 1077.0
+texture = ExtResource( 4 )
+expand = true
 
 [connection signal="pressed" from="Control/esquerda" to="." method="_on_avancar_esquerda_pressed"]
 [connection signal="pressed" from="Control/direita" to="." method="_on_avancar_direita_pressed"]
