@@ -1,4 +1,16 @@
 extends Node
+#Sobre WI-FI
+var txt = ""
+var client
+var connected: bool = false
+## ip da rede acessada (lembrar: era const)
+var ip = "192.168.43.92"
+const port = 80
+
+signal botaoAzul(Tutorial, QuizMain)
+signal botaoVermelho(Tutorial, QuizMain)
+
+
 #Muda quando um botão de alternativa for pressionado
 var resposta : = -1
 
@@ -7,20 +19,86 @@ var resposta : = -1
 var pontos: Array = [0, 0];
 
 
-# Armazena o indice do jogador da vez. -1 = ninguem, 0 = azul, 1 = vermelho
+# Armazena o indice do jogador da vez. -1 = ninguem, 0 = azul, 1 = vermelho==>vez de resposta
 var jogadorAtual = -1;
 
 
-# Quando o jogadro 1(azul) apertou o botão primeiro ==>vez de resposta
+# Quando o jogadro 1(azul) apertou o botão primeiro 
 #var resp_p1: = false;
 #Quando o jogadro dois(red) apertou o botã primeiro ==>vez de resposta
 #var resp_p2: = false;
 
 func _ready():
-	pass 
+	client = StreamPeerTCP.new()
+	change_ip()
+	client.connect_to_host(ip, port)
+	if(client.is_connected_to_host()):
+		connected = true
+		print("Conectado")
+		
 func _process(delta):
-	pass
-#	print(resposta)
+	# Redefinir botões para false.
+	redefineButtons();
+	
+	#saber se está conectado com o Esp32
+	if connected and not client.is_connected_to_host():
+		connected = false
+	else:
+		# Se estiver conectado
+		_readWebSocket()
+
+## Lê mensagens enquanto estiver conectado
+func _readWebSocket():
+	while client.get_available_bytes()>0:
+		var message = client.get_utf8_string(client.get_available_bytes())
+		#Evitar bugs e mensagens vazias
+		if message == null:
+			continue
+			#Recebe as mensagens e manda interpretar
+		elif message.length() > 0:
+			print(message)
+			for i in message:
+				if i =='\n':
+					# Mensagem recebida por completo.
+					_messageInterpreter(txt)
+					txt = "";
+				else:
+					txt += i
+
+#Se não der certo: pega do readWebsocket
+func change_ip():
+	var command = txt.split(' ')
+	if command.size() == 2:
+		print("sou grandee")
+		##Pra trocar o ip pelo ip recebido
+		if command[0] == "ip":
+			ip = command[1]
+
+func _writeWebsocket(txt):
+	if connected and client.is_connected_to_host():
+		client.put_data(txt.to_ascii())
+				
+##interpreta a mensagem de acordo com a vontade do progamador
+func _messageInterpreter(txt):
+	print("Interpretando mensagem: %s" % [txt]);
+	# A mensagem tem formato: "LALALA B1"
+	var command = txt.split(' ');
+	
+	if command[1] == "B1":
+		print("grande um")
+	# command[0] -> Identificador da pessoa
+	# command[1] -> Botão apertado
+	if command.size() == 2:
+		if command[1] == "B1":
+			keys.B1 = true;
+			emit_signal("botaoAzul");
+		if command[1] == "B2":
+			keys.B2 = true;
+			emit_signal("botaoVermelho");
+		
+		# O ideal seria ser assim:
+#		keys[command[1]] = true;
+
 
 ## Define o jogador da vez para o indice desejado
 func definirJogadorAtual(ind):
@@ -30,3 +108,16 @@ func definirJogadorAtual(ind):
 ## Avalia se há algum jogador na vez
 func temJogadorNaVez():
 	return global.jogadorAtual != -1;
+
+var keys: Dictionary = {
+	'B1': false,
+	'B2': false
+}
+
+func redefineButtons() -> void:
+	keys.B1 = false;
+	keys.B2 = false;
+
+func getButtonPressed(_buttonKey: String) -> bool:
+	var key = _buttonKey.to_upper();
+	return keys[key];

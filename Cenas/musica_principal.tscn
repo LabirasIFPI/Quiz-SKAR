@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://MUSICAS/jolly-farmer-163815.wav" type="AudioStream" id=1]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="musica_main" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 1 )
+volume_db = 4.773
+autoplay = true

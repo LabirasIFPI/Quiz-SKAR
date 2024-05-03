@@ -86,7 +86,7 @@ var questions: Array = [
 	},
 	{
 		"id": 9,
-		"question": "Qual o valor de π (pi)?",
+		"question": "Qual o valor aproximado de π (pi)?",
 		"options": [
 			"3,14",
 			"2,71",
@@ -324,13 +324,13 @@ func _process(delta: float) -> void:
 				var _sinal = 1 - 2 * global.jogadorAtual;#se vermelho: -1, se azul: 1
 				var ganhador = global.jogadorAtual + 1  * _sinal;
 				adicionarPonto(ganhador);
-				#@TODO adicionar ponto pro outro jogador
 				_label_aviso.text = "Errou";
 				$next_fortime.start(2)
 				print("Errrouuu");
-
-	if global.pontos[global.jogadorAtual] == 3:
+	#@TODO: haverá um sistema de definiçõa de máximo de pontos?
+	if global.pontos[0] == 3 or global.pontos[1] == 3: #por favor, patro não me julgue :( sei que tá feio
 		print("alguem ganhou")
+		FimDeJogo()
 
 ##################################################################
 
@@ -419,12 +419,15 @@ func gerarNovaPergunta(ind = actualQuestionInd):
 
 ## Tempo da pergunta se esgotou
 func _on_TLPR_timeout() -> void:
+	$sino.play()
+	
 	# Se houver um jogador na vez, o ponto vai para o jogador oposto.
 	if global.temJogadorNaVez():
 		# Obter índice do jogador oposto.
 		var _sinal = 1 - 2 * global.jogadorAtual;#se vermelho: -1, se azul: 1
 		var ganhador = global.jogadorAtual + 1  * _sinal;
 		adicionarPonto(ganhador);
+	
 	$TLPR.stop()
 	_label_aviso.text = str("Seu tempo acabou :(")
 	$next_fortime.start(2)
@@ -436,7 +439,13 @@ func _on_TLPR_timeout() -> void:
 func input_signal_players():
 	var _atual = -1;
 	var _comandos = ["JogadorAzul", "JogadorVermelho"];
+	var _comandosEsp = ["B1", "B2"];
 	for i in range(len(_comandos)):
+		# Capturar ação do ESP
+		if global.getButtonPressed(_comandosEsp[i]):
+			_atual += i + 1;
+		
+		# Capturar ação do teclado
 		if Input.is_action_just_pressed(_comandos[i]):
 			_atual += i + 1;
 	
@@ -473,6 +482,7 @@ func updateBgColorAlpha():
 
 ## Detecta os comandos das alternativas e retorna  o indice selecionado.
 func detectarComando():
+	#@TODO: mudar pelos sinais
 	var comandos = ["A", "B", "C"];
 	for i in range(len(comandos)):
 		if Input.is_action_just_pressed(comandos[i]):
@@ -513,6 +523,7 @@ func _on_next_fortime_timeout() -> void:
 ## Sinaliza quando o efeito de adição de pontos se encerrar.
 func _onAddPointEffectTimerTimeout():
 	$CanvasLayer2/add_point.visible = false
-
+##Chamado parta finalização da rodada entre os competidores
+#Exibe jogador vencedor e passa pra menu de fim
 func FimDeJogo():
 	pass
