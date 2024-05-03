@@ -284,6 +284,11 @@ onready var optionScene: PackedScene = preload("res://Cenas/alternativa.tscn");
 
 var colorProgress: float = 0.0;
 
+## Obter índice do jogador oposto ao global.jogadorAtual.
+func obterJogadorOposto() -> int:
+	var _sinal = 1 - 2 * global.jogadorAtual; # se vermelho: -1, se azul: 1
+	return global.jogadorAtual + 1  * _sinal;
+
 func _ready() -> void:
 	randomize()
 	##Retorna a variavel ao valor original(pois também é usada no "tutorial" pra um só dinal n mexer em duas var)
@@ -294,25 +299,30 @@ func _ready() -> void:
 	
 	# Atualiza a exibição
 	atualizarExibicao();
-	
-	
-## Função do loop principal do jogo.
-func _process(delta: float) -> void:
-	# Atualizar texto do tempo.
+
+## Atualizar texto do tempo.
+func updateTimeLabel() -> void:
 	var _tempo_label = get_node("CanvasLayer/tempo_por_resp");
 	_tempo_label.text = str(int($TLPR.time_left));
 	
-	# Atualizar pontuação dos jogadores
+## Atualiza textos das pontuações dos jogadores
+func updateScoresLabels() -> void:
 	_points_p1.text = "J1: " + (str(global.pontos[0]));
 	_points_p2.text = "J2: " + (str(global.pontos[1]));
-#	print(global.resposta)
+	
+## Função do loop principal do jogo.
+func _process(delta: float) -> void:
+	# Atualizar interface:
+	updateTimeLabel()
+	updateScoresLabels()
+	
 	# Detectar alternativa caso tenha um jogador ingressado.
 	if global.temJogadorNaVez():
 		global.resposta = detectarComando();
 		if global.resposta != -1:
 			$TLPR.stop();
 			if checarResposta(global.resposta):
-				$TLPR.stop();
+				global.playSound("right");
 				_label_aviso.text = "";
 				actualQuestionInd += 1;
 				gerarNovaPergunta();
@@ -320,21 +330,15 @@ func _process(delta: float) -> void:
 				global.jogadorAtual = -1;
 				print("Acertou");
 			else:
-		# Obter índice do jogador oposto.
-				var _sinal = 1 - 2 * global.jogadorAtual;#se vermelho: -1, se azul: 1
-				var ganhador = global.jogadorAtual + 1  * _sinal;
-				adicionarPonto(ganhador);
+				global.playSound("wrong");
+				adicionarPonto(obterJogadorOposto());
 				_label_aviso.text = "Errou";
 				$next_fortime.start(2)
 				print("Errrouuu");
-	#@TODO: haverá um sistema de definiçõa de máximo de pontos?
-	if global.pontos[0] == 3 or global.pontos[1] == 3: #por favor, patro não me julgue :( sei que tá feio
-		print("alguem ganhou")
-		FimDeJogo()
-
-##################################################################
-
-
+				
+	# Detectar fim de jogo:
+	if global.pontos.has(global.maxPoints): 
+		callGameOver();
 
 	# Detectar entrada de jogadores na vez
 	input_signal_players();
@@ -344,11 +348,9 @@ func _process(delta: float) -> void:
 	updateBgColorAlpha();
 	
 	
-	
 ## Atualiza os elementos da tela para receberem as informações da pergunta atual.
 func atualizarExibicao():
 	var _questions_array= []
-
 	
 	# Atualiza pergunta
 	var _pergunta = perguntaExibida.question;
@@ -399,7 +401,6 @@ func checkIfHasRightAnswer(_array):
 	return have
 		
 
-
 func limparExibicao():
 	$Pergutas_teste.text = "";
 	for opt in optionsNode.get_children():
@@ -419,8 +420,9 @@ func gerarNovaPergunta(ind = actualQuestionInd):
 
 ## Tempo da pergunta se esgotou
 func _on_TLPR_timeout() -> void:
-	$sino.play()
-	
+	# Tocar som do sino
+	global.playSound("bell", 3.0);
+
 	# Se houver um jogador na vez, o ponto vai para o jogador oposto.
 	if global.temJogadorNaVez():
 		# Obter índice do jogador oposto.
@@ -523,7 +525,8 @@ func _on_next_fortime_timeout() -> void:
 ## Sinaliza quando o efeito de adição de pontos se encerrar.
 func _onAddPointEffectTimerTimeout():
 	$CanvasLayer2/add_point.visible = false
-##Chamado parta finalização da rodada entre os competidores
-#Exibe jogador vencedor e passa pra menu de fim
-func FimDeJogo():
+	
+## Chamado para finalização da rodada entre os competidores
+## @TODO: Exibe jogador vencedor e passa pra menu de fim
+func callGameOver():
 	pass

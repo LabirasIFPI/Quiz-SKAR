@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Códigos/SoundNode.gd" type="Script" id=1]
+[ext_resource path="res://MUSICAS/jolly-farmer-163815.wav" type="AudioStream" id=2]
+
+[node name="SoundNode" type="Node"]
+script = ExtResource( 1 )
+soundToPlay = ExtResource( 2 )
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+
+[connection signal="timeout" from="Timer" to="." method="_onTimerTimeout"]
+[connection signal="finished" from="AudioStreamPlayer" to="." method="_onAudioStreamPlayerFinished"]

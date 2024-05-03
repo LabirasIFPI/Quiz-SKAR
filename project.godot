@@ -23,11 +23,17 @@ _global_script_classes=[ {
 "class": "Questions",
 "language": "GDScript",
 "path": "res://Data/questions.gd"
+}, {
+"base": "Node",
+"class": "SoundNode",
+"language": "GDScript",
+"path": "res://Códigos/SoundNode.gd"
 } ]
 _global_script_class_icons={
 "Alternativa": "",
 "Question": "",
-"Questions": ""
+"Questions": "",
+"SoundNode": ""
 }
 
 [application]

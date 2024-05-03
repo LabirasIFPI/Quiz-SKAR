@@ -1,32 +1,47 @@
 extends Node
+
 #Sobre WI-FI
-var txt = ""
-var client
-var connected: bool = false
-## ip da rede acessada (lembrar: era const)
-var ip = "192.168.43.92"
-const port = 80
+var txt = "";
+var client;
+var connected: bool = false;
 
-signal botaoAzul(Tutorial, QuizMain)
-signal botaoVermelho(Tutorial, QuizMain)
+## IP da rede acessada (lembrar: era const)
+var ip = "192.168.43.92";
+const port = 80;
 
+## Inicializar signals
+signal botaoAzul(Tutorial, QuizMain);
+signal botaoVermelho(Tutorial, QuizMain);
 
-#Muda quando um botão de alternativa for pressionado
-var resposta : = -1
+## Scene de sons
+onready var soundNode = preload("res://Cenas/SoundNode.tscn");
 
+## Guarda valor da resposta inserido pelo usuário.
+var resposta: int = -1;
+
+## Pontuação dos jogadores:
 # pontos[0] --- pontuação do jogador 1
 # pontos[1] --- pontuação do jogador 2
 var pontos: Array = [0, 0];
 
+## Pontuação necessária para vencer a partida.
+var maxPoints = 3;
 
-# Armazena o indice do jogador da vez. -1 = ninguem, 0 = azul, 1 = vermelho==>vez de resposta
+# Armazena o indice do jogador da vez, que irá responder. 
+# -1 = ninguem, 0 = azul, 1 = vermelho
 var jogadorAtual = -1;
 
+## Dicionário que carrega estado das teclas pressionadas
+var keys: Dictionary = {
+	'B1': false,
+	'B2': false
+}
 
-# Quando o jogadro 1(azul) apertou o botão primeiro 
-#var resp_p1: = false;
-#Quando o jogadro dois(red) apertou o botã primeiro ==>vez de resposta
-#var resp_p2: = false;
+var sounds: Dictionary = {
+	"right": preload("res://MUSICAS/Resposta-certa-01_1.wav"),
+	"wrong": preload("res://MUSICAS/Resposta errada - 02 (online-audio-converter.com).wav"),
+	"bell": preload("res://MUSICAS/Relвgio-sino-01.wav"),
+}
 
 func _ready():
 	client = StreamPeerTCP.new()
@@ -40,7 +55,7 @@ func _process(delta):
 	# Redefinir botões para false.
 	redefineButtons();
 	
-	#saber se está conectado com o Esp32
+	# Saber se está conectado com o Esp32
 	if connected and not client.is_connected_to_host():
 		connected = false
 	else:
@@ -51,10 +66,10 @@ func _process(delta):
 func _readWebSocket():
 	while client.get_available_bytes()>0:
 		var message = client.get_utf8_string(client.get_available_bytes())
-		#Evitar bugs e mensagens vazias
+		# Evitar bugs e mensagens vazias
 		if message == null:
 			continue
-			#Recebe as mensagens e manda interpretar
+			# Recebe as mensagens e manda interpretar
 		elif message.length() > 0:
 			print(message)
 			for i in message:
@@ -65,20 +80,23 @@ func _readWebSocket():
 				else:
 					txt += i
 
-#Se não der certo: pega do readWebsocket
+# Na prática: aqui txt ainda não é o a mesnsagem recebida pelo Esp32(ainda null)
+# Erro: Não há como mudar o ip se não há como receber o novo ip sem um ip
+# Solução: tornar, inicialmente, a rede IFPI_ALUNOS como ip daqui
 func change_ip():
-	var command = txt.split(' ')
-	if command.size() == 2:
-		print("sou grandee")
-		##Pra trocar o ip pelo ip recebido
-		if command[0] == "ip":
-			ip = command[1]
+	pass
+#	var command = txt.split(' ')
+#	if command.size() == 2:
+#		print("sou grandee")
+#		##Pra trocar o ip pelo ip recebido
+#		if command[0] == "ip":
+#			ip = command[1]
 
 func _writeWebsocket(txt):
 	if connected and client.is_connected_to_host():
 		client.put_data(txt.to_ascii())
 				
-##interpreta a mensagem de acordo com a vontade do progamador
+## Interpreta a mensagem de acordo com a vontade do programador
 func _messageInterpreter(txt):
 	print("Interpretando mensagem: %s" % [txt]);
 	# A mensagem tem formato: "LALALA B1"
@@ -99,7 +117,6 @@ func _messageInterpreter(txt):
 		# O ideal seria ser assim:
 #		keys[command[1]] = true;
 
-
 ## Define o jogador da vez para o indice desejado
 func definirJogadorAtual(ind):
 	if global.jogadorAtual == -1: 
@@ -109,15 +126,19 @@ func definirJogadorAtual(ind):
 func temJogadorNaVez():
 	return global.jogadorAtual != -1;
 
-var keys: Dictionary = {
-	'B1': false,
-	'B2': false
-}
-
 func redefineButtons() -> void:
 	keys.B1 = false;
 	keys.B2 = false;
 
 func getButtonPressed(_buttonKey: String) -> bool:
+	##Torna a mensaguem maiúcula, por mais que não seja necessário
 	var key = _buttonKey.to_upper();
 	return keys[key];
+
+## Instancia um soundNode para tocar um som específico.
+func playSound(sound, duration = 5.0):
+	var _snd = soundNode.instance();
+	var _soundToPlay = sounds.get(sound);
+	_snd.soundToPlay = _soundToPlay;
+	_snd.timeToDestroy = duration;
+	add_child(_snd);
