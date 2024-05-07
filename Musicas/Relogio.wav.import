@@ -1,0 +1,23 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Relogio.wav-0cf6d9ba38ce61c7a986e9957c579af7.sample"
+
+[deps]
+
+source_file="res://Musicas/Relogio.wav"
+dest_files=[ "res://.import/Relogio.wav-0cf6d9ba38ce61c7a986e9957c579af7.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

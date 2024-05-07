@@ -38,9 +38,10 @@ var keys: Dictionary = {
 }
 
 var sounds: Dictionary = {
-	"right": preload("res://MUSICAS/Resposta-certa-01_1.wav"),
-	"wrong": preload("res://MUSICAS/Resposta errada - 02 (online-audio-converter.com).wav"),
-	"bell": preload("res://MUSICAS/Relвgio-sino-01.wav"),
+	"right": preload("res://Musicas/Correta.wav"),
+	"wrong": preload("res://Musicas/Errada.wav"),
+	"bell": preload("res://Musicas/Relogio.wav"),
+	"won": preload("res://Musicas/Vitoria.wav")
 }
 
 func _ready():

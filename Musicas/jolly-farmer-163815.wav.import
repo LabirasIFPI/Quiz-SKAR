@@ -1,0 +1,23 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/jolly-farmer-163815.wav-22baa2691d9c051cbe9cbeefaaf23399.sample"
+
+[deps]
+
+source_file="res://Musicas/jolly-farmer-163815.wav"
+dest_files=[ "res://.import/jolly-farmer-163815.wav-22baa2691d9c051cbe9cbeefaaf23399.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=2
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

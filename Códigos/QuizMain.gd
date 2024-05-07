@@ -268,10 +268,13 @@ var questions: Array = [
 
 onready var _label_aviso = get_node("CanvasLayer2/aviso") as Label
 ## Dicionario de pergunta atualmente sendo exibido.
-var perguntaExibida = null;
+var perguntaExibida: Dictionary = {};
 
 # Indice da pergunta atual
-var actualQuestionInd = 0;
+var actualQuestionInd: int = 0;
+
+## Array de perguntas já exibidas.
+var displayedQuestionIds: Array = [];
 
 #Cena de alternativas
 onready var optionsNode = get_node("Options");
@@ -288,6 +291,20 @@ var colorProgress: float = 0.0;
 func obterJogadorOposto() -> int:
 	var _sinal = 1 - 2 * global.jogadorAtual; # se vermelho: -1, se azul: 1
 	return global.jogadorAtual + 1  * _sinal;
+	
+func getRandomQuestion() -> Dictionary:
+	if len(displayedQuestionIds) >= len(questions):
+		print("[AVISO]: Acabou o banco de perguntas. Resetando perguntas exibidas.")
+		displayedQuestionIds = []
+		
+	var _randQuestionInd = randi() % len(questions);
+	var pergunta = questions[_randQuestionInd];
+	
+	while displayedQuestionIds.has(questions[_randQuestionInd].id):
+		_randQuestionInd = randi() % len(questions);
+		pergunta = questions[_randQuestionInd];
+	
+	return pergunta;
 
 func _ready() -> void:
 	randomize()
@@ -295,7 +312,8 @@ func _ready() -> void:
 	global.jogadorAtual = -1
 	
 	# Define qual pergunta será exibida
-	perguntaExibida = questions[0];
+	perguntaExibida = getRandomQuestion()
+	displayedQuestionIds.append(perguntaExibida.id)
 	
 	# Atualiza a exibição
 	atualizarExibicao();
@@ -407,15 +425,18 @@ func limparExibicao():
 		opt.queue_free();		
 
 
-func gerarNovaPergunta(ind = actualQuestionInd):
+func gerarNovaPergunta(ind = -1):
 	# Limpar alternativas
 	limparExibicao()
 	
-	# Obter dicionario da pergunta
-	perguntaExibida = questions[ind];2
+	# Definir pergunta aleatoria caso não seja especificado o índice
+	if ind == -1:
+		perguntaExibida = getRandomQuestion();
+	else:
+		# Obter dicionario da pergunta
+		perguntaExibida = questions[ind];
 	
 	atualizarExibicao()
-	var _questionLabel = get_node("Pergutas_teste");
 
 
 ## Tempo da pergunta se esgotou

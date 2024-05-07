@@ -8,7 +8,7 @@
 [ext_resource path="res://Temas/Theme_fonte_botes.tres" type="DynamicFont" id=6]
 [ext_resource path="res://Assets/FreeGUI/png/playblue.png" type="Texture" id=7]
 [ext_resource path="res://Assets/FreeGUI/svg/game_gray.png" type="Texture" id=8]
-[ext_resource path="res://MUSICAS/jolly-farmer-163815.wav" type="AudioStream" id=9]
+[ext_resource path="res://Musicas/jolly-farmer-163815.wav" type="AudioStream" id=9]
 
 [sub_resource type="Gradient" id=2]
 offsets = PoolRealArray( 0, 0.916201 )
