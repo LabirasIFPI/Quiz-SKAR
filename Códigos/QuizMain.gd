@@ -19,12 +19,12 @@ var questions: Array = [
 		"id": 2,
 		"question": "Quais as medidas do conhecido Triângulo Pitagórico Primitivo?",
 		"options": [
-			"5² = 4² + 3² ",
-			"4² = 5² + 6²",
-			"3² = 2² + 1²",
-			"4² = 3² + 2²",
-			"5² = 4² + 2²",
-			"4² = 3² + 5²"
+			"5, 4 e 3 ",
+			"4, 5 e 6",
+			"3, 2 e 1",
+			"4, 3 e 2",
+			"5, 4 e 2",
+			"4, 3 e 6"
 		]
 	},
 	{
@@ -276,6 +276,13 @@ var actualQuestionInd: int = 0;
 ## Array de perguntas já exibidas.
 var displayedQuestionIds: Array = [];
 
+## Cainho para o arquivo de perguntas json.
+var questions_file_path = "res://Data/questions.json"
+
+## Para fins de testes, essa variável irá armazenar o conteúdo dentro da pasta.json
+var questions_data: Array = []
+
+
 #Cena de alternativas
 onready var optionsNode = get_node("Options");
 
@@ -300,13 +307,19 @@ func getRandomQuestion() -> Dictionary:
 	var _randQuestionInd = randi() % len(questions);
 	var pergunta = questions[_randQuestionInd];
 	
-	while displayedQuestionIds.has(questions[_randQuestionInd].id):
+	var loops = 0
+	while displayedQuestionIds.has(questions[_randQuestionInd].id) and loops < 20:
 		_randQuestionInd = randi() % len(questions);
 		pergunta = questions[_randQuestionInd];
+		loops += 1
 	
 	return pergunta;
 
 func _ready() -> void:
+	
+	# Temporariamente vamos deixar esse código aqui para pedir ajuda pra Godot
+	var saveFile = JSON.to_string()
+	
 	randomize()
 	##Retorna a variavel ao valor original(pois também é usada no "tutorial" pra um só dinal n mexer em duas var)
 	global.jogadorAtual = -1
@@ -317,6 +330,8 @@ func _ready() -> void:
 	
 	# Atualiza a exibição
 	atualizarExibicao();
+	loadQuestions();
+	print(getQuestionBy_id(3))
 
 ## Atualizar texto do tempo.
 func updateTimeLabel() -> void:
@@ -551,3 +566,22 @@ func _onAddPointEffectTimerTimeout():
 ## @TODO: Exibe jogador vencedor e passa pra menu de fim
 func callGameOver():
 	pass
+
+func loadQuestions():
+	var file = File.new()
+	if file.file_exists(questions_file_path):
+		file.open(questions_file_path, File.READ)
+		## "Converte" o conteúdo pra string
+		var json_str = file.get_as_text()
+		file.close()
+		# Converte o JSON para um dicionário
+		questions_data = JSON.parse(json_str).result
+#		print(questions_data) # Output: dictionary
+	else:
+		print("O arquivo de perguntas JSON não foi encontrado.")
+		
+func getQuestionBy_id(question_id):
+	for question in questions_data:
+		if question["id"] == question_id:
+			return question
+	return null

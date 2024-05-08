@@ -1,0 +1,262 @@
+[
+{
+    "id": 1,
+    "question": "Qual é a capital do Brasil?",
+    "options": [ 
+        "Brasilia", 
+        "Rio de Janeiro", 
+        "Salvador", 
+        "São Paulo", 
+        "Belo Horizonte", "Recife", "Fortaleza", "Curitiba", "Manaus", "Porto Alegre", "Goiânia", "Belém", "Campinas", "São Luís", 
+        "Natal", "João Pessoa", "Teresina", "Cuiabá", "Campo Grande", "Florianópolis" ]
+},
+{
+    "id": 2,
+    "question": "Quais as medidas do conhecido Triângulo Pitagórico Primitivo?",
+    "options": [
+        "5, 4 e 3 ",
+        "4, 5 e 6",
+        "3, 2 e 1",
+        "4, 3 e 2",
+        "5, 4 e 2",
+        "4, 3 e 6"
+    ]
+},
+{
+    "id": 3,
+    "question": "Qual das seguintes frases está correta quanto ao uso dos porquês?",
+    "options": [
+        "Eu não sei por que ele não veio.",
+        "Eu não sei porquê ele não veio.",
+        "Eu não sei por quê ele não veio.",
+        "Eu não sei porque ele não veio."
+    ]
+},
+{
+    "id": 4,
+    "question": "Qual é a raiz quadrada de 144?",
+    "options": [
+        "12",
+        "10",
+        "14",
+        "16"]
+},	
+{
+    "id": 5,
+    "question": "Qual é o processo pelo qual as plantas convertem a luz solar em energia química?",
+    "options": [
+        "Fotossíntese",
+        "Respiração celular",
+        "Fermentação",
+        "Oxidação"]
+    
+},
+{
+    "id": 6,
+    "question": "Qual período da história romana é marcado pelo governo de imperadores?",
+    "options": [
+         "Império Romano",
+        "República Romana",
+        "Monarquia Romana",
+        "Era das Invasões Bárbaras"]
+
+},
+{
+    "id": 7,
+    "question": "Qual é o símbolo químico para o elemento oxigênio?",
+    "options": [
+        "O",
+        "Ox",
+        "Os",
+        "O2"]
+},
+{
+    "id": 8,
+    "question": "Qual é o nome dado à linha imaginária que divide a Terra em Hemisfério Oriental e Hemisfério Ocidental?",
+    "options": [
+        "Meridiano de Greenwich",
+        "Trópico de Câncer",
+        "Linha do Equador",
+        "Meridiano de Primeiro de Janeiro"]
+},
+{
+    "id": 9,
+    "question": "Qual o valor aproximado de π (pi)?",
+    "options": [
+        "3,14",
+        "2,71",
+        "1,61",
+        "4,20"
+]
+},
+{
+"id": 10,
+"question": "Qual é o processo pelo qual as plantas convertem a luz solar em energia?",
+"options": [
+    "Fotossíntese",
+    "Respiração",
+    "Transpiração",
+    "Digestão"
+]
+},
+{
+"id": 11,
+"question": "Quem foi o primeiro presidente dos Estados Unidos?",
+"options": [
+    "George Washington",
+    "Abraham Lincoln",
+    "Thomas Jefferson",
+    "John Adams"
+]
+},
+{
+"id": 12,
+"question": "Qual é a capital da França?",
+"options": [
+    "Paris",
+    "Londres",
+    "Madrid",
+    "Berlim"
+]
+},
+{
+"id": 13,
+"question": "Qual é o principal hormônio feminino?",
+"options": [
+    "Estrogênio",
+    "Testosterona",
+    "Progesterona",
+    "Cortisol"
+]
+},
+{
+"id": 14,
+"question": "Qual é o resultado da expressão matemática: 3 + 4 * 2 - 6 ÷ 2 ?",
+"options": [
+    "9",
+    "7",
+    "8",
+    "10"
+]
+},
+{
+"id": 15,
+"question": "Quem escreveu o livro 'Dom Casmurro'?",
+"options": [
+    "Machado de Assis",
+    "José de Alencar",
+    "Carlos Drummond de Andrade",
+    "Graciliano Ramos"
+]
+},
+{
+"id": 16,
+"question": "Quem foi o primeiro presidente do Brasil?",
+"options": [
+    "Deodoro da Fonseca",
+    "Petrônio Portela",
+    "Getúlio Vargas",
+    "Juscelino Kubitschek",
+    "Tancredo Neves"
+]
+},
+{
+"id": 17,
+"question": "Qual é o maior rio do mundo em volume de água?",
+"options": [
+    "Rio Amazonas",
+    "Rio Nilo",
+    "Rio Yangtzé",
+    "Rio Mississippi",
+    "Rio Paraná"
+]
+},
+{
+"id": 18,
+"question": "Qual foi o evento que marcou o início da Revolução Francesa em 1789?",
+"options": [
+    "Tomada da Bastilha",
+    "Marcha das Mulheres a Versalhes",
+    "Execução de Luís XVI",
+    "Lei dos Chapeliers",
+    "Constituição Civil do Clero"
+]
+},
+{
+"id": 19,
+"question": "Qual foi o tratado que encerrou a Primeira Guerra Mundial?",
+"options": [
+    "Tratado de Versalhes",
+    "Tratado de Tordesilhas",
+    "Tratado de Paris",
+    "Tratado de Washington",
+    "Tratado de Brest-Litovsk"
+]
+},
+{
+"id": 20,
+"question": "Qual o país mais populoso da América do Sul?",
+"options": [
+    "Brasil",
+    "Argentina",
+    "Colômbia",
+    "Peru",
+    "Chile"
+]
+},
+{
+"id": 21,
+"question": "Qual é o ponto mais alto do planeta Terra?",
+"options": [
+    "Monte Everest",
+    "Monte Kilimanjaro",
+    "Monte Aconcágua",
+    "Monte Denali",
+    "Monte Vinson"
+]
+},
+{
+"id": 22,
+"question": "Quem foi o líder da Revolução Cubana em 1959?",
+"options": [
+    "Fidel Castro",
+    "Che Guevara",
+    "Raul Castro",
+    "Hugo Chávez",
+    "Nicolás Maduro"
+]
+},
+{
+"id": 23,
+"question": "Qual foi a primeira civilização da Mesopotâmia?",
+"options": [
+    "Suméria",
+    "Babilônia",
+    "Assíria",
+    "Acarta",
+    "Ebla"
+]
+},
+{
+"id": 24,
+"question": "Qual foi o período em que ocorreu a Idade Média na Europa?",
+"options": [
+    "Entre os séculos V e XV",
+    "Entre os séculos XV e XVII",
+    "Entre os séculos III e VII",
+    "Entre os séculos XVI e XVIII",
+    "Entre os séculos I e IV"
+]
+},
+{
+"id": 25,
+"question": "Qual é o nome da fronteira entre Estados Unidos e México?",
+"options": [
+    "Rio Grande",
+    "Rio Amazonas",
+    "Rio Mississipi",
+    "Rio Missouri",
+    "Rio Colorado"
+]
+}
+]
