@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Assets/FreeGUI/png/bg_branco.jpeg" type="Texture" id=1]
 [ext_resource path="res://Códigos/Menu.gd" type="Script" id=2]
@@ -8,7 +8,6 @@
 [ext_resource path="res://Temas/Theme_fonte_botes.tres" type="DynamicFont" id=6]
 [ext_resource path="res://Assets/FreeGUI/png/playblue.png" type="Texture" id=7]
 [ext_resource path="res://Assets/FreeGUI/svg/game_gray.png" type="Texture" id=8]
-[ext_resource path="res://Musicas/jolly-farmer-163815.wav" type="AudioStream" id=9]
 
 [sub_resource type="Gradient" id=2]
 offsets = PoolRealArray( 0, 0.916201 )
@@ -106,11 +105,6 @@ margin_bottom = 522.0
 custom_fonts/font = SubResource( 1 )
 text = "QUIZ"
 align = 1
-
-[node name="musica_principal" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource( 9 )
-autoplay = true
-attenuation = 0.965936
 
 [connection signal="pressed" from="Botoẽs/iniciar" to="." method="_on_iniciar_pressed"]
 [connection signal="pressed" from="Botoẽs/fechar" to="." method="_on_fechar_pressed"]

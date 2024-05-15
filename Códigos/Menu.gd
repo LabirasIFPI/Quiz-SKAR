@@ -1,7 +1,7 @@
 extends Node2D
 
 func _ready() -> void:
-	pass
+	audio.returnSong()
 
 func _on_fechar_pressed() -> void:
 	 get_tree().quit()

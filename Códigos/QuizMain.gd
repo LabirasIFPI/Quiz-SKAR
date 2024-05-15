@@ -14,7 +14,6 @@ var actualQuestionInd: int = 0;
 var displayedQuestionIds: Array = [];
 
 
-
 ## Para fins de testes, essa variável irá armazenar o conteúdo dentro da pasta.json
 var questions_data: Array = []
 
@@ -105,8 +104,8 @@ func _process(delta: float) -> void:
 				print("Errrouuu");
 				
 	# Detectar fim de jogo:
-	if global.pontos.has(global.maxPoints): 
-		callGameOver();
+#	if global.pontos.has(global.maxPoints): 
+#		callGameOver();
 
 	# Detectar entrada de jogadores na vez
 	input_signal_players();
@@ -115,6 +114,8 @@ func _process(delta: float) -> void:
 	changeBackgroundByPlayer();
 	updateBgColorAlpha();
 	
+	if Input.is_action_just_pressed("ui_left"):
+		callGameOver()
 	
 ## Atualiza os elementos da tela para receberem as informações da pergunta atual.
 func atualizarExibicao():
@@ -251,7 +252,6 @@ func updateBgColorAlpha():
 		
 
 
-
 ## Detecta os comandos das alternativas e retorna  o indice selecionado.
 func detectarComando():
 	#@TODO: mudar pelos sinais
@@ -299,7 +299,7 @@ func _onAddPointEffectTimerTimeout():
 ## Chamado para finalização da rodada entre os competidores
 ## @TODO: Exibe jogador vencedor e passa pra menu de fim
 func callGameOver():
-	pass
+	get_tree().change_scene("res://Cenas/FimDeJogo.tscn")
 
 func get_questionsData() -> Array:
 	var file : File = File.new()
@@ -310,8 +310,3 @@ func get_questionsData() -> Array:
 	var result = JSON.parse(content).result
 	file.close()
 	return result
-#func getQuestionBy_id(question_id):
-#	for question in questions_data:
-#		if question["id"] == question_id:
-#			return question
-#	return null

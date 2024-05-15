@@ -45,7 +45,7 @@ config/icon="res://icon.png"
 [autoload]
 
 global="*res://Códigos/Global.gd"
-MusicaPrincipal="*res://Cenas/musica_principal.tscn"
+audio="*res://Cenas/musica_principal.tscn"
 
 [display]
 

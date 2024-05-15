@@ -41,7 +41,8 @@ var sounds: Dictionary = {
 	"right": preload("res://Musicas/Correta.wav"),
 	"wrong": preload("res://Musicas/Errada.wav"),
 	"bell": preload("res://Musicas/Relogio.wav"),
-	"won": preload("res://Musicas/Vitoria.wav")
+	"won": preload("res://Musicas/Vitoria.wav"),
+	"countdown": preload("res://Musicas/arcade-countdown-7007.wav")
 }
 
 func _ready():

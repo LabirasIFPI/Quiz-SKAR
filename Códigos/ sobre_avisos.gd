@@ -5,6 +5,7 @@ onready var _tempo = get_node("tempo_label")
 
 
 func _ready() -> void:
+	global.playSound("countdown", 4.0)
 	$Timer.start(4)
 
 func _process(delta):
