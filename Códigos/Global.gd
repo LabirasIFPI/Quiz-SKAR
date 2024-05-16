@@ -37,12 +37,14 @@ var keys: Dictionary = {
 	'B2': false
 }
 
+# Direçoes para sons do jogo
 var sounds: Dictionary = {
 	"right": preload("res://Musicas/Correta.wav"),
 	"wrong": preload("res://Musicas/Errada.wav"),
-	"bell": preload("res://Musicas/Relogio.wav"),
+	"bell": preload("res://Musicas/Sino.wav"),
 	"won": preload("res://Musicas/Vitoria.wav"),
-	"countdown": preload("res://Musicas/arcade-countdown-7007.wav")
+	"countdown": preload("res://Musicas/arcade-countdown-7007.wav"),
+	"clock" : preload("res://Musicas/Relogio01.wav")
 }
 
 func _ready():

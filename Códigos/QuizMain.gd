@@ -1,6 +1,7 @@
 extends Node2D
 # INFORMAÇÃO: TLPR significa tempo limite por pergunat
 
+## Dados do Json  aqui (questio, id and options)
 var questions = get_questionsData()
 
 onready var _label_aviso = get_node("CanvasLayer2/aviso") as Label
@@ -191,6 +192,7 @@ func gerarNovaPergunta(ind = -1):
 
 ## Tempo da pergunta se esgotou
 func _on_TLPR_timeout() -> void:
+	# Parar som do relógio
 	# Tocar som do sino
 	global.playSound("bell", 3.0);
 
@@ -227,6 +229,7 @@ func input_signal_players():
 		global.definirJogadorAtual(_atual);
 		colorProgress = 0.0;
 		$TLPR.start(10)
+		global.playSound("clock", 10)
 	else:
 		# Aconteceu de ninguém apertar, ou dos dois apertarem no mesmo instante.
 		pass

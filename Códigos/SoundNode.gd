@@ -17,7 +17,11 @@ func _ready() -> void:
 	# Configurar tempo de destruição
 	timer.wait_time = timeToDestroy;
 	timer.start();
+	
+	
 
+func stopSound():
+	audioStream.stop()
 
 func _onTimerTimeout() -> void:
 	queue_free();

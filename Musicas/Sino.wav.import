@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/Relogio.wav-0cf6d9ba38ce61c7a986e9957c579af7.sample"
+path="res://.import/Sino.wav-8c0fc47d3f7b9af367568612a4003976.sample"
 
 [deps]
 
-source_file="res://Musicas/Relogio.wav"
-dest_files=[ "res://.import/Relogio.wav-0cf6d9ba38ce61c7a986e9957c579af7.sample" ]
+source_file="res://Musicas/Sino.wav"
+dest_files=[ "res://.import/Sino.wav-8c0fc47d3f7b9af367568612a4003976.sample" ]
 
 [params]
 
