@@ -6,7 +6,7 @@ var client;
 var connected: bool = false;
 
 ## IP da rede acessada (lembrar: era const)
-var ip = "192.168.43.92";
+const ip = "192.168.43.92";
 const port = 80;
 
 ## Inicializar signals
@@ -25,11 +25,12 @@ var resposta: int = -1;
 var pontos: Array = [0, 0];
 
 ## Pontuação necessária para vencer a partida.
-var maxPoints = 3;
+var maxPoints = 0;
 
 # Armazena o indice do jogador da vez, que irá responder. 
 # -1 = ninguem, 0 = azul, 1 = vermelho
 var jogadorAtual = -1;
+
 
 ## Dicionário que carrega estado das teclas pressionadas
 var keys: Dictionary = {
@@ -146,3 +147,7 @@ func playSound(sound, duration = 5.0):
 	_snd.soundToPlay = _soundToPlay;
 	_snd.timeToDestroy = duration;
 	add_child(_snd);
+
+func getOppositePlayer() -> int:
+	var _sinal = 1 - 2 * global.jogadorAtual; # se vermelho: -1, se azul: 1
+	return global.jogadorAtual + 1  * _sinal;

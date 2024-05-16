@@ -100,4 +100,21 @@ icon = ExtResource( 10 )
 flat = true
 icon_align = 1
 
+[node name="effects" type="CanvasLayer" parent="."]
+
+[node name="Particles2D" type="CPUParticles2D" parent="effects"]
+self_modulate = Color( 1, 0, 0, 1 )
+position = Vector2( 962, 14 )
+rotation = 1.5708
+emitting = false
+amount = 500
+one_shot = true
+emission_shape = 2
+emission_rect_extents = Vector2( 5, 1000 )
+spread = 0.0
+gravity = Vector2( 400, 0 )
+initial_velocity = 700.0
+initial_velocity_random = 1.0
+scale_amount = 10.0
+
 [connection signal="pressed" from="Sinais/Back" to="." method="_on_Back_pressed"]

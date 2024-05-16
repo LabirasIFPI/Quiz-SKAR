@@ -105,8 +105,8 @@ func _process(delta: float) -> void:
 				print("Errrouuu");
 				
 	# Detectar fim de jogo:
-#	if global.pontos.has(global.maxPoints): 
-#		callGameOver();
+	if global.pontos[0] == global.maxPoints or global.pontos[1] == global.maxPoints:
+		callGameOver();
 
 	# Detectar entrada de jogadores na vez
 	input_signal_players();

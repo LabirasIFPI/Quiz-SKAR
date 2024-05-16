@@ -1,12 +1,9 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Códigos/ sobre_avisos.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Fontes/tmj_by_mallagueta_pepper-d62rr8r.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://Assets/FreeGUI/png/bg_branco.jpeg" type="Texture" id=3]
-[ext_resource path="res://Data/QuizMain.tres" type="Gradient" id=4]
-
-[sub_resource type="GradientTexture2D" id=5]
-gradient = ExtResource( 4 )
+[ext_resource path="res://Temas/menu_back.tres" type="Texture" id=4]
 
 [sub_resource type="DynamicFont" id=3]
 size = 200
@@ -43,7 +40,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_right = 431.0
 margin_bottom = 1675.0
-texture = SubResource( 5 )
+texture = ExtResource( 4 )
 expand = true
 flip_h = true
 
