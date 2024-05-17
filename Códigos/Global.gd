@@ -25,7 +25,7 @@ var resposta: int = -1;
 var pontos: Array = [0, 0];
 
 ## Pontuação necessária para vencer a partida.
-var maxPoints = 0;
+var maxPoints = 5;
 
 # Armazena o indice do jogador da vez, que irá responder. 
 # -1 = ninguem, 0 = azul, 1 = vermelho
@@ -44,8 +44,7 @@ var sounds: Dictionary = {
 	"wrong": preload("res://Musicas/Errada.wav"),
 	"bell": preload("res://Musicas/Sino.wav"),
 	"won": preload("res://Musicas/Vitoria.wav"),
-	"countdown": preload("res://Musicas/arcade-countdown-7007.wav"),
-	"clock" : preload("res://Musicas/Relogio01.wav")
+	"countdown": preload("res://Musicas/arcade-countdown-7007.wav")
 }
 
 func _ready():
@@ -148,6 +147,6 @@ func playSound(sound, duration = 5.0):
 	_snd.timeToDestroy = duration;
 	add_child(_snd);
 
-func getOppositePlayer() -> int:
-	var _sinal = 1 - 2 * global.jogadorAtual; # se vermelho: -1, se azul: 1
-	return global.jogadorAtual + 1  * _sinal;
+func getOppositePlayer(arg) -> int:
+	var _sinal = 1 - 2 * arg # se vermelho: -1, se azul: 1
+	return arg + 1  * _sinal;

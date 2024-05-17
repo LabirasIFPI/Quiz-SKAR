@@ -8,7 +8,7 @@ func _ready():
 func _process(delta):
 	if Input.is_action_just_pressed("ui_up"):
 		addQuestionCount()
-		
+		#testar se presta no pass
 	global.maxPoints = value_bar.value
 
 func _on_pass_pressed():

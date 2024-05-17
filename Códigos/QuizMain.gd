@@ -35,6 +35,7 @@ func obterJogadorOposto() -> int:
 	var _sinal = 1 - 2 * global.jogadorAtual; # se vermelho: -1, se azul: 1
 	return global.jogadorAtual + 1  * _sinal;
 	
+	# @TODO verificar
 func getRandomQuestion() -> Dictionary:
 	if len(displayedQuestionIds) >= len(questions):
 		print("[AVISO]: Acabou o banco de perguntas. Resetando perguntas exibidas.")
@@ -91,6 +92,7 @@ func _process(delta: float) -> void:
 			$TLPR.stop();
 			if checarResposta(global.resposta):
 				global.playSound("right");
+				audio.stopClock()
 				_label_aviso.text = "";
 				actualQuestionInd += 1;
 				gerarNovaPergunta();
@@ -98,6 +100,7 @@ func _process(delta: float) -> void:
 				global.jogadorAtual = -1;
 				print("Acertou");
 			else:
+				audio.stopClock()
 				global.playSound("wrong");
 				adicionarPonto(obterJogadorOposto());
 				_label_aviso.text = "Errou";
@@ -193,6 +196,7 @@ func gerarNovaPergunta(ind = -1):
 ## Tempo da pergunta se esgotou
 func _on_TLPR_timeout() -> void:
 	# Parar som do relógio
+	audio.stopClock()
 	# Tocar som do sino
 	global.playSound("bell", 3.0);
 
@@ -229,7 +233,8 @@ func input_signal_players():
 		global.definirJogadorAtual(_atual);
 		colorProgress = 0.0;
 		$TLPR.start(10)
-		global.playSound("clock", 10)
+		#retirar
+		audio.startClock()
 	else:
 		# Aconteceu de ninguém apertar, ou dos dois apertarem no mesmo instante.
 		pass
