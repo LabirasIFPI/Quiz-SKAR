@@ -25,7 +25,7 @@ var resposta: int = -1;
 var pontos: Array = [0, 0];
 
 ## Pontuação necessária para vencer a partida.
-var maxPoints = 5;
+var maxPoints = 20;
 
 # Armazena o indice do jogador da vez, que irá responder. 
 # -1 = ninguem, 0 = azul, 1 = vermelho

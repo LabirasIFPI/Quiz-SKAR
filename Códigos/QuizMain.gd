@@ -14,6 +14,8 @@ var actualQuestionInd: int = 0;
 ## Array de perguntas já exibidas.
 var displayedQuestionIds: Array = [];
 
+## Array de avisos a serem exibidos
+var avisos: Array = []
 
 ## Para fins de testes, essa variável irá armazenar o conteúdo dentro da pasta.json
 var questions_data: Array = []
@@ -45,10 +47,11 @@ func getRandomQuestion() -> Dictionary:
 	var pergunta = questions[_randQuestionInd];
 	
 	var loops = 0
-	while displayedQuestionIds.has(questions[_randQuestionInd].id) and loops < 20:
+	while displayedQuestionIds.has(questions[_randQuestionInd].id) and loops < 21:
 		_randQuestionInd = randi() % len(questions);
 		pergunta = questions[_randQuestionInd];
 		loops += 1
+		print("embaralhando")
 	
 	return pergunta;
 

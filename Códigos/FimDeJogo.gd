@@ -4,9 +4,9 @@ onready var _lab_p1 = get_node("Menu/Janelas/p1")
 onready var _lab_p2 = get_node("Menu/Janelas/p2")
 onready var _confetti = get_node("effects/Particles2D")
 
+var players: Array = ["Azul", "Vermelho"]
+
 func _ready() -> void:
-	#@TODO printat o vencedor na tela
-	print(winner())
 	## Chama efeito de partícula para cor do vencedor
 	_confetti.emitting = 1
 	changeColorEfectByPlayer(winner())
@@ -15,7 +15,8 @@ func _ready() -> void:
 	_lab_p1.text = str(global.pontos[0])
 	_lab_p2.text = str(global.pontos[1])
 	global.playSound("won", 6.0)
-	
+	informWinner()
+
 
 # Retorna pra tela inicial
 func _on_Back_pressed() -> void:
@@ -23,6 +24,10 @@ func _on_Back_pressed() -> void:
 	audio.returnSong()
 	get_tree().change_scene("res://Cenas/Menu.tscn")
 
+## Printa na tela o vencedor
+func informWinner():
+	var _labelInform = get_node("Menu/winner")
+	_labelInform.text = "Parabéns jogador " + players[winner()] #mudar frase
 
 ## Muda a cor das partículas para cada jogador
 func changeColorEfectByPlayer(indPlayer):
