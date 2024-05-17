@@ -1,9 +1,10 @@
 extends Node2D
 # INFORMAÇÃO: TLPR significa tempo limite por pergunat
-
+# @TODO mostrar a resposta correta
 ## Dados do Json  aqui (questio, id and options)
 var questions = get_questionsData()
 
+onready var _questionLabel = get_node("Perguntas/PerguntasLabel");
 onready var _label_aviso = get_node("CanvasLayer2/aviso") as Label
 ## Dicionario de pergunta atualmente sendo exibido.
 var perguntaExibida: Dictionary = {};
@@ -14,8 +15,6 @@ var actualQuestionInd: int = 0;
 ## Array de perguntas já exibidas.
 var displayedQuestionIds: Array = [];
 
-## Array de avisos a serem exibidos
-var avisos: Array = []
 
 ## Para fins de testes, essa variável irá armazenar o conteúdo dentro da pasta.json
 var questions_data: Array = []
@@ -23,7 +22,6 @@ var questions_data: Array = []
 
 #Cena de alternativas
 onready var optionsNode = get_node("Options");
-
 onready var _points_p1 = get_node("CanvasLayer/pontos_p1")
 onready var _points_p2 = get_node("CanvasLayer/pontos_p2")
 
@@ -47,6 +45,7 @@ func getRandomQuestion() -> Dictionary:
 	var pergunta = questions[_randQuestionInd];
 	
 	var loops = 0
+	#displayedQuestion está armazenando o id da primeira pergunta escolhida no range somente
 	while displayedQuestionIds.has(questions[_randQuestionInd].id) and loops < 21:
 		_randQuestionInd = randi() % len(questions);
 		pergunta = questions[_randQuestionInd];
@@ -63,7 +62,6 @@ func _ready() -> void:
 	randomize()
 	##Retorna a variavel ao valor original(pois também é usada no "tutorial" pra um só dinal n mexer em duas var)
 	global.jogadorAtual = -1
-	
 	# Define qual pergunta será exibida
 	perguntaExibida = getRandomQuestion()
 	displayedQuestionIds.append(perguntaExibida.id)
@@ -96,7 +94,7 @@ func _process(delta: float) -> void:
 			if checarResposta(global.resposta):
 				global.playSound("right");
 				audio.stopClock()
-				_label_aviso.text = "";
+				aviso(1)
 				actualQuestionInd += 1;
 				gerarNovaPergunta();
 				adicionarPonto(global.jogadorAtual);
@@ -106,7 +104,7 @@ func _process(delta: float) -> void:
 				audio.stopClock()
 				global.playSound("wrong");
 				adicionarPonto(obterJogadorOposto());
-				_label_aviso.text = "Errou";
+				aviso(0);
 				$next_fortime.start(2)
 				print("Errrouuu");
 				
@@ -129,8 +127,8 @@ func atualizarExibicao():
 	
 	# Atualiza pergunta
 	var _pergunta = perguntaExibida.question
-	#@TODO apos acabar sessão de testess, mudar a spritename
-	var _questionLabel = get_node("Pergutas_teste");
+
+
 	_questionLabel.text = _pergunta;
 	# ALTERNATIVAS:
 	
@@ -162,7 +160,7 @@ func atualizarExibicao():
 		_opt.optionID = _thisOptionDict.id;
 		
 		# Definir posição de cada alternativa: 
-		_opt.set_global_position(Vector2(500, 400 + i * 200));
+		_opt.set_global_position(Vector2(500, 450 + i * 200));
 		optionsNode.add_child(_opt);
 
 
@@ -175,14 +173,24 @@ func checkIfHasRightAnswer(_array):
 			have = true
 	return have
 		
+## Atualiza avisos
+func aviso(arg):
+## Array de avisos a serem exibidos
+	var layer = $Perguntas
+	var notices: Array = ["Incorreta", "", "Seu tempo acabou!"]
+	layer.layer = -2
+	_label_aviso.text = notices[arg]
+	
 
 func limparExibicao():
-	$Pergutas_teste.text = "";
+	_questionLabel.text = "";
 	for opt in optionsNode.get_children():
-		opt.queue_free();		
+		opt.queue_free();
 
 
 func gerarNovaPergunta(ind = -1):
+	var layer = $Perguntas
+	layer.layer = 1
 	# Limpar alternativas
 	limparExibicao()
 	
@@ -194,8 +202,6 @@ func gerarNovaPergunta(ind = -1):
 		perguntaExibida = questions[ind];
 	
 	atualizarExibicao()
-
-
 ## Tempo da pergunta se esgotou
 func _on_TLPR_timeout() -> void:
 	# Parar som do relógio
@@ -211,7 +217,7 @@ func _on_TLPR_timeout() -> void:
 		adicionarPonto(ganhador);
 	
 	$TLPR.stop()
-	_label_aviso.text = str("Seu tempo acabou :(")
+	aviso(2)
 	$next_fortime.start(2)
 	
 	
@@ -297,7 +303,7 @@ func adicionarPonto(indJogador, qntPontos = 1):
 ## Retorna a pergunta novamente
 func _on_next_fortime_timeout() -> void:
 	global.jogadorAtual = -1;
-	_label_aviso.text = str("");
+	aviso(1)
 	$next_fortime.stop();
 	actualQuestionInd += 1;
 	gerarNovaPergunta();

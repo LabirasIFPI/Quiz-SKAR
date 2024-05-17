@@ -274,10 +274,6 @@ __meta__ = {
 "_edit_horizontal_guides_": [ 742.0 ]
 }
 
-[node name="Info" type="Label" parent="."]
-margin_right = 49.0
-margin_bottom = 17.0
-
 [node name="Control" type="Control" parent="."]
 margin_right = 40.0
 margin_bottom = 40.0
@@ -337,7 +333,7 @@ offset = Vector2( 20, 20 )
 
 [node name="seta" type="Sprite" parent="PassosImagem/caixa_onoff"]
 position = Vector2( 106.5, -36.5 )
-rotation = 0.942861
+rotation = 0.942862
 scale = Vector2( 0.3, 0.3 )
 texture = ExtResource( 14 )
 
@@ -499,6 +495,7 @@ text = "jogo quiz"
 align = 1
 valign = 1
 autowrap = true
+percent_visible = 0.0
 
 [node name="titulo" type="Label" parent="Informação"]
 anchor_left = 0.5

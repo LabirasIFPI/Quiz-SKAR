@@ -36,6 +36,7 @@ func _ready():
 func updateScreen():
 	# Atualizar texto exibido
 	_label_texto.text = informacoes[controle]
+
 	# Atualizar imagem
 	for node in imagesNode.get_children():
 		node.visible = node == images[controle]
@@ -43,7 +44,6 @@ func updateScreen():
 
 func _process(delta: float) -> void:
 	pass
-	
 		
 
 func DefinirTextoPorPagina():
@@ -54,6 +54,7 @@ func DefinirTextoPorPagina():
 		updateScreen()
 
 func _on_avancar_esquerda_pressed() -> void:
+	
 	#Essa atribuição só existe a fim de testes. Ela representa o sinal recebido.
 	global.jogadorAtual = 1
 	DefinirTextoPorPagina()

@@ -1,52 +1,41 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Códigos/Information.gd" type="Script" id=1]
 [ext_resource path="res://Assets/FreeGUI/png/bg_branco.jpeg" type="Texture" id=2]
 [ext_resource path="res://Temas/menu_back.tres" type="Texture" id=3]
 [ext_resource path="res://Assets/FreeGUI/png/playred.png" type="Texture" id=4]
-[ext_resource path="res://Assets/FreeGUI/png/Buotoes/sets_updonw.png" type="Texture" id=5]
+[ext_resource path="res://Temas/shader.tres" type="Material" id=5]
+[ext_resource path="res://Assets/Fontes/tmj_by_mallagueta_pepper-d62rr8r.ttf" type="DynamicFontData" id=6]
+[ext_resource path="res://Assets/FreeGUI/png/playblue.png" type="Texture" id=7]
+[ext_resource path="res://Assets/FreeGUI/svg/Window (1).png" type="Texture" id=8]
+[ext_resource path="res://Temas/FonteAlternativa.tres" type="DynamicFont" id=9]
+[ext_resource path="res://Assets/FreeGUI/png/gray.png" type="Texture" id=10]
 
-[sub_resource type="Theme" id=1]
+[sub_resource type="DynamicFont" id=3]
+size = 100
+outline_color = Color( 0.439216, 0.286275, 0, 1 )
+font_data = ExtResource( 6 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 100
+outline_size = 3
+outline_color = Color( 0.631373, 0.384314, 0, 1 )
+font_data = ExtResource( 6 )
 
 [node name="Information" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 1 )
 
-[node name="HScrollBar" type="SpinBox" parent="."]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -407.5
-margin_top = -70.5
-margin_right = 407.5
-margin_bottom = 70.5
-theme = SubResource( 1 )
-custom_icons/updown = ExtResource( 5 )
-min_value = 5.0
-max_value = 20.0
-value = 5.0
-
-[node name="pass" type="Button" parent="."]
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = -282.0
-margin_top = -246.0
-margin_right = -85.0
-margin_bottom = -55.0
-icon = ExtResource( 4 )
-flat = true
-
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = -1
 
-[node name="bg" type="Sprite" parent="CanvasLayer"]
-position = Vector2( 960.5, 536.5 )
-scale = Vector2( 0.65, 0.6 )
+[node name="bg" type="TextureRect" parent="CanvasLayer"]
+material = ExtResource( 5 )
+anchor_right = 1.0
+anchor_bottom = 1.0
 texture = ExtResource( 2 )
+expand = true
 
 [node name="bg_grad" type="TextureRect" parent="CanvasLayer"]
 margin_left = -13.0
@@ -56,4 +45,70 @@ margin_bottom = 1082.0
 texture = ExtResource( 3 )
 expand = true
 
-[connection signal="pressed" from="pass" to="." method="_on_pass_pressed"]
+[node name="Label" type="Label" parent="CanvasLayer"]
+anchor_right = 1.0
+margin_left = 36.0
+margin_top = 48.0
+margin_right = -54.0
+margin_bottom = 284.0
+custom_fonts/font = SubResource( 3 )
+text = "Defina a quantidade de pontos que tens que fazer para chegar à vitória:"
+align = 1
+autowrap = true
+clip_text = true
+percent_visible = 0.0
+
+[node name="barra" type="Sprite" parent="."]
+position = Vector2( 960, 540 )
+scale = Vector2( 1, 1.5 )
+texture = ExtResource( 8 )
+
+[node name="upDownInfo" type="CanvasLayer" parent="."]
+
+[node name="up" type="Button" parent="upDownInfo"]
+margin_left = 1154.69
+margin_top = 549.49
+margin_right = 1301.69
+margin_bottom = 690.49
+rect_rotation = -91.0214
+icon = ExtResource( 7 )
+flat = true
+expand_icon = true
+
+[node name="down" type="Button" parent="upDownInfo"]
+margin_left = 1298.69
+margin_top = 542.49
+margin_right = 1448.69
+margin_bottom = 693.49
+rect_rotation = 90.649
+icon = ExtResource( 4 )
+flat = true
+expand_icon = true
+
+[node name="inf" type="Label" parent="upDownInfo"]
+margin_left = 932.0
+margin_top = 477.0
+margin_right = 982.0
+margin_bottom = 582.0
+custom_fonts/font = SubResource( 2 )
+text = "0"
+
+[node name="pass" type="Button" parent="upDownInfo"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -282.0
+margin_top = -246.0
+margin_right = -85.0
+margin_bottom = -55.0
+custom_fonts/font = ExtResource( 9 )
+action_mode = 0
+text = "pass"
+icon = ExtResource( 10 )
+flat = true
+icon_align = 1
+
+[connection signal="pressed" from="upDownInfo/up" to="." method="_on_up_pressed"]
+[connection signal="pressed" from="upDownInfo/down" to="." method="_on_down_pressed"]
+[connection signal="pressed" from="upDownInfo/pass" to="." method="_on_pass_pressed"]

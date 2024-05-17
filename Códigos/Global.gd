@@ -6,7 +6,7 @@ var client;
 var connected: bool = false;
 
 ## IP da rede acessada (lembrar: era const)
-const ip = "192.168.43.92";
+const ip = "192.168.17.212";
 const port = 80;
 
 ## Inicializar signals
@@ -25,7 +25,7 @@ var resposta: int = -1;
 var pontos: Array = [0, 0];
 
 ## Pontuação necessária para vencer a partida.
-var maxPoints = 20;
+var maxPoints = 5;
 
 # Armazena o indice do jogador da vez, que irá responder. 
 # -1 = ninguem, 0 = azul, 1 = vermelho
@@ -49,7 +49,6 @@ var sounds: Dictionary = {
 
 func _ready():
 	client = StreamPeerTCP.new()
-	change_ip()
 	client.connect_to_host(ip, port)
 	if(client.is_connected_to_host()):
 		connected = true

@@ -1,20 +1,25 @@
 extends Control
 
-onready var value_bar = get_node("HScrollBar")
+onready var _label_info = get_node("CanvasLayer/Label")
 
 func _ready():
 	pass
 
 func _process(delta):
-	if Input.is_action_just_pressed("ui_up"):
-		addQuestionCount()
-		#testar se presta no pass
-	global.maxPoints = value_bar.value
+	if _label_info.percent_visible < 1:
+		_label_info.percent_visible += .006;
+	$upDownInfo/inf.text = str(global.maxPoints)
+	
 
 func _on_pass_pressed():
-	if value_bar.value > 0:
-		get_tree().change_scene("res://Cenas/Aviso.tscn")
+	get_tree().change_scene("res://Cenas/Aviso.tscn")
 
 ## Adiciona um valor à barra
-func addQuestionCount():
-	value_bar.value += 1;
+func _on_up_pressed():
+	if global.maxPoints < 20:
+		global.maxPoints += 1;
+
+## Retira um valor da barra
+func _on_down_pressed():
+	if global.maxPoints > 5:
+		global.maxPoints -= 1;

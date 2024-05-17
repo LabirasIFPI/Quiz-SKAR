@@ -10,12 +10,7 @@
 [ext_resource path="res://Assets/Fontes/tmj_by_mallagueta_pepper-d62rr8r.ttf" type="DynamicFontData" id=8]
 [ext_resource path="res://Códigos/FimDeJogo.gd" type="Script" id=9]
 [ext_resource path="res://Assets/FreeGUI/png/red.png" type="Texture" id=10]
-
-[sub_resource type="DynamicFont" id=2]
-size = 100
-outline_size = 5
-outline_color = Color( 0, 0, 0, 1 )
-font_data = ExtResource( 8 )
+[ext_resource path="res://Temas/shader.tres" type="Material" id=11]
 
 [sub_resource type="DynamicFont" id=1]
 size = 90
@@ -26,13 +21,15 @@ font_data = ExtResource( 8 )
 [node name="FimDeJogo" type="Node2D"]
 script = ExtResource( 9 )
 
-[node name="BgBranco" type="Sprite" parent="."]
-position = Vector2( 960.25, 540 )
-scale = Vector2( 0.64, 0.6 )
-texture = ExtResource( 2 )
-
 [node name="Menu" type="CanvasLayer" parent="."]
 layer = 0
+
+[node name="BgBranco" type="TextureRect" parent="Menu"]
+material = ExtResource( 11 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 2 )
+expand = true
 
 [node name="Window" type="Sprite" parent="Menu"]
 position = Vector2( 960, 540 )
@@ -92,19 +89,17 @@ custom_fonts/font = ExtResource( 1 )
 text = "0
 "
 
-[node name="winner" type="Label" parent="Menu"]
+[node name="winner" type="RichTextLabel" parent="Menu"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -398.0
-margin_top = -13.0
-margin_right = 371.0
-margin_bottom = 184.0
-custom_fonts/font = SubResource( 2 )
-text = "vencedor"
-align = 1
-autowrap = true
+margin_left = -349.0
+margin_top = -35.0
+margin_right = 344.0
+margin_bottom = 207.0
+custom_fonts/normal_font = ExtResource( 1 )
+bbcode_enabled = true
 
 [node name="Sinais" type="CanvasLayer" parent="."]
 
