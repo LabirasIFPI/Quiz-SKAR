@@ -66,21 +66,23 @@ texture = ExtResource( 8 )
 [node name="upDownInfo" type="CanvasLayer" parent="."]
 
 [node name="up" type="Button" parent="upDownInfo"]
-margin_left = 1154.69
-margin_top = 549.49
-margin_right = 1301.69
-margin_bottom = 690.49
+margin_left = 1118.84
+margin_top = 394.254
+margin_right = 1266.84
+margin_bottom = 536.254
 rect_rotation = -91.0214
+rect_pivot_offset = Vector2( 74, 71 )
 icon = ExtResource( 7 )
 flat = true
 expand_icon = true
 
 [node name="down" type="Button" parent="upDownInfo"]
-margin_left = 1298.69
-margin_top = 542.49
-margin_right = 1448.69
-margin_bottom = 693.49
+margin_left = 1120.84
+margin_top = 537.254
+margin_right = 1270.84
+margin_bottom = 687.254
 rect_rotation = 90.649
+rect_pivot_offset = Vector2( 75, 75 )
 icon = ExtResource( 4 )
 flat = true
 expand_icon = true

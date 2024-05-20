@@ -60,8 +60,11 @@ func getRandomQuestion() -> Dictionary:
 
 func _ready() -> void:
 	# Direciona os sinais > saber que alguem apertou
-	WebSocket.connect("azul", self, "someoneIn")
-	WebSocket.connect("vermelho", self, "someoneIn")
+	WebSocket.connect("azul", self, "blueIn")
+	WebSocket.connect("vermelho", self, "redIn")
+	
+	# Muda o "modo" de atuação do esp32 para "modo QUIZ"	
+	WebSocket._writeWebsocket("MUDAR\n")
 	
 	# Temporariamente vamos deixar esse código aqui para pedir ajuda pra Godot
 	var saveFile = JSON.to_string()
@@ -89,7 +92,7 @@ func updateScoresLabels() -> void:
 	
 ## Função do loop principal do jogo.
 func _process(delta: float) -> void:
-	print("global.resposta: ", global.resposta)
+	$CanvasLayer/DebugLabel.text = "global.resposta: " + str(global.resposta)
 	# Atualizar interface:
 	updateTimeLabel()
 	updateScoresLabels()
@@ -98,6 +101,7 @@ func _process(delta: float) -> void:
 	if global.temJogadorNaVez():
 		global.resposta = detectarComando();
 		if global.resposta != -1:
+			print("A resposta escolhida foi: ", global.resposta)
 			$TLPR.stop();
 			if checarResposta(global.resposta):
 				global.playSound("right");
@@ -115,8 +119,8 @@ func _process(delta: float) -> void:
 				$next_fortime.start(2)
 				print("Errrouuu");
 			global.jogadorAtual = -1;
-	else:
 		global.resposta = -1;
+		global.comando = -1;
 				
 	# Detectar fim de jogo:
 	if global.pontos[0] == global.maxPoints or global.pontos[1] == global.maxPoints:
@@ -238,12 +242,14 @@ func _on_TLPR_timeout() -> void:
 #Futuramente será quem enviar o sinal via wu-fi primero, por isso não foi colocado uma condiçao
 #de "impedimento" (esp ja tem) ==> @WILLDO
 func input_signal_players():
+	return
 	var _comandos = ["JogadorAzul", "JogadorVermelho"];
 	var _comandosEsp = ["B1", "B2"];
 	for i in range(len(_comandos)):
 		# Capturar ação do ESP
-		if global.getButtonPressed(_comandosEsp[i]):
-			_atual += i + 1;
+		# Não está sendo usado.
+#		if global.getButtonPressed(_comandosEsp[i]):
+#			_atual += i + 1;
 		
 		# Capturar ação do teclado
 		if Input.is_action_just_pressed(_comandos[i]):
@@ -260,10 +266,24 @@ func input_signal_players():
 		# Aconteceu de ninguém apertar, ou dos dois apertarem no mesmo instante.
 		pass
 
-func someoneIn():
+func blueIn():
+	print("Botão azul pressionado.")
+	if global.temJogadorNaVez():
+		print("Já havia jogador na vez.")
+		return
 	colorProgress = 0.0;
+	global.definirJogadorAtual(0)
 	$TLPR.start(10)
-		#retirar
+	audio.startClock()
+
+func redIn():
+	print("Botão vermelho pressionado.")
+	if global.temJogadorNaVez():
+		print("Já havia jogador na vez.")
+		return
+	colorProgress = 0.0;
+	global.definirJogadorAtual(1)
+	$TLPR.start(10)
 	audio.startClock()
 
 
@@ -289,7 +309,7 @@ func updateBgColorAlpha():
 
 ## Detecta os comandos das alternativas e retorna  o indice selecionado.
 func detectarComando():
-#	return global.comando
+	return global.comando
 	#@TODO: mudar pelos sinais
 	var comandos = ["A", "B", "C"]
 	for i in range(len(comandos)):

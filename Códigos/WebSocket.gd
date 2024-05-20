@@ -53,12 +53,9 @@ func _messageInterpreter(txt):
 	var command = txt.split(' ')
 	# Avaliação das mensagens recebidas (ada botão emite um sinal diferente)
 	if command[0] == "B1":
-		global.jogadorAtual = 0
 		emit_signal("azul");
 		
 	if command[0] == "B2":
-		global.jogadorAtual = 1
-		print("saiu :(")
 		emit_signal("vermelho");
 		
 	if command[0] == "A":
