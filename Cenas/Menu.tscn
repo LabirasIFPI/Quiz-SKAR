@@ -85,7 +85,6 @@ margin_top = 762.0
 margin_right = 1854.0
 margin_bottom = 1012.0
 custom_fonts/font = ExtResource( 6 )
-text = "A"
 icon = ExtResource( 8 )
 flat = true
 clip_text = true

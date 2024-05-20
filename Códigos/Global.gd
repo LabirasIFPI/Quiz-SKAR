@@ -5,6 +5,9 @@ var txt = "";
 var client;
 var connected: bool = false;
 
+# Para tetes (originalmente da funçao detectarComandos da QuizMain "comandos = [A,B,C]")
+var comando = -1;
+
 ## IP da rede acessada (lembrar: era const)
 const ip = "192.168.17.212";
 const port = 80;
@@ -134,7 +137,7 @@ func redefineButtons() -> void:
 	keys.B2 = false;
 
 func getButtonPressed(_buttonKey: String) -> bool:
-	##Torna a mensaguem maiúcula, por mais que não seja necessário
+	## Torna a mensaguem maiúscula, por mais que não seja necessário
 	var key = _buttonKey.to_upper();
 	return keys[key];
 

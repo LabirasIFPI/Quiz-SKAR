@@ -28,7 +28,14 @@ onready var images: Array = [
 ]
 
 func _ready():
-	print("Tuto iniciado");
+	# Direcionamento dos sinais
+	WebSocket.connect("azul", self, "_on_avancar_direita_pressed")
+	WebSocket.connect("vermelho", self, "_on_avancar_esquerda_pressed")
+	WebSocket.connect("botaoA", self, "_on_sair_pressed")
+	WebSocket.connect("botaoB", self, "_on_sair_pressed")
+	WebSocket.connect("botaoC", self, "_on_sair_pressed")
+	
+	_label_texto.percent_visible = 0;
 	updateScreen();
 	
 
@@ -43,7 +50,7 @@ func updateScreen():
 
 
 func _process(delta: float) -> void:
-	pass
+	_label_texto.percent_visible += .02
 		
 
 func DefinirTextoPorPagina():
@@ -52,11 +59,9 @@ func DefinirTextoPorPagina():
 	if (_operacao > 0 and controle <= (informacoes.size() - 2)) or (_operacao < 0 and controle >= 1):
 		controle += _operacao
 		updateScreen()
+		_label_texto.percent_visible = 0;
 
 func _on_avancar_esquerda_pressed() -> void:
-	
-	#Essa atribuição só existe a fim de testes. Ela representa o sinal recebido.
-	global.jogadorAtual = 1
 	DefinirTextoPorPagina()
 
 func _on_sair_pressed() -> void:
@@ -64,6 +69,4 @@ func _on_sair_pressed() -> void:
 
 
 func _on_avancar_direita_pressed() -> void:
-	#Essa atribuição só existe a fim de testes. Ela representa o sinal recebido.
-	global.jogadorAtual = 0
 	DefinirTextoPorPagina()

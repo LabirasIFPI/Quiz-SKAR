@@ -4,6 +4,10 @@ extends Node2D
 ## Dados do Json  aqui (questio, id and options)
 var questions = get_questionsData()
 
+# Para testes (originalmete da funçao "inputSignalPlayers) 
+var _atual = -1;
+
+
 onready var _questionLabel = get_node("Perguntas/PerguntasLabel");
 onready var _label_aviso = get_node("CanvasLayer2/aviso") as Label
 ## Dicionario de pergunta atualmente sendo exibido.
@@ -55,6 +59,9 @@ func getRandomQuestion() -> Dictionary:
 	return pergunta;
 
 func _ready() -> void:
+	# Direciona os sinais > saber que alguem apertou
+	WebSocket.connect("azul", self, "someoneIn")
+	WebSocket.connect("vermelho", self, "someoneIn")
 	
 	# Temporariamente vamos deixar esse código aqui para pedir ajuda pra Godot
 	var saveFile = JSON.to_string()
@@ -82,6 +89,7 @@ func updateScoresLabels() -> void:
 	
 ## Função do loop principal do jogo.
 func _process(delta: float) -> void:
+	print("global.resposta: ", global.resposta)
 	# Atualizar interface:
 	updateTimeLabel()
 	updateScoresLabels()
@@ -98,7 +106,6 @@ func _process(delta: float) -> void:
 				actualQuestionInd += 1;
 				gerarNovaPergunta();
 				adicionarPonto(global.jogadorAtual);
-				global.jogadorAtual = -1;
 				print("Acertou");
 			else:
 				audio.stopClock()
@@ -107,6 +114,9 @@ func _process(delta: float) -> void:
 				aviso(0);
 				$next_fortime.start(2)
 				print("Errrouuu");
+			global.jogadorAtual = -1;
+	else:
+		global.resposta = -1;
 				
 	# Detectar fim de jogo:
 	if global.pontos[0] == global.maxPoints or global.pontos[1] == global.maxPoints:
@@ -221,11 +231,13 @@ func _on_TLPR_timeout() -> void:
 	$next_fortime.start(2)
 	
 	
+	
+	
+	
 #Para definir quem receberá pontos ao responder a pergunta(apertar em algum botão de alternativa)
 #Futuramente será quem enviar o sinal via wu-fi primero, por isso não foi colocado uma condiçao
 #de "impedimento" (esp ja tem) ==> @WILLDO
 func input_signal_players():
-	var _atual = -1;
 	var _comandos = ["JogadorAzul", "JogadorVermelho"];
 	var _comandosEsp = ["B1", "B2"];
 	for i in range(len(_comandos)):
@@ -247,6 +259,12 @@ func input_signal_players():
 	else:
 		# Aconteceu de ninguém apertar, ou dos dois apertarem no mesmo instante.
 		pass
+
+func someoneIn():
+	colorProgress = 0.0;
+	$TLPR.start(10)
+		#retirar
+	audio.startClock()
 
 
 func changeBackgroundByPlayer():
@@ -271,8 +289,9 @@ func updateBgColorAlpha():
 
 ## Detecta os comandos das alternativas e retorna  o indice selecionado.
 func detectarComando():
+#	return global.comando
 	#@TODO: mudar pelos sinais
-	var comandos = ["A", "B", "C"];
+	var comandos = ["A", "B", "C"]
 	for i in range(len(comandos)):
 		if Input.is_action_just_pressed(comandos[i]):
 			return i;

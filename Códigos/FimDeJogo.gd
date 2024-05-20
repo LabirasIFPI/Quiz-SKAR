@@ -7,7 +7,9 @@ onready var _confetti = get_node("effects/Particles2D")
 var players: Array = ["[color=#1E90FF]Azul", "[color=red]Vermelho"]
 
 func _ready() -> void:
-#	$Menu/RichTextLabel.append_bbcode("uitydldfildfuidfldfltyaaaadghjktg[/color]oooo")
+	# Direcionamento dos sinais
+	WebSocket.connect("vermelho", self, "_on_Back_pressed")
+
 	## Chama efeito de partícula para cor do vencedor
 	_confetti.emitting = 1
 	changeColorEfectByPlayer(winner())
@@ -39,14 +41,14 @@ func changeColorEfectByPlayer(indPlayer):
 	
 ## Retorna o jogador vencedor (0 para azul; 1 para vermelho)
 func winner() -> int:
-
 	var higher_value = global.pontos[0]
 	var higher_ind = 0
 	for i in range(global.pontos.size()):
 		if global.pontos[i] > higher_value:
 			higher_ind = i
 	return higher_ind 
-	
+
+
 ## Zera a pontuação dos jogadores
 func setPoints():
 	for i in range(global.pontos.size()):

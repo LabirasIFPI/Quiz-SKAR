@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=2]
+[gd_scene load_steps=39 format=2]
 
 [ext_resource path="res://Assets/Fontes/tmj_by_mallagueta_pepper-d62rr8r.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Códigos/Tutorial.gd" type="Script" id=2]
@@ -26,6 +26,7 @@
 [ext_resource path="res://Assets/FreeGUI/tutorial_img/caixa3.png" type="Texture" id=24]
 [ext_resource path="res://Assets/FreeGUI/tutorial_img/player2.png" type="Texture" id=25]
 [ext_resource path="res://Assets/FreeGUI/tutorial_img/player1.png" type="Texture" id=26]
+[ext_resource path="res://Temas/shader.tres" type="Material" id=27]
 
 [sub_resource type="Animation" id=6]
 length = 0.001
@@ -302,7 +303,6 @@ margin_top = 4.0
 margin_right = 148.0
 margin_bottom = 132.0
 custom_fonts/font = ExtResource( 3 )
-text = "A"
 icon = ExtResource( 5 )
 flat = true
 icon_align = 1
@@ -511,6 +511,7 @@ text = "TUTORIAL"
 layer = -1
 
 [node name="bg" type="TextureRect" parent="Back"]
+material = ExtResource( 27 )
 margin_left = -4.0
 margin_top = -3.0
 margin_right = 1916.0
