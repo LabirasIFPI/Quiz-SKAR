@@ -39,7 +39,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Quiz-skar"
-run/main_scene="res://Cenas/Menu.tscn"
+run/main_scene="res://Cenas/Importante.tscn"
 config/icon="res://icon.png"
 
 [autoload]

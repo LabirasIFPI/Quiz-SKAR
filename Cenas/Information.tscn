@@ -44,6 +44,7 @@ margin_right = 1924.0
 margin_bottom = 1082.0
 texture = ExtResource( 3 )
 expand = true
+flip_h = true
 
 [node name="Label" type="Label" parent="CanvasLayer"]
 anchor_right = 1.0

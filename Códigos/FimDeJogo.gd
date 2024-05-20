@@ -3,10 +3,16 @@ extends Node2D
 onready var _lab_p1 = get_node("Menu/Janelas/p1")
 onready var _lab_p2 = get_node("Menu/Janelas/p2")
 onready var _confetti = get_node("effects/Particles2D")
+onready var transita: AnimationPlayer = get_node("Transition/AnimationPlayer")
 
 var players: Array = ["[color=#1E90FF]Azul", "[color=red]Vermelho"]
 
 func _ready() -> void:
+	$Sinais/Back.rect_scale = $Sinais/Back.rect_scale.move_toward(Vector2(1.0, 1.0), 0.05)
+	
+	$Transition.layer = 0
+	# Sai de cena quando acaba a transição
+	$Transition.connect("acabou",self,"sair")
 	# Direcionamento dos sinais
 	WebSocket.connect("vermelho", self, "_on_Back_pressed")
 
@@ -23,9 +29,15 @@ func _ready() -> void:
 
 # Retorna pra tela inicial
 func _on_Back_pressed() -> void:
+	$Sinais/Back.rect_scale.x = rand_range(0.8, 0.85);
+	$Sinais/Back.rect_scale.x = rand_range(0.8, 0.85);
+	$Transition.layer = 2
+	transita.play("fade_out")
 	global.maxPoints = 5
 	setPoints()
 	audio.returnSong()
+	
+func sair():
 	get_tree().change_scene("res://Cenas/Menu.tscn")
 
 ## Printa na tela o vencedor
