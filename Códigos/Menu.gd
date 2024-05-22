@@ -1,15 +1,14 @@
 extends Node2D
 
-onready var start = get_node("Botoẽs/iniciar")
-onready var out = get_node("Botoẽs/fechar")
-onready var tutorial_button = get_node("Botoẽs/tutorial")
+onready var start = get_node("Botoes/iniciar")
+onready var out = get_node("Botoes/fechar")
+onready var tutorial_button = get_node("Botoes/tutorial")
 onready var trasition: AnimationPlayer = get_node("Transition/AnimationPlayer")
 
 func _ready() -> void:
-	$upDownInfo/down.rect_scale = $upDownInfo/down.rect_scale.move_toward(Vector2(1.0, 1.0), 0.05)
-	$upDownInfo/up.rect_scale = $upDownInfo/up.rect_scale.move_toward(Vector2(1.0, 1.0), 0.05)
+#	$Transition.connect("acabou",self,"tras")
 	
-	$Transition.connect("acabou",self,"tras")
+	
 	trasition.play("fade_in")
 	## Recebimento e direcionamento dos sinais recebidos
 	# Chamam as demais funçoes
@@ -22,16 +21,26 @@ func _ready() -> void:
 	
 	# Toca musica principal do jogo
 #	audio.returnSong()
-func tras():
-	$Transition.layer = -1
+func _process(delta):
+# Set escala dos botoes
+	# @TODO: Perguntgar pro patrocinio
+	start.rect_scale = start.rect_scale.move_toward(Vector2(1.0, 1.0), 0.05)
+	out.rect_scale = out.rect_scale.move_toward(Vector2(1.0, 1.0), 0.05)
+	tutorial_button.rect_scale = tutorial_button.rect_scale.move_toward(Vector2(1.0, 1.0), 0.05)
+
 
 func _on_fechar_pressed() -> void:
-	 get_tree().quit()
+	out.rect_scale = Vector2(rand_range(0.75, 0.9), rand_range(0.75, 0.9));
+	get_tree().quit()
 
 
 func _on_iniciar_pressed() -> void:
+	start.rect_scale = Vector2(rand_range(0.75, 0.9), rand_range(0.75, 0.9));
 	get_tree().change_scene("res://Cenas/Information.tscn")
 
 
 func _on_tutorial_pressed() -> void:
+	print("tuututuututu")
+	tutorial_button.rect_scale.x= rand_range(0.5, 0.8)
+	tutorial_button.rect_scale.y= rand_range(0.5, 0.8)
 	get_tree().change_scene("res://Cenas/Tutorial.tscn")

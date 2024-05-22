@@ -4,7 +4,7 @@ var txt = ""
 var client
 var connected: bool = false
 
-const ip = "192.168.43.212"
+const ip = "192.168.246.213"
 
 const port = 80
 var ledstate: int;
@@ -15,6 +15,7 @@ signal vermelho(Menu, Tutorial, Information, QuizMain, FimDeJogo);
 signal botaoA(Menu, Tutorial, Information, QuizMain, FimDeJogo);
 signal botaoB(Menu, Tutorial, Information, QuizMain, FimDeJogo);
 signal botaoC(Menu, Tutorial, Information, QuizMain, FimDeJogo);
+signal zero(Menu, Tutorial, Information, QuizMain, FimDeJogo)
 
 func _ready():
 	client = StreamPeerTCP.new()
@@ -52,20 +53,20 @@ func _writeWebsocket(txt):
 func _messageInterpreter(txt):		
 	var command = txt.split(' ')
 	# Avaliação das mensagens recebidas (ada botão emite um sinal diferente)
-	if command[0] == "B1":
+	if command[0] == "B1" :
 		emit_signal("azul");
 		
 	if command[0] == "B2":
 		emit_signal("vermelho");
 		
 	if command[0] == "A":
-		global.comando = 0
 		emit_signal("botaoA");
 		
 	if command[0] == "B":
-		global.comando = 1
 		emit_signal("botaoB");
 		
 	if command[0] == "C":
-		global.comando = 2
 		emit_signal("botaoC");
+		
+	if command[0] == "A0":
+		emit_signal("zero");

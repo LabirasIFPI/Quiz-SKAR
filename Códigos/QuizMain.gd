@@ -4,10 +4,10 @@ extends Node2D
 ## Dados do Json  aqui (questio, id and options)
 var questions = get_questionsData()
 
-# Para testes (originalmete da funçao "inputSignalPlayers) 
-var _atual = -1;
+# originalmete de Atualzar Exibição (_opt é a cena alternativa instaciada)
+var _opt
 
-
+onready var correctNode = get_node("DoTeste")
 onready var _questionLabel = get_node("Perguntas/PerguntasLabel");
 onready var _label_aviso = get_node("CanvasLayer2/aviso") as Label
 ## Dicionario de pergunta atualmente sendo exibido.
@@ -31,6 +31,8 @@ onready var _points_p2 = get_node("CanvasLayer/pontos_p2")
 
 ## Cena da alternativa
 onready var optionScene: PackedScene = preload("res://Cenas/alternativa.tscn");
+## Cena Teste da cetinha
+onready var correctScene: PackedScene = preload("res://Cenas/Teste.tscn")
 
 var colorProgress: float = 0.0;
 
@@ -169,7 +171,7 @@ func atualizarExibicao():
 	#Assim é possivel que haja menos  de 3 alternativas, porém nunca será usado
 	for i in range(min(3, len(_optionsArray))):
 		var _thisOptionDict = _optionsArray[i];
-		var _opt = optionScene.instance();
+		_opt = optionScene.instance();
 		_opt.get_node("Label").text = _thisOptionDict.text;
 		_opt.optionID = _thisOptionDict.id;
 		
@@ -245,14 +247,11 @@ func input_signal_players():
 	return
 	var _comandos = ["JogadorAzul", "JogadorVermelho"];
 	var _comandosEsp = ["B1", "B2"];
+	var _atual = -1
 	for i in range(len(_comandos)):
-		# Capturar ação do ESP
-		# Não está sendo usado.
-#		if global.getButtonPressed(_comandosEsp[i]):
-#			_atual += i + 1;
-		
 		# Capturar ação do teclado
 		if Input.is_action_just_pressed(_comandos[i]):
+			print("aaaaaaaaaaa")
 			_atual += i + 1;
 	
 	# Se apenas um jogador apertou:
@@ -309,7 +308,6 @@ func updateBgColorAlpha():
 
 ## Detecta os comandos das alternativas e retorna  o indice selecionado.
 func detectarComando():
-	return global.comando
 	#@TODO: mudar pelos sinais
 	var comandos = ["A", "B", "C"]
 	for i in range(len(comandos)):
@@ -320,8 +318,12 @@ func detectarComando():
 		
 ## Confere se a alternativa selecionada é a correta.
 func checarResposta(ind):
+	var correct = correctScene.instance()
 	var _optionToCheck = optionsNode.get_child(ind) as Alternativa;
 	if _optionToCheck:
+#		correct.set_global_position(500,250)
+#		correctNode.add_child(correct)
+#		_opt.get_node("Certon").visible = _optionToCheck.optionID != 0
 		return _optionToCheck.optionID == 0
 	return false
 

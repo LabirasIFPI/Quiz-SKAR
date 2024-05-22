@@ -14,7 +14,7 @@ func _process(delta):
 	if _label_info.percent_visible < 1:
 		_label_info.percent_visible += .006;
 	$upDownInfo/inf.text = str(global.maxPoints)
-	
+
 	$upDownInfo/down.rect_scale = $upDownInfo/down.rect_scale.move_toward(Vector2(1.0, 1.0), 0.05)
 	$upDownInfo/up.rect_scale = $upDownInfo/up.rect_scale.move_toward(Vector2(1.0, 1.0), 0.05)
 	

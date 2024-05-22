@@ -113,6 +113,7 @@ custom_fonts/font = SubResource( 9 )
 text = "00:00"
 
 [node name="DebugLabel" type="Label" parent="CanvasLayer"]
+visible = false
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -159,6 +160,8 @@ text = "perguntas"
 align = 1
 autowrap = true
 uppercase = true
+
+[node name="DoTeste" type="Node2D" parent="."]
 
 [connection signal="timeout" from="TLPR" to="." method="_on_TLPR_timeout"]
 [connection signal="timeout" from="AddPointEffectTimer" to="." method="_onAddPointEffectTimerTimeout"]

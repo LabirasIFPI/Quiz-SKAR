@@ -6,14 +6,14 @@ onready var imagesNode: Control = get_node("PassosImagem");
 onready var _label_texto = get_node("Informação/informação")
 
 var informacoes: Array = [
-	"Primeiramente, ligue e reinicie a 'caixa de resposta' e entre na rede 'Rede_SKAR'",
-	"Agora configure com sua rede WIFI!",
-	"Agora sua rede está salva!",
-	"Tudo pronto?! Agora vamos aprender como JOGAR!!!",
-	"Este é um jogo para dois jogadores: o azul e o vermelho.     SE POSICIONEM!",
-	"Responde a pergunta aquele que apertar primeiro o botão de sua respectiva cor. Cada pergunta tem seu tempo pra resposta, responda antes que o tempo acabe!",
-	"Estes botões representam sua resposta, sendo eles 'A','B' e'C'. Cada resposta correta soma ponto(s), uma resposta errada ou vazia irá somar ponto(s) ao seu oponente.",
-	"Vence aquele que somar mais pontos no final da rodada. Bom JOGO e bons ESTUDOS!!!<3"
+	"1 Primeiramente, ligue e reinicie a 'caixa de resposta' e entre na rede 'Rede_SKAR'",
+	"2 Agora configure com sua rede WIFI!",
+	"3 Agora sua rede está salva!",
+	"4 Tudo pronto?! Agora vamos aprender como JOGAR!!!",
+	"5 Este é um jogo para dois jogadores: o azul e o vermelho.     SE POSICIONEM!",
+	"6 Responde a pergunta aquele que apertar primeiro o botão de sua respectiva cor. Cada pergunta tem seu tempo pra resposta, responda antes que o tempo acabe!",
+	"7 Estes botões representam sua resposta, sendo eles 'A','B' e'C'. Cada resposta correta soma ponto(s), uma resposta errada ou vazia irá somar ponto(s) ao seu oponente.",
+	"8 Vence aquele que somar mais pontos no final da rodada. Bom JOGO e bons ESTUDOS!!!<3"
 ]
 
 onready var images: Array = [
@@ -54,8 +54,9 @@ func _process(delta: float) -> void:
 		
 
 func DefinirTextoPorPagina():
-	var _operacao = 1 - 2 * global.jogadorAtual;#se esquerda(red): -1, se dir(azul): 1
-	print(_operacao)
+	var _operacao = (1 - 2 * global.jogadorAtual) ;#se esq(red): -1, se dir(azul): 1
+	print("Jogador atual: " + str(global.jogadorAtual))
+	print("Resultado da op: " + str(_operacao))
 	if (_operacao > 0 and controle <= (informacoes.size() - 2)) or (_operacao < 0 and controle >= 1):
 		controle += _operacao
 		updateScreen()
