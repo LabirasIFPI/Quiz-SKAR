@@ -1,29 +1,35 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=15 format=2]
 
-[ext_resource path="res://Assets/FreeGUI/png/bg_branco.jpeg" type="Texture" id=1]
+[ext_resource path="res://Assets/FreeGUI/tutorial_img/back_lyrcis.png" type="Texture" id=1]
 [ext_resource path="res://Códigos/Menu.gd" type="Script" id=2]
-[ext_resource path="res://Cenas/Transition.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Assets/FreeGUI/png/out.png" type="Texture" id=4]
-[ext_resource path="res://Assets/Fontes/tmj_by_mallagueta_pepper-d62rr8r.ttf" type="DynamicFontData" id=5]
+[ext_resource path="res://Assets/FreeGUI/png/1000029981.png" type="Texture" id=3]
+[ext_resource path="res://Assets/FreeGUI/svg/Window (2).png" type="Texture" id=4]
 [ext_resource path="res://Temas/Theme_fonte_botes.tres" type="DynamicFont" id=6]
-[ext_resource path="res://Assets/FreeGUI/png/playblue.png" type="Texture" id=7]
 [ext_resource path="res://Assets/FreeGUI/svg/game_gray.png" type="Texture" id=8]
 [ext_resource path="res://Temas/shader.tres" type="Material" id=9]
 
 [sub_resource type="Gradient" id=2]
-offsets = PoolRealArray( 0, 0.916201 )
-colors = PoolColorArray( 1, 1, 1, 0, 0, 0, 0, 0.956863 )
+offsets = PoolRealArray( 0, 0.75419, 0.916201 )
+colors = PoolColorArray( 1, 1, 1, 0, 0.134146, 0.134146, 0.134146, 0.828503, 0, 0, 0, 0.956863 )
 
 [sub_resource type="GradientTexture2D" id=3]
 gradient = SubResource( 2 )
 fill_to = Vector2( 0, 1 )
 
-[sub_resource type="DynamicFont" id=1]
-size = 250
-outline_size = 5
-outline_color = Color( 0.0980392, 0, 0, 1 )
-extra_spacing_space = 1
-font_data = ExtResource( 5 )
+[sub_resource type="GradientTexture" id=4]
+
+[sub_resource type="StyleBoxTexture" id=5]
+texture = SubResource( 4 )
+region_rect = Rect2( 0, 0, 2048, 1 )
+
+[sub_resource type="BitmapFont" id=6]
+
+[sub_resource type="StyleBoxLine" id=7]
+
+[sub_resource type="Theme" id=8]
+Label/styles/normal = SubResource( 5 )
+RichTextLabel/fonts/normal_font = SubResource( 6 )
+RichTextLabel/styles/normal = SubResource( 7 )
 
 [node name="Menu" type="Node2D"]
 script = ExtResource( 2 )
@@ -35,66 +41,56 @@ __meta__ = {
 layer = -1
 follow_viewport_enable = true
 
-[node name="Back" type="TextureRect" parent="CanvasLayer"]
-self_modulate = Color( 0, 0.741176, 1, 1 )
+[node name="color" type="ColorRect" parent="CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.054902, 0.682353, 0, 1 )
+
+[node name="shader" type="TextureRect" parent="CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = SubResource( 3 )
+expand = true
+
+[node name="back" type="TextureRect" parent="CanvasLayer"]
 material = ExtResource( 9 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 texture = ExtResource( 1 )
 expand = true
 
-[node name="color" type="TextureRect" parent="CanvasLayer"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-texture = SubResource( 3 )
-expand = true
-
 [node name="Titulo" type="Label" parent="."]
 anchor_right = 1.0
-margin_left = 87.0
-margin_top = 131.0
-margin_right = 1793.0
-margin_bottom = 923.0
-custom_fonts/font = SubResource( 1 )
-text = "Receba
-
- Inteligência"
+margin_left = 255.0
+margin_top = 93.0
+margin_right = 1674.0
+margin_bottom = 620.0
+theme = SubResource( 8 )
+text = "Mestre do Conhecimento"
 align = 1
+valign = 1
 autowrap = true
-
-[node name="Transition" parent="." instance=ExtResource( 3 )]
 
 [node name="Botoes" type="CanvasLayer" parent="."]
 
 [node name="iniciar" type="Button" parent="Botoes"]
 anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -146.5
-margin_top = -140.0
-margin_right = 146.5
-margin_bottom = 140.0
-icon = ExtResource( 7 )
-flat = true
-expand_icon = true
-
-[node name="fechar" type="Button" parent="Botoes"]
 anchor_top = 1.0
+anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = 61.0
-margin_top = -293.0
-margin_right = 272.0
-margin_bottom = -78.0
+margin_left = -200.0
+margin_top = -289.0
+margin_right = 371.0
+margin_bottom = -111.0
 icon = ExtResource( 4 )
 flat = true
 expand_icon = true
 
 [node name="tutorial" type="Button" parent="Botoes"]
-margin_left = 1633.0
-margin_top = 762.0
-margin_right = 1854.0
-margin_bottom = 1012.0
+margin_left = 1628.0
+margin_top = 783.0
+margin_right = 1849.0
+margin_bottom = 1033.0
 custom_fonts/font = ExtResource( 6 )
 icon = ExtResource( 8 )
 flat = true
@@ -102,6 +98,10 @@ clip_text = true
 icon_align = 2
 expand_icon = true
 
+[node name="1000029981" type="Sprite" parent="."]
+position = Vector2( 962, 556 )
+scale = Vector2( 0.65, 0.65 )
+texture = ExtResource( 3 )
+
 [connection signal="pressed" from="Botoes/iniciar" to="." method="_on_iniciar_pressed"]
-[connection signal="pressed" from="Botoes/fechar" to="." method="_on_fechar_pressed"]
 [connection signal="pressed" from="Botoes/tutorial" to="." method="_on_tutorial_pressed"]

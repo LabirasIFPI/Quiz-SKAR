@@ -19,6 +19,9 @@ signal botaoVermelho(Tutorial, QuizMain);
 ## Scene de sons
 onready var soundNode = preload("res://Cenas/SoundNode.tscn");
 
+## Cena da transição
+onready var transNode = preload("res://Cenas/Transition.tscn")
+
 ## Guarda valor da resposta inserido pelo usuário.
 var resposta: int = -1;
 
@@ -49,6 +52,9 @@ var sounds: Dictionary = {
 	"won": preload("res://Musicas/Vitoria.wav"),
 	"countdown": preload("res://Musicas/arcade-countdown-7007.wav")
 }
+
+## Modos da transição
+var transitioStatus: Array = ["transition_in", "transition_out"]
 
 func _ready():
 	client = StreamPeerTCP.new()
@@ -149,6 +155,16 @@ func playSound(sound, duration = 5.0):
 	_snd.timeToDestroy = duration;
 	add_child(_snd);
 
+
+func getTransition(status, duration = 1.0):
+	var _trn = transNode.instance()
+#	var _trnStatus = _trn.transitioStatus[status]
+	_trn.timeToKill = duration
+#	_trn.playTransition(_trn.transitioStatus[status], duration)
+	add_child(_trn)
+	_trn.animacao.play(_trn.transitioStatus[status])
+	
+	
 func getOppositePlayer(arg) -> int:
 	var _sinal = 1 - 2 * arg # se vermelho: -1, se azul: 1
 	return arg + 1  * _sinal;

@@ -8,11 +8,7 @@ onready var transita: AnimationPlayer = get_node("Transition/AnimationPlayer")
 var players: Array = ["[color=#1E90FF]Azul", "[color=red]Vermelho"]
 
 func _ready() -> void:
-	$Sinais/Back.rect_scale = $Sinais/Back.rect_scale.move_toward(Vector2(1.0, 1.0), 0.05)
 	
-	$Transition.layer = 0
-	# Sai de cena quando acaba a transição
-	$Transition.connect("acabou",self,"sair")
 	# Direcionamento dos sinais
 	WebSocket.connect("vermelho", self, "_on_Back_pressed")
 
@@ -26,20 +22,20 @@ func _ready() -> void:
 	global.playSound("won", 6.0)
 	informWinner()
 
+func _process(delta) -> void:
+	# O botão volta á sua posição inicial
+	$Sinais/Back.rect_scale = $Sinais/Back.rect_scale.move_toward(Vector2(1.0, 1.0), 0.05)
 
 # Retorna pra tela inicial
 func _on_Back_pressed() -> void:
-	$Sinais/Back.rect_scale.x = rand_range(0.8, 0.85);
-	$Sinais/Back.rect_scale.x = rand_range(0.8, 0.85);
-	$Transition.layer = 2
-	transita.play("fade_out")
+	global.getTransition(0)
+	get_node("ToPass").start(1)
+	
+	$Sinais/Back.rect_scale = Vector2(rand_range(0.8, 0.85), rand_range(0.8 , 0.85));
 	global.maxPoints = 5
 	setPoints()
 	audio.returnSong()
 	
-func sair():
-	get_tree().change_scene("res://Cenas/Menu.tscn")
-
 ## Printa na tela o vencedor
 func informWinner():
 #MAYBE
@@ -65,3 +61,7 @@ func winner() -> int:
 func setPoints():
 	for i in range(global.pontos.size()):
 		global.pontos[i] = 0
+
+
+func _on_ToPass_timeout() -> void:
+	get_tree().change_scene("res://Cenas/Menu.tscn")

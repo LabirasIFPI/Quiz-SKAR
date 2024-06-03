@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Temas/FonteAlternativa.tres" type="DynamicFont" id=1]
 [ext_resource path="res://Assets/FreeGUI/png/bg_branco.jpeg" type="Texture" id=2]
@@ -11,7 +11,6 @@
 [ext_resource path="res://Códigos/FimDeJogo.gd" type="Script" id=9]
 [ext_resource path="res://Assets/FreeGUI/png/red.png" type="Texture" id=10]
 [ext_resource path="res://Temas/shader.tres" type="Material" id=11]
-[ext_resource path="res://Cenas/Transition.tscn" type="PackedScene" id=12]
 
 [sub_resource type="DynamicFont" id=1]
 size = 90
@@ -110,6 +109,7 @@ margin_left = 750.0
 margin_top = 750.0
 margin_right = 1187.0
 margin_bottom = 941.0
+rect_pivot_offset = Vector2( 220, 100 )
 custom_colors/font_color_disabled = Color( 0, 0.811765, 1, 1 )
 custom_fonts/font = SubResource( 1 )
 text = "retornar"
@@ -134,7 +134,7 @@ initial_velocity_random = 1.0
 scale_amount = 10.0
 color = Color( 0.117647, 1, 0, 1 )
 
-[node name="Transition" parent="." instance=ExtResource( 12 )]
-layer = 2
+[node name="ToPass" type="Timer" parent="."]
 
 [connection signal="pressed" from="Sinais/Back" to="." method="_on_Back_pressed"]
+[connection signal="timeout" from="ToPass" to="." method="_on_ToPass_timeout"]

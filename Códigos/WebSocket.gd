@@ -4,7 +4,7 @@ var txt = ""
 var client
 var connected: bool = false
 
-const ip = "192.168.246.213"
+const ip = "192.168.43.92"
 
 const port = 80
 var ledstate: int;
