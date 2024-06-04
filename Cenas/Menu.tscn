@@ -1,16 +1,19 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://Assets/FreeGUI/tutorial_img/back_lyrcis.png" type="Texture" id=1]
 [ext_resource path="res://Códigos/Menu.gd" type="Script" id=2]
-[ext_resource path="res://Assets/FreeGUI/png/1000029981.png" type="Texture" id=3]
-[ext_resource path="res://Assets/FreeGUI/svg/Window (2).png" type="Texture" id=4]
+[ext_resource path="res://Assets/FreeGUI/svg/Window (1).png" type="Texture" id=3]
+[ext_resource path="res://Assets/FreeGUI/back_chalkboard.png" type="Texture" id=4]
+[ext_resource path="res://Assets/FreeGUI/png/frame_downs.png" type="Texture" id=5]
 [ext_resource path="res://Temas/Theme_fonte_botes.tres" type="DynamicFont" id=6]
+[ext_resource path="res://Assets/FreeGUI/animations/chalk.png" type="Texture" id=7]
 [ext_resource path="res://Assets/FreeGUI/svg/game_gray.png" type="Texture" id=8]
 [ext_resource path="res://Temas/shader.tres" type="Material" id=9]
+[ext_resource path="res://Assets/FreeGUI/animations/KGBrokenVesselsSketch.ttf" type="DynamicFontData" id=10]
 
 [sub_resource type="Gradient" id=2]
-offsets = PoolRealArray( 0, 0.75419, 0.916201 )
-colors = PoolColorArray( 1, 1, 1, 0, 0.134146, 0.134146, 0.134146, 0.828503, 0, 0, 0, 0.956863 )
+offsets = PoolRealArray( 0.04, 0.931429 )
+colors = PoolColorArray( 1, 1, 1, 0, 0, 0, 0, 0.956863 )
 
 [sub_resource type="GradientTexture2D" id=3]
 gradient = SubResource( 2 )
@@ -31,6 +34,27 @@ Label/styles/normal = SubResource( 5 )
 RichTextLabel/fonts/normal_font = SubResource( 6 )
 RichTextLabel/styles/normal = SubResource( 7 )
 
+[sub_resource type="DynamicFont" id=10]
+size = 180
+outline_color = Color( 0.843137, 0.403922, 0.403922, 1 )
+font_data = ExtResource( 10 )
+
+[sub_resource type="StyleBoxFlat" id=9]
+bg_color = Color( 0, 0.670588, 1, 1 )
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+shadow_color = Color( 0, 0.0509804, 0.160784, 0.6 )
+shadow_size = 30
+shadow_offset = Vector2( -10, 10 )
+anti_aliasing_size = 1.992
+
+[sub_resource type="BitmapFont" id=11]
+
+[sub_resource type="Animation" id=12]
+resource_name = "write"
+
 [node name="Menu" type="Node2D"]
 script = ExtResource( 2 )
 __meta__ = {
@@ -44,28 +68,45 @@ follow_viewport_enable = true
 [node name="color" type="ColorRect" parent="CanvasLayer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 0.054902, 0.682353, 0, 1 )
+color = Color( 0, 0, 0, 1 )
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+self_modulate = Color( 1, 1, 1, 0.635294 )
+margin_right = 1920.0
+margin_bottom = 1080.0
+texture = ExtResource( 4 )
 
 [node name="shader" type="TextureRect" parent="CanvasLayer"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-texture = SubResource( 3 )
-expand = true
-
-[node name="back" type="TextureRect" parent="CanvasLayer"]
 material = ExtResource( 9 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 texture = ExtResource( 1 )
 expand = true
 
+[node name="grad" type="TextureRect" parent="CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = SubResource( 3 )
+expand = true
+
+[node name="frame" type="TextureRect" parent="CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -55.0
+margin_top = 55.0
+margin_right = 38.0
+margin_bottom = 55.0
+texture = ExtResource( 5 )
+expand = true
+
 [node name="Titulo" type="Label" parent="."]
 anchor_right = 1.0
-margin_left = 255.0
-margin_top = 93.0
-margin_right = 1674.0
-margin_bottom = 620.0
+margin_left = 272.0
+margin_top = 69.0
+margin_right = 1691.0
+margin_bottom = 596.0
 theme = SubResource( 8 )
+custom_fonts/font = SubResource( 10 )
 text = "Mestre do Conhecimento"
 align = 1
 valign = 1
@@ -78,11 +119,11 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -200.0
-margin_top = -289.0
-margin_right = 371.0
-margin_bottom = -111.0
-icon = ExtResource( 4 )
+margin_left = -903.0
+margin_top = -382.0
+margin_right = -464.0
+margin_bottom = -251.0
+icon = ExtResource( 3 )
 flat = true
 expand_icon = true
 
@@ -98,10 +139,29 @@ clip_text = true
 icon_align = 2
 expand_icon = true
 
-[node name="1000029981" type="Sprite" parent="."]
-position = Vector2( 962, 556 )
-scale = Vector2( 0.65, 0.65 )
-texture = ExtResource( 3 )
+[node name="teste" type="Node" parent="."]
+
+[node name="frame" type="Panel" parent="teste"]
+margin_left = 766.0
+margin_top = 734.0
+margin_right = 1161.0
+margin_bottom = 868.0
+rect_pivot_offset = Vector2( 180, 65 )
+custom_styles/panel = SubResource( 9 )
+
+[node name="Label" type="Label" parent="teste"]
+margin_right = 40.0
+margin_bottom = 14.0
+custom_fonts/font = SubResource( 11 )
+text = "Jogar"
+
+[node name="chalk_anomarion" type="AnimationPlayer" parent="."]
+anims/write = SubResource( 12 )
+
+[node name="Chalk" type="Sprite" parent="chalk_anomarion"]
+position = Vector2( 612, 338 )
+scale = Vector2( 0.3, 0.3 )
+texture = ExtResource( 7 )
 
 [connection signal="pressed" from="Botoes/iniciar" to="." method="_on_iniciar_pressed"]
 [connection signal="pressed" from="Botoes/tutorial" to="." method="_on_tutorial_pressed"]
