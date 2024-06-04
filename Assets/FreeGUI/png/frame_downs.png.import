@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/1000029981.png-acf4c8eb328025e5cbe7e48a46dd5665.stex"
+path="res://.import/frame_downs.png-97657d6e26b3471343f81065e2219189.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/FreeGUI/png/1000029981.png"
-dest_files=[ "res://.import/1000029981.png-acf4c8eb328025e5cbe7e48a46dd5665.stex" ]
+source_file="res://Assets/FreeGUI/png/frame_downs.png"
+dest_files=[ "res://.import/frame_downs.png-97657d6e26b3471343f81065e2219189.stex" ]
 
 [params]
 
