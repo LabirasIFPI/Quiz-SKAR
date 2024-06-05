@@ -1,13 +1,11 @@
 extends Node2D
 
 onready var start = get_node("Botoes/iniciar")
-onready var out = get_node("Botoes/fechar")
 onready var tutorial_button = get_node("Botoes/tutorial")
 
 func _ready() -> void:
 	global.getTransition(1)
 #	$Transition.connect("acabou",self,"tras")
-	
 	
 	## Recebimento e direcionamento dos sinais recebidos
 	# Chamam as demais funçoes
@@ -20,19 +18,14 @@ func _ready() -> void:
 	
 	# Toca musica principal do jogo
 #	audio.returnSong()
-func _process(delta):
-# Set escala dos botoes
-	start.rect_scale = start.rect_scale.move_toward(Vector2(1.0, 1.0), 0.05)
-	tutorial_button.rect_scale = tutorial_button.rect_scale.move_toward(Vector2(1.0, 1.0), 0.05)
-
-
-
-func _on_iniciar_pressed() -> void:
-	start.rect_scale = Vector2(rand_range(0.75, 0.9), rand_range(0.75, 0.9));
-	get_tree().change_scene("res://Cenas/Information.tscn")
+func _process(delta) -> void:
+	yield(get_tree().create_timer(.55), "timeout")
+	$Titulo.percent_visible += 0.01
 
 
 func _on_tutorial_pressed() -> void:
-	tutorial_button.rect_scale.x= rand_range(0.5, 0.8)
-	tutorial_button.rect_scale.y= rand_range(0.5, 0.8)
-	get_tree().change_scene("res://Cenas/Tutorial.tscn")
+	global.getTransition(0, "tutorial");
+
+
+func _on_iniciar_pressed():
+	global.getTransition(0, "information");

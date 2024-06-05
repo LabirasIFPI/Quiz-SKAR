@@ -1,12 +1,12 @@
-[gd_scene load_steps=39 format=2]
+[gd_scene load_steps=41 format=2]
 
 [ext_resource path="res://Assets/Fontes/tmj_by_mallagueta_pepper-d62rr8r.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Códigos/Tutorial.gd" type="Script" id=2]
 [ext_resource path="res://Temas/Theme_fonte_botes.tres" type="DynamicFont" id=3]
-[ext_resource path="res://Assets/FreeGUI/png/bg_branco.jpeg" type="Texture" id=4]
-[ext_resource path="res://Assets/FreeGUI/png/X_gray.png" type="Texture" id=5]
-[ext_resource path="res://Assets/FreeGUI/png/Buotoes/Button_back].png" type="Texture" id=6]
-[ext_resource path="res://Assets/FreeGUI/png/rigth.png" type="Texture" id=7]
+[ext_resource path="res://Assets/FreeGUI/itens_chalk/buttons_chalk4.png" type="Texture" id=4]
+[ext_resource path="res://Assets/FreeGUI/itens_chalk/buttons_chalk3.png" type="Texture" id=5]
+[ext_resource path="res://Temas/Back.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Códigos/ButtonBehaviour.gd" type="Script" id=7]
 [ext_resource path="res://Assets/FreeGUI/svg/box-removebg-preview.png" type="Texture" id=8]
 [ext_resource path="res://Assets/FreeGUI/tutorial_img/box2-removebg-preview.png" type="Texture" id=9]
 [ext_resource path="res://Assets/FreeGUI/tutorial_img/pessoas2.png" type="Texture" id=10]
@@ -26,7 +26,9 @@
 [ext_resource path="res://Assets/FreeGUI/tutorial_img/caixa3.png" type="Texture" id=24]
 [ext_resource path="res://Assets/FreeGUI/tutorial_img/player2.png" type="Texture" id=25]
 [ext_resource path="res://Assets/FreeGUI/tutorial_img/player1.png" type="Texture" id=26]
-[ext_resource path="res://Temas/shader.tres" type="Material" id=27]
+[ext_resource path="res://Assets/FreeGUI/itens_chalk/buttons_chalk5.png" type="Texture" id=27]
+[ext_resource path="res://Assets/Fontes/KGBrokenVesselsSketch.ttf" type="DynamicFontData" id=28]
+[ext_resource path="res://Temas/new_styleboxflat.tres" type="StyleBox" id=29]
 
 [sub_resource type="Animation" id=6]
 length = 0.001
@@ -266,8 +268,8 @@ font_data = ExtResource( 1 )
 
 [sub_resource type="DynamicFont" id=3]
 size = 150
-outline_size = 8
-font_data = ExtResource( 1 )
+outline_size = 3
+font_data = ExtResource( 28 )
 
 [node name="Tutorial" type="Node2D"]
 script = ExtResource( 2 )
@@ -280,33 +282,42 @@ margin_right = 40.0
 margin_bottom = 40.0
 
 [node name="esquerda" type="Button" parent="Control"]
-margin_left = 6.0
-margin_top = 722.0
-margin_right = 237.0
-margin_bottom = 973.0
-icon = ExtResource( 6 )
+margin_left = 63.0
+margin_top = 728.0
+margin_right = 294.0
+margin_bottom = 979.0
+rect_pivot_offset = Vector2( 115, 120 )
+custom_styles/hover = ExtResource( 29 )
+icon = ExtResource( 4 )
 flat = true
 expand_icon = true
+script = ExtResource( 7 )
 
 [node name="direita" type="Button" parent="Control"]
-margin_left = 1689.0
-margin_top = 720.0
-margin_right = 1901.0
-margin_bottom = 958.0
-icon = ExtResource( 7 )
+margin_left = 1651.0
+margin_top = 734.0
+margin_right = 1871.0
+margin_bottom = 981.0
+rect_pivot_offset = Vector2( 110, 120 )
+custom_styles/hover = ExtResource( 29 )
+icon = ExtResource( 27 )
 flat = true
 expand_icon = true
+script = ExtResource( 7 )
 
 [node name="out" type="Button" parent="Control"]
-margin_left = 18.0
-margin_top = 4.0
-margin_right = 148.0
-margin_bottom = 132.0
+margin_left = 12.0
+margin_top = 9.0
+margin_right = 142.0
+margin_bottom = 137.0
+rect_pivot_offset = Vector2( 65, 60 )
 custom_fonts/font = ExtResource( 3 )
+custom_styles/hover = ExtResource( 29 )
 icon = ExtResource( 5 )
 flat = true
 icon_align = 1
 expand_icon = true
+script = ExtResource( 7 )
 
 [node name="PassosImagem" type="Control" parent="."]
 margin_right = 40.0
@@ -507,17 +518,7 @@ custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
 custom_fonts/font = SubResource( 3 )
 text = "TUTORIAL"
 
-[node name="Back" type="CanvasLayer" parent="."]
-layer = -1
-
-[node name="bg" type="TextureRect" parent="Back"]
-material = ExtResource( 27 )
-margin_left = -4.0
-margin_top = -3.0
-margin_right = 1916.0
-margin_bottom = 1077.0
-texture = ExtResource( 4 )
-expand = true
+[node name="Back" parent="." instance=ExtResource( 6 )]
 
 [connection signal="pressed" from="Control/esquerda" to="." method="_on_avancar_esquerda_pressed"]
 [connection signal="pressed" from="Control/direita" to="." method="_on_avancar_direita_pressed"]

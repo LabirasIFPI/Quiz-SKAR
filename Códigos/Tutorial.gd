@@ -28,6 +28,7 @@ onready var images: Array = [
 ]
 
 func _ready():
+	global.getTransition(1)
 	# Direcionamento dos sinais
 	WebSocket.connect("azul", self, "_on_avancar_direita_pressed")
 	WebSocket.connect("vermelho", self, "_on_avancar_esquerda_pressed")
@@ -41,6 +42,7 @@ func _ready():
 
 ## Atualiza o texto e exibe a imagem correspondente
 func updateScreen():
+	#@TODO: isso esta dandoerros. entender e consertar
 	# Atualizar texto exibido
 	_label_texto.text = informacoes[controle]
 
@@ -66,7 +68,7 @@ func _on_avancar_esquerda_pressed() -> void:
 	DefinirTextoPorPagina()
 
 func _on_sair_pressed() -> void:
-	get_tree().change_scene("res://Cenas/Menu.tscn")
+	global.getTransition(0,"menu")
 
 
 func _on_avancar_direita_pressed() -> void:

@@ -61,6 +61,7 @@ func getRandomQuestion() -> Dictionary:
 	return pergunta;
 
 func _ready() -> void:
+	global.getTransition(1)
 	# Direciona os sinais > saber que alguem apertou
 	WebSocket.connect("azul", self, "blueIn")
 	WebSocket.connect("vermelho", self, "redIn")
@@ -135,8 +136,6 @@ func _process(delta: float) -> void:
 	changeBackgroundByPlayer();
 	updateBgColorAlpha();
 	
-	if Input.is_action_just_pressed("ui_left"):
-		callGameOver()
 	
 ## Atualiza os elementos da tela para receberem as informações da pergunta atual.
 func atualizarExibicao():
@@ -244,7 +243,7 @@ func _on_TLPR_timeout() -> void:
 #Futuramente será quem enviar o sinal via wu-fi primero, por isso não foi colocado uma condiçao
 #de "impedimento" (esp ja tem) ==> @WILLDO
 func input_signal_players():
-	return
+#	return
 	var _comandos = ["JogadorAzul", "JogadorVermelho"];
 	var _comandosEsp = ["B1", "B2"];
 	var _atual = -1
@@ -357,7 +356,7 @@ func _onAddPointEffectTimerTimeout():
 ## Chamado para finalização da rodada entre os competidores
 ## @TODO: Exibe jogador vencedor e passa pra menu de fim
 func callGameOver():
-	get_tree().change_scene("res://Cenas/FimDeJogo.tscn")
+	global.getTransition(0,"fim")
 
 func get_questionsData() -> Array:
 	var file : File = File.new()
