@@ -19,8 +19,8 @@ func _ready() -> void:
 	# Toca musica principal do jogo
 #	audio.returnSong()
 func _process(delta) -> void:
-	yield(get_tree().create_timer(.55), "timeout")
-	$Titulo.percent_visible += 0.01
+	yield(get_tree().create_timer(.52), "timeout")
+	$Titulo.percent_visible += 0.0098
 
 
 func _on_tutorial_pressed() -> void:

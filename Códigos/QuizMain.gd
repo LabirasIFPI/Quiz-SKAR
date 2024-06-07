@@ -7,6 +7,9 @@ var questions = get_questionsData()
 # originalmete de Atualzar Exibição (_opt é a cena alternativa instaciada)
 var _opt
 
+# var para barrar quem quer entrar na vez de outro
+var controle = true
+
 onready var correctNode = get_node("DoTeste")
 onready var _questionLabel = get_node("Perguntas/PerguntasLabel");
 onready var _label_aviso = get_node("CanvasLayer2/aviso") as Label
@@ -32,7 +35,6 @@ onready var _points_p2 = get_node("CanvasLayer/pontos_p2")
 ## Cena da alternativa
 onready var optionScene: PackedScene = preload("res://Cenas/alternativa.tscn");
 ## Cena Teste da cetinha
-onready var correctScene: PackedScene = preload("res://Cenas/Teste.tscn")
 
 var colorProgress: float = 0.0;
 
@@ -139,7 +141,7 @@ func _process(delta: float) -> void:
 	
 ## Atualiza os elementos da tela para receberem as informações da pergunta atual.
 func atualizarExibicao():
-	
+	controle = true
 	# Atualiza pergunta
 	var _pergunta = perguntaExibida.question
 
@@ -247,19 +249,24 @@ func input_signal_players():
 	var _comandos = ["JogadorAzul", "JogadorVermelho"];
 	var _comandosEsp = ["B1", "B2"];
 	var _atual = -1
+
 	for i in range(len(_comandos)):
 		# Capturar ação do teclado
 		if Input.is_action_just_pressed(_comandos[i]):
-			print("aaaaaaaaaaa")
 			_atual += i + 1;
 	
 	# Se apenas um jogador apertou:
-	if _atual >= 0 and _atual < 2:
+	if (_atual >= 0 and _atual < 2) and controle == true:
+		print("pode passar")
 		global.definirJogadorAtual(_atual);
 		colorProgress = 0.0;
 		$TLPR.start(10)
+		controle = false
 		#retirar
 		audio.startClock()
+	elif (_atual >= 0 and _atual < 2) and controle == false:
+		print("epa epa epa")
+		pass
 	else:
 		# Aconteceu de ninguém apertar, ou dos dois apertarem no mesmo instante.
 		pass
@@ -268,6 +275,7 @@ func blueIn():
 	print("Botão azul pressionado.")
 	if global.temJogadorNaVez():
 		print("Já havia jogador na vez.")
+		audio.stopClock()
 		return
 	colorProgress = 0.0;
 	global.definirJogadorAtual(0)
@@ -278,6 +286,7 @@ func redIn():
 	print("Botão vermelho pressionado.")
 	if global.temJogadorNaVez():
 		print("Já havia jogador na vez.")
+		audio.stopClock()
 		return
 	colorProgress = 0.0;
 	global.definirJogadorAtual(1)
@@ -317,7 +326,6 @@ func detectarComando():
 		
 ## Confere se a alternativa selecionada é a correta.
 func checarResposta(ind):
-	var correct = correctScene.instance()
 	var _optionToCheck = optionsNode.get_child(ind) as Alternativa;
 	if _optionToCheck:
 #		correct.set_global_position(500,250)

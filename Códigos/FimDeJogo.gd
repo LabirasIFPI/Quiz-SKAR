@@ -36,7 +36,7 @@ func _on_Back_pressed() -> void:
 func informWinner():
 #MAYBE
 	var _labelInform = get_node("Menu/winner")
-	_labelInform.append_bbcode("[center][color=#fffcd3]Parabéns jogador " + players[winner()] + "!")#mudar frase
+	_labelInform.append_bbcode("[center]Parabéns jogador " + players[winner()] + "!")#mudar frase
 
 ## Muda a cor das partículas para cada jogador
 func changeColorEfectByPlayer(indPlayer):

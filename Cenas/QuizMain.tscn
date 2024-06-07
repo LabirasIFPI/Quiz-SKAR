@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Códigos/QuizMain.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Fontes/tmj_by_mallagueta_pepper-d62rr8r.ttf" type="DynamicFontData" id=2]
@@ -47,12 +47,6 @@ font_data = ExtResource( 5 )
 [sub_resource type="DynamicFont" id=8]
 size = 400
 outline_size = 10
-outline_color = Color( 0, 0, 0, 1 )
-font_data = ExtResource( 5 )
-
-[sub_resource type="DynamicFont" id=1]
-size = 100
-outline_size = 5
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 5 )
 
@@ -132,7 +126,6 @@ text = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
 layer = 2
 
 [node name="aviso" type="Label" parent="CanvasLayer2"]
-visible = false
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -144,7 +137,6 @@ margin_bottom = -263.0
 rect_pivot_offset = Vector2( 690, 120 )
 custom_colors/font_color = Color( 1, 0.784314, 0, 1 )
 custom_fonts/font = SubResource( 10 )
-text = "aviso"
 align = 1
 autowrap = true
 uppercase = true
@@ -165,17 +157,12 @@ text = "+1"
 
 [node name="Perguntas" type="CanvasLayer" parent="."]
 
-[node name="PerguntasLabel" type="Label" parent="Perguntas"]
+[node name="PerguntasLabel" type="RichTextLabel" parent="Perguntas"]
 margin_left = 174.0
 margin_top = 98.0
 margin_right = 1649.0
 margin_bottom = 307.0
-custom_colors/font_color = Color( 1, 1, 1, 1 )
-custom_fonts/font = SubResource( 1 )
 text = "perguntas"
-align = 1
-autowrap = true
-uppercase = true
 
 [node name="DoTeste" type="Node2D" parent="."]
 
