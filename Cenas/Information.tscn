@@ -1,22 +1,20 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Códigos/Information.gd" type="Script" id=1]
 [ext_resource path="res://Temas/Back.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Códigos/ButtonBehaviour.gd" type="Script" id=3]
 [ext_resource path="res://Assets/FreeGUI/itens_chalk/buttons_chalk4.png" type="Texture" id=4]
 [ext_resource path="res://Assets/FreeGUI/itens_chalk/buttons_chalk6.png" type="Texture" id=5]
-[ext_resource path="res://Assets/Fontes/tmj_by_mallagueta_pepper-d62rr8r.ttf" type="DynamicFontData" id=6]
+[ext_resource path="res://Assets/FreeGUI/itens_chalk/buttons_chalk1.png" type="Texture" id=6]
 [ext_resource path="res://Assets/FreeGUI/itens_chalk/buttons_chalk5.png" type="Texture" id=7]
-[ext_resource path="res://Assets/FreeGUI/svg/Window (1).png" type="Texture" id=8]
 [ext_resource path="res://Temas/FonteAlternativa.tres" type="DynamicFont" id=9]
 [ext_resource path="res://Temas/new_styleboxflat.tres" type="StyleBox" id=10]
 [ext_resource path="res://Assets/Fontes/KGBrokenVesselsSketch.ttf" type="DynamicFontData" id=11]
 
 [sub_resource type="DynamicFont" id=2]
 size = 100
-outline_size = 3
 outline_color = Color( 0.631373, 0.384314, 0, 1 )
-font_data = ExtResource( 6 )
+font_data = ExtResource( 11 )
 
 [sub_resource type="DynamicFont" id=3]
 size = 80
@@ -30,9 +28,9 @@ anchor_bottom = 1.0
 script = ExtResource( 1 )
 
 [node name="barra" type="Sprite" parent="."]
-position = Vector2( 960, 540 )
-scale = Vector2( 1, 1.5 )
-texture = ExtResource( 8 )
+position = Vector2( 959, 524 )
+scale = Vector2( 0.873887, 1.36224 )
+texture = ExtResource( 6 )
 
 [node name="upDownInfo" type="CanvasLayer" parent="."]
 
@@ -63,10 +61,11 @@ expand_icon = true
 script = ExtResource( 3 )
 
 [node name="inf" type="Label" parent="upDownInfo"]
-margin_left = 932.0
-margin_top = 477.0
-margin_right = 982.0
-margin_bottom = 582.0
+margin_left = 936.0
+margin_top = 469.0
+margin_right = 997.0
+margin_bottom = 593.0
+custom_colors/font_color = Color( 0.160784, 0.160784, 0.160784, 1 )
 custom_fonts/font = SubResource( 2 )
 text = "0"
 

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Button_play.png-753c98fa7bb4eb8c4f534b5771bfe6ee.stex"
+path="res://.import/box2.png-fb58cf342999d93e9012d586fe1e79aa.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/FreeGUI/png/Buotoes/Button_play.png"
-dest_files=[ "res://.import/Button_play.png-753c98fa7bb4eb8c4f534b5771bfe6ee.stex" ]
+source_file="res://Assets/FreeGUI/itens_chalk/box2.png"
+dest_files=[ "res://.import/box2.png-fb58cf342999d93e9012d586fe1e79aa.stex" ]
 
 [params]
 

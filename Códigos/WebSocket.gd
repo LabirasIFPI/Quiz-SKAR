@@ -8,6 +8,10 @@ const ip = "192.168.43.92"
 
 const port = 80
 var ledstate: int;
+var keys: Dictionary = {
+	'B1': false,
+	'B2': false
+}
 
 # Sinais de cada botao
 signal azul(Menu, Tutorial, Information, QuizMain, FimDeJogo);
@@ -54,10 +58,12 @@ func _messageInterpreter(txt):
 	var command = txt.split(' ')
 	# Avaliação das mensagens recebidas (ada botão emite um sinal diferente)
 	if command[0] == "B1" :
+		keys.B1 = true
 		emit_signal("azul");
 		
 	if command[0] == "B2":
 		emit_signal("vermelho");
+		keys.B2 = true
 		
 	if command[0] == "A":
 		emit_signal("botaoA");

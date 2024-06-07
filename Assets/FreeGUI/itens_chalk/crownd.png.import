@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Button_empty_blue.png-15e13171de33b9ef418c4e5afbc05110.stex"
+path="res://.import/crownd.png-962c3b50e5b728422fce66d4b470172d.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/FreeGUI/png/Buotoes/Button_empty_blue.png"
-dest_files=[ "res://.import/Button_empty_blue.png-15e13171de33b9ef418c4e5afbc05110.stex" ]
+source_file="res://Assets/FreeGUI/itens_chalk/crownd.png"
+dest_files=[ "res://.import/crownd.png-962c3b50e5b728422fce66d4b470172d.stex" ]
 
 [params]
 

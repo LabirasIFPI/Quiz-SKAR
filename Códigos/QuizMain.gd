@@ -200,7 +200,7 @@ func aviso(arg):
 	
 
 func limparExibicao():
-	_questionLabel.text = "";
+	_questionLabel.text = "[center]";
 	for opt in optionsNode.get_children():
 		opt.queue_free();
 
