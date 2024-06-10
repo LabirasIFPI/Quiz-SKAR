@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Assets/FreeGUI/itens_chalk/skar_draw.png" type="Texture" id=1]
 [ext_resource path="res://Códigos/ScriptEqueipe.gd" type="Script" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://Códigos/ButtonBehaviour.gd" type="Script" id=6]
 [ext_resource path="res://Assets/FreeGUI/itens_chalk/buttons_chalk3.png" type="Texture" id=7]
 [ext_resource path="res://Assets/Fontes/Chalk-Regular.ttf" type="DynamicFontData" id=8]
+[ext_resource path="res://Temas/bold_to_board.tres" type="DynamicFont" id=9]
 
 [sub_resource type="DynamicFont" id=1]
 size = 95
@@ -17,11 +18,15 @@ font_data = ExtResource( 3 )
 border_width_left = 10
 border_width_top = 10
 
+[sub_resource type="CapsuleShape2D" id=4]
+radius = 73.0
+height = 312.0
+
 [sub_resource type="DynamicFont" id=3]
 size = 45
 font_data = ExtResource( 8 )
 
-[node name="SceneEqueipe" type="Node2D"]
+[node name="SceneEqueipe" type="Control"]
 script = ExtResource( 2 )
 
 [node name="Back" parent="." instance=ExtResource( 4 )]
@@ -46,14 +51,15 @@ texture = ExtResource( 1 )
 expand = true
 
 [node name="skarName" type="Label" parent="visual"]
-margin_left = 640.0
-margin_top = 90.0
-margin_right = 1497.0
-margin_bottom = 275.0
+margin_left = 582.0
+margin_top = 109.0
+margin_right = 1439.0
+margin_bottom = 294.0
 custom_fonts/font = SubResource( 1 )
-text = "s      k      a     r "
+text = "S      K      A     R "
 
 [node name="Signals" type="CanvasLayer" parent="."]
+layer = 0
 
 [node name="out" type="Button" parent="Signals"]
 margin_right = 164.0
@@ -63,28 +69,33 @@ icon = ExtResource( 7 )
 flat = true
 script = ExtResource( 6 )
 
-[node name="Area2D" type="Area2D" parent="Signals"]
+[node name="Rav" type="Area2D" parent="Signals"]
+position = Vector2( -34, 25 )
+
+[node name="coli" type="CollisionShape2D" parent="Signals/Rav"]
+position = Vector2( 1344, 455 )
+shape = SubResource( 4 )
+
+[node name="Sof" type="Area2D" parent="Signals"]
 position = Vector2( -40, 23 )
 
-[node name="rav" type="CollisionPolygon2D" parent="Signals/Area2D"]
-position = Vector2( 33, 133 )
-build_mode = 1
-polygon = PoolVector2Array( 1241, 137, 1245, 264, 1260, 282, 1238, 343, 1251, 385, 1264, 394, 1262, 529, 1373, 531, 1376, 443, 1394, 425, 1390, 296, 1399, 116, 1380, 96, 1310, 71, 1251, 93 )
+[node name="coli" type="CollisionShape2D" parent="Signals/Sof"]
+position = Vector2( 657, 447 )
+shape = SubResource( 4 )
 
-[node name="kac" type="CollisionPolygon2D" parent="Signals/Area2D"]
-position = Vector2( -448, 108 )
-build_mode = 1
-polygon = PoolVector2Array( 1240, 196, 1245, 264, 1260, 282, 1238, 343, 1251, 385, 1264, 394, 1235, 554, 1313, 543, 1316, 389, 1352, 385, 1434, 509, 1495, 468, 1394, 338, 1492, 202, 1454, 153, 1319, 301, 1311, 176, 1276, 155 )
+[node name="Ani" type="Area2D" parent="Signals"]
+position = Vector2( -35, 29 )
 
-[node name="anni" type="CollisionPolygon2D" parent="Signals/Area2D"]
-position = Vector2( -166, 137 )
-build_mode = 1
-polygon = PoolVector2Array( 1241, 137, 1245, 264, 1260, 282, 1238, 343, 1228, 441, 1264, 436, 1262, 529, 1373, 531, 1376, 443, 1398, 374, 1390, 296, 1393, 129, 1372, 92, 1310, 71, 1251, 93 )
+[node name="coli" type="CollisionShape2D" parent="Signals/Ani"]
+position = Vector2( 1147, 446 )
+shape = SubResource( 4 )
 
-[node name="sofi" type="CollisionPolygon2D" parent="Signals/Area2D"]
-position = Vector2( -661, 128 )
-build_mode = 1
-polygon = PoolVector2Array( 1241, 137, 1245, 264, 1260, 282, 1222, 371, 1252, 397, 1263, 413, 1262, 529, 1373, 531, 1376, 443, 1377, 411, 1415, 366, 1390, 296, 1417, 134, 1402, 86, 1310, 71, 1251, 93 )
+[node name="Kac" type="Area2D" parent="Signals"]
+position = Vector2( -40, 23 )
+
+[node name="coli" type="CollisionPolygon2D" parent="Signals/Kac"]
+position = Vector2( 928, 563 )
+polygon = PoolVector2Array( -126, -264, -132, 75, -69, 82, -65, -51, -34, -68, 42, 49, 99, 42, 98, -21, 18, -109, 114, -240, 110, -292, 65, -288, -57, -137, -60, -261, -82, -298, -114, -284 )
 
 [node name="Labels" type="Control" parent="."]
 margin_right = 40.0
@@ -95,27 +106,41 @@ margin_left = 1499.0
 margin_top = 283.0
 margin_right = 1763.0
 margin_bottom = 663.0
+custom_fonts/bold_font = ExtResource( 9 )
 custom_fonts/normal_font = SubResource( 3 )
 bbcode_enabled = true
 visible_characters = 0
 percent_visible = 0.0
 
 [node name="sof" type="RichTextLabel" parent="Labels"]
-margin_right = 40.0
-margin_bottom = 40.0
+margin_left = 186.0
+margin_top = 217.0
+margin_right = 488.0
+margin_bottom = 800.0
+custom_fonts/bold_font = ExtResource( 9 )
 custom_fonts/normal_font = SubResource( 3 )
 bbcode_enabled = true
 
 [node name="anni" type="RichTextLabel" parent="Labels"]
-margin_right = 40.0
-margin_bottom = 40.0
+margin_left = 881.0
+margin_top = 722.0
+margin_right = 1323.0
+margin_bottom = 950.0
+custom_fonts/bold_font = ExtResource( 9 )
 custom_fonts/normal_font = SubResource( 3 )
 bbcode_enabled = true
 
 [node name="kactus" type="RichTextLabel" parent="Labels"]
-margin_right = 40.0
-margin_bottom = 40.0
+margin_left = 693.0
+margin_top = 738.0
+margin_right = 875.0
+margin_bottom = 827.0
+custom_fonts/bold_font = ExtResource( 9 )
 custom_fonts/normal_font = SubResource( 3 )
 bbcode_enabled = true
 
 [connection signal="pressed" from="Signals/out" to="." method="_on_out_pressed"]
+[connection signal="mouse_entered" from="Signals/Rav" to="." method="_on_Rav_mouse_entered"]
+[connection signal="mouse_entered" from="Signals/Sof" to="." method="_on_Sof_mouse_entered"]
+[connection signal="mouse_entered" from="Signals/Ani" to="." method="_on_Ani_mouse_entered"]
+[connection signal="mouse_entered" from="Signals/Kac" to="." method="_on_Kac_mouse_entered"]

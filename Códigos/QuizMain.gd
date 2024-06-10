@@ -181,6 +181,7 @@ func atualizarExibicao():
 		_opt.set_global_position(Vector2(500, 450 + i * 200));
 		optionsNode.add_child(_opt);
 
+## Ajusta o texto de perguntas para o tamanho da caixa
 func ajustTextSize():
 	print(_questionLabel.get_minimum_size().y)
 	var fonte  = _questionLabel.get_font("font")

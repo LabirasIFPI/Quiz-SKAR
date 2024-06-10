@@ -15,10 +15,10 @@
 [ext_resource path="res://Assets/FreeGUI/itens_chalk/buttons_chalk1.png" type="Texture" id=13]
 [ext_resource path="res://Assets/FreeGUI/svg/efeitos6-removebg-preview.png" type="Texture" id=14]
 [ext_resource path="res://Assets/FreeGUI/itens_chalk/efect1 (2).png" type="Texture" id=15]
-[ext_resource path="res://Assets/FreeGUI/tutorial_img/passo2.jpeg" type="Texture" id=16]
+[ext_resource path="res://Assets/FreeGUI/tutorial_img/pass2_chalk.png" type="Texture" id=16]
 [ext_resource path="res://Assets/FreeGUI/tutorial_img/pass1_chalk.png" type="Texture" id=17]
 [ext_resource path="res://Assets/FreeGUI/itens_chalk/efect1 (3).png" type="Texture" id=18]
-[ext_resource path="res://Assets/FreeGUI/tutorial_img/passo3.jpeg" type="Texture" id=19]
+[ext_resource path="res://Assets/FreeGUI/tutorial_img/pass3_chalk.png" type="Texture" id=19]
 [ext_resource path="res://Assets/FreeGUI/itens_chalk/redboy_shalk.png" type="Texture" id=20]
 [ext_resource path="res://Assets/FreeGUI/itens_chalk/board_chalk.png" type="Texture" id=21]
 [ext_resource path="res://Assets/FreeGUI/itens_chalk/blueboy_chalk.png" type="Texture" id=22]
@@ -373,31 +373,17 @@ position = Vector2( 42.0539, -156.192 )
 scale = Vector2( 0.895871, 0.790711 )
 texture = ExtResource( 17 )
 
-[node name="Fundo2" type="Sprite" parent="PassosImagem/Fundo1"]
-modulate = Color( 0.333333, 0.764706, 1, 1 )
-position = Vector2( 960.279, -128.933 )
-rotation = -1.57352
-scale = Vector2( 3.09557, 5.74343 )
-texture = ExtResource( 13 )
-
 [node name="Passo2" type="Sprite" parent="PassosImagem/Fundo1"]
-position = Vector2( 989.3, -138.681 )
-scale = Vector2( 0.818009, 0.687278 )
+position = Vector2( 950.004, -134.479 )
+scale = Vector2( 0.937729, 0.763885 )
 texture = ExtResource( 16 )
 
 [node name="Passo3" type="Node2D" parent="PassosImagem"]
-visible = false
 position = Vector2( 964, 626 )
 
-[node name="ButtonsChalk1" type="Sprite" parent="PassosImagem/Passo3"]
-self_modulate = Color( 0.333333, 0.764706, 1, 1 )
-position = Vector2( -3, -56 )
-scale = Vector2( 3.68546, 5.15646 )
-texture = ExtResource( 13 )
-
 [node name="Passo3" type="Sprite" parent="PassosImagem/Passo3"]
-position = Vector2( 19, -34 )
-scale = Vector2( 0.925926, 0.9224 )
+position = Vector2( 17, -28 )
+rotation = -1.57109
 texture = ExtResource( 19 )
 
 [node name="Pessoas1" type="Sprite" parent="PassosImagem"]
