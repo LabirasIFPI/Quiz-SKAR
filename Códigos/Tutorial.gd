@@ -12,7 +12,7 @@ var informacoes: Array = [
 	"Agora configure com sua rede WIFI!",
 	"Agora sua rede está salva!",
 	"Tudo pronto?! Agora vamos aprender como JOGAR!!!",
-	"Este é um jogo para dois jogadores: o azul e o vermelho.     SE POSICIONEM!",
+	"Este é um jogo para dois jogadores: o azul e o vermelho.\nSE POSICIONEM!",
 	"Responde a pergunta aquele que apertar primeiro o botão de sua respectiva cor. Cada pergunta tem seu tempo pra resposta, responda antes que o tempo acabe!",
 	"Estes botões representam sua resposta, sendo eles 'A','B' e'C'. Cada resposta correta soma ponto(s), uma resposta errada ou vazia irá somar ponto(s) ao seu oponente.",
 	"Vence aquele que somar mais pontos no final da rodada. Bom JOGO e bons ESTUDOS!!!<3"
@@ -46,14 +46,14 @@ func _ready():
 func updateScreen():
 	#@TODO: isso esta dandoerros. entender: jogador atual´re 1 e consertar
 	# Atualizar texto exibido
-	_label_texto.text = informacoes[controle]
+	_label_texto.bbcode_text = "[center]" + informacoes[controle]
 
 	# Atualizar imagem
 	for node in imagesNode.get_children():
 		node.visible = node == images[controle]
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	_label_texto.percent_visible += .02
 		
 

@@ -29,3 +29,7 @@ func _on_tutorial_pressed() -> void:
 
 func _on_iniciar_pressed():
 	global.getTransition(0, "information");
+
+
+func _on_equipe_pressed():
+	global.getTransition(0, "equipe")

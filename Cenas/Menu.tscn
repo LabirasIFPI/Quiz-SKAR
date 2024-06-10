@@ -243,3 +243,4 @@ texture = ExtResource( 7 )
 
 [connection signal="pressed" from="Botoes/iniciar" to="." method="_on_iniciar_pressed"]
 [connection signal="pressed" from="Botoes/tutorial" to="." method="_on_tutorial_pressed"]
+[connection signal="pressed" from="Botoes/equipe" to="." method="_on_equipe_pressed"]

@@ -146,7 +146,8 @@ func atualizarExibicao():
 	var _pergunta = perguntaExibida.question
 
 
-	_questionLabel.text = _pergunta;
+	_questionLabel.text =  _pergunta;
+	ajustTextSize()
 	# ALTERNATIVAS:
 	
 	# Cria estrutura de cada pergunta e adiciona num array.
@@ -179,6 +180,15 @@ func atualizarExibicao():
 		# Definir posição de cada alternativa: 
 		_opt.set_global_position(Vector2(500, 450 + i * 200));
 		optionsNode.add_child(_opt);
+
+func ajustTextSize():
+	print(_questionLabel.get_minimum_size().y)
+	var fonte  = _questionLabel.get_font("font")
+	fonte.size = 100
+	while _questionLabel.get_minimum_size().y > 360 and fonte.size > 50:
+		print("diminuindo fonte.size")
+		fonte.size -= 1
+		print((_questionLabel.get_minimum_size().y))
 
 
 ## Checa o array de alternativas e avalia se há correta nas 3 primeiras alternativas
