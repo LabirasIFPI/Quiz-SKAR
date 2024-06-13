@@ -128,8 +128,7 @@ func _process(delta: float) -> void:
 		global.comando = -1;
 				
 	# Detectar fim de jogo:
-	if global.pontos[0] == global.maxPoints or global.pontos[1] == global.maxPoints:
-		callGameOver();
+
 
 	# Detectar entrada de jogadores na vez
 	input_signal_players();
@@ -358,6 +357,8 @@ func adicionarPonto(indJogador, qntPontos = 1):
 	exibirEfeitoDeAcerto(indJogador);
 	$AddPointEffectTimer.start(0.5)
 	
+	if global.pontos[0] == global.maxPoints or global.pontos[1] == global.maxPoints:
+		callGameOver();
 
 ## Retorna a pergunta novamente
 func _on_next_fortime_timeout() -> void:

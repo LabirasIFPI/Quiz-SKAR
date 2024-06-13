@@ -131,10 +131,10 @@ custom_fonts/normal_font = SubResource( 3 )
 bbcode_enabled = true
 
 [node name="kactus" type="RichTextLabel" parent="Labels"]
-margin_left = 693.0
+margin_left = 642.0
 margin_top = 738.0
 margin_right = 875.0
-margin_bottom = 827.0
+margin_bottom = 952.0
 custom_fonts/bold_font = ExtResource( 9 )
 custom_fonts/normal_font = SubResource( 3 )
 bbcode_enabled = true

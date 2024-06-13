@@ -169,7 +169,9 @@ margin_top = 56.0
 margin_right = 1627.0
 margin_bottom = 301.0
 custom_fonts/font = SubResource( 12 )
-text = "perguntasperguntasperguntapergyuntadndeiedndaaa"
+text = "perguntas"
+align = 1
+valign = 1
 autowrap = true
 
 [node name="DoTeste" type="Node2D" parent="."]
