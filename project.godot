@@ -40,6 +40,8 @@ _global_script_class_icons={
 
 config/name="Quiz-skar"
 run/main_scene="res://Cenas/Importante.tscn"
+boot_splash/image="res://Assets/Logo/Labiras_Logo.png"
+boot_splash/fullsize=false
 config/icon="res://icon.png"
 
 [autoload]

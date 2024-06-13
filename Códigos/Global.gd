@@ -184,7 +184,6 @@ func getTransition(status, destinySceneKey = null, duration = 1.0):
 	add_child(_trn);
 	_trn.timeToKill = duration;
 	_trn.animacao.play(_trn.transitioStatus[status]);
-	
 	if !global.scenesDict.has(destinySceneKey):
 		print("[ERRO - getTransition] Não há uma scene com essa chave.")
 		destinySceneKey = null;

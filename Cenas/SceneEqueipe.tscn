@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Assets/FreeGUI/itens_chalk/skar_draw.png" type="Texture" id=1]
 [ext_resource path="res://Códigos/ScriptEqueipe.gd" type="Script" id=2]
@@ -9,10 +9,7 @@
 [ext_resource path="res://Assets/FreeGUI/itens_chalk/buttons_chalk3.png" type="Texture" id=7]
 [ext_resource path="res://Assets/Fontes/Chalk-Regular.ttf" type="DynamicFontData" id=8]
 [ext_resource path="res://Temas/bold_to_board.tres" type="DynamicFont" id=9]
-
-[sub_resource type="DynamicFont" id=1]
-size = 95
-font_data = ExtResource( 3 )
+[ext_resource path="res://Cenas/Links.gd" type="Script" id=10]
 
 [sub_resource type="StyleBoxFlat" id=2]
 border_width_left = 10
@@ -22,44 +19,18 @@ border_width_top = 10
 radius = 73.0
 height = 312.0
 
+[sub_resource type="DynamicFont" id=1]
+size = 95
+font_data = ExtResource( 3 )
+
 [sub_resource type="DynamicFont" id=3]
 size = 45
 font_data = ExtResource( 8 )
 
-[node name="SceneEqueipe" type="Control"]
+[node name="SceneEqueipe" type="Node2D"]
 script = ExtResource( 2 )
 
-[node name="Back" parent="." instance=ExtResource( 4 )]
-
-[node name="visual" type="CanvasLayer" parent="."]
-layer = -1
-
-[node name="BoardChalk" type="Sprite" parent="visual"]
-position = Vector2( 973, 526 )
-scale = Vector2( 0.656667, 0.637222 )
-texture = ExtResource( 5 )
-
-[node name="Skar" type="TextureRect" parent="visual"]
-anchor_left = 0.5
-anchor_right = 0.5
-margin_left = -611.0
-margin_top = -31.0
-margin_right = 889.0
-margin_bottom = 1094.0
-rect_scale = Vector2( 0.8, 0.8 )
-texture = ExtResource( 1 )
-expand = true
-
-[node name="skarName" type="Label" parent="visual"]
-margin_left = 582.0
-margin_top = 109.0
-margin_right = 1439.0
-margin_bottom = 294.0
-custom_fonts/font = SubResource( 1 )
-text = "S      K      A     R "
-
-[node name="Signals" type="CanvasLayer" parent="."]
-layer = 0
+[node name="Signals" type="Node2D" parent="."]
 
 [node name="out" type="Button" parent="Signals"]
 margin_right = 164.0
@@ -97,9 +68,40 @@ position = Vector2( -40, 23 )
 position = Vector2( 928, 563 )
 polygon = PoolVector2Array( -126, -264, -132, 75, -69, 82, -65, -51, -34, -68, 42, 49, 99, 42, 98, -21, 18, -109, 114, -240, 110, -292, 65, -288, -57, -137, -60, -261, -82, -298, -114, -284 )
 
+[node name="Back" parent="." instance=ExtResource( 4 )]
+
+[node name="visual" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="BoardChalk" type="Sprite" parent="visual"]
+position = Vector2( 973, 526 )
+scale = Vector2( 0.656667, 0.637222 )
+texture = ExtResource( 5 )
+
+[node name="Skar" type="TextureRect" parent="visual"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -611.0
+margin_top = -31.0
+margin_right = 889.0
+margin_bottom = 1094.0
+rect_scale = Vector2( 0.8, 0.8 )
+texture = ExtResource( 1 )
+expand = true
+
+[node name="skarName" type="Label" parent="visual"]
+margin_left = 582.0
+margin_top = 109.0
+margin_right = 1439.0
+margin_bottom = 294.0
+custom_fonts/font = SubResource( 1 )
+text = "S      K      A     R "
+
 [node name="Labels" type="Control" parent="."]
-margin_right = 40.0
-margin_bottom = 40.0
+margin_left = 17.0
+margin_top = 10.0
+margin_right = 57.0
+margin_bottom = 50.0
 
 [node name="rav" type="RichTextLabel" parent="Labels"]
 margin_left = 1499.0
@@ -139,8 +141,41 @@ custom_fonts/bold_font = ExtResource( 9 )
 custom_fonts/normal_font = SubResource( 3 )
 bbcode_enabled = true
 
+[node name="Links" type="Node2D" parent="."]
+script = ExtResource( 10 )
+
+[node name="linkRav" type="Button" parent="Links"]
+margin_left = 231.0
+margin_top = 218.0
+margin_right = 304.0
+margin_bottom = 287.0
+text = "ravenas`linkedin"
+
+[node name="linkAni" type="Button" parent="Links"]
+margin_left = 232.0
+margin_top = 302.0
+margin_right = 305.0
+margin_bottom = 371.0
+text = "anisial`linkedin"
+
+[node name="linkSof" type="Button" parent="Links"]
+margin_left = 231.0
+margin_top = 387.0
+margin_right = 304.0
+margin_bottom = 456.0
+text = "sofia`linkedin"
+
+[node name="linkSKAR" type="Button" parent="Links"]
+margin_left = 233.0
+margin_top = 470.0
+margin_right = 306.0
+margin_bottom = 539.0
+
 [connection signal="pressed" from="Signals/out" to="." method="_on_out_pressed"]
 [connection signal="mouse_entered" from="Signals/Rav" to="." method="_on_Rav_mouse_entered"]
 [connection signal="mouse_entered" from="Signals/Sof" to="." method="_on_Sof_mouse_entered"]
 [connection signal="mouse_entered" from="Signals/Ani" to="." method="_on_Ani_mouse_entered"]
 [connection signal="mouse_entered" from="Signals/Kac" to="." method="_on_Kac_mouse_entered"]
+[connection signal="pressed" from="Links/linkRav" to="Links" method="_on_linkRav_pressed"]
+[connection signal="pressed" from="Links/linkAni" to="Links" method="_on_linkAni_pressed"]
+[connection signal="pressed" from="Links/linkSof" to="Links" method="_on_linkSof_pressed"]

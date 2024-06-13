@@ -1,4 +1,4 @@
-extends Control
+extends Node2D
 
 
 
@@ -6,8 +6,8 @@ extends Control
 func _ready():
 	global.getTransition(1)
 	$Labels/rav.bbcode_text = "[b]Ravena: [/b] fez tudo"
-	$Labels/sof.bbcode_text = "[b]Sofia: [/b] fez tal tal tal tal"
-	$Labels/anni.bbcode_text = "[b]Anésia: [/b] fez tal tal tal tal"
+	$Labels/sof.bbcode_text = "[b]Sofia: [/b] fez nada"
+	$Labels/anni.bbcode_text = "[b]Anésia: [/b] fez nada"
 	$Labels/kactus.bbcode_text = "[b]Kactus: [/b] nome do massacote :)"
 
 
@@ -32,11 +32,11 @@ func _on_Sof_mouse_entered():
 
 
 func _on_Rav_mouse_entered():
+	print("entrou")
+
 	$Labels/rav.percent_visible = 0
 	$Labels/rav.visible = true
-	print("trouu")
-	pass # Replace with function body.
-
-
 func _on_Kac_mouse_entered():
 	pass # Replace with function body.
+
+
