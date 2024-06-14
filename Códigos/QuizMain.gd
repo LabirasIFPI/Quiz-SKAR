@@ -16,9 +16,6 @@ onready var _label_aviso = get_node("CanvasLayer2/aviso") as Label
 ## Dicionario de pergunta atualmente sendo exibido.
 var perguntaExibida: Dictionary = {};
 
-# Indice da pergunta atual
-var actualQuestionInd: int = 0;
-
 ## Array de perguntas já exibidas.
 var displayedQuestionIds: Array = [];
 
@@ -114,12 +111,12 @@ func _process(delta: float) -> void:
 				global.playSound("right");
 				audio.stopClock()
 				exibirAviso(TIPOS_DE_AVISO.ACERTO);
-				$next_fortime.start(2)
+
 				adicionarPonto(global.jogadorAtual);
 				print("Acertou");
-				
-				yield(get_tree().create_timer(2.0), "timeout")
-				gerarNovaPergunta();				
+				$next_fortime.start(2)
+#				yield(get_tree().create_timer(2.0), "timeout")
+#				gerarNovaPergunta();				
 			else:
 				audio.stopClock()
 				global.playSound("wrong");
@@ -383,7 +380,6 @@ func _on_next_fortime_timeout() -> void:
 	global.jogadorAtual = -1;
 	exibirAviso(-1)
 	$next_fortime.stop();
-#	actualQuestionInd += 1;
 	gerarNovaPergunta();
 	# Adicionar pergunta gerada ao array de perguntas exibidas, para evitar que
 	# ela se repita.
