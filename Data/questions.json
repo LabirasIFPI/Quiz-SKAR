@@ -91,12 +91,13 @@
 },
 {
 "id": 10,
-"question": "Alterar pergunta",
+"question": "Quem foi o líder do movimento pela independência do Brasil em 1822?",
 "options": [
-    "1",
-    "2",
-    "3",
-    "4"
+	"Dom Pedro I.",
+	"José Bonifácio.",
+	"Tiradentes.",
+	"Dom João VI.",
+	"Getúlio Vargas."
 ]
 },
 {
@@ -261,5 +262,284 @@
     "Rio Missouri",
     "Rio Jamapa"
 ]
+},
+
+{
+	"id": 26,
+	"question": "Qual é o nome do processo pelo qual ocorre a conversão de glicose em energia nas células?",
+	"options": [
+		"Glicólise.",
+		"Fotossíntese.",
+		"Fermentação.",
+		"Glicogenese",
+		"Ciclo de Krebs."
+	]
+},
+{
+	"id": 27,
+	"question": "Qual é a função principal do Sistema Nervoso Central (SNC)?",
+	"options": [
+		"Receber, processar e transmitir informações.",
+		"Regular a temperatura corporal.",
+		"Produzir hormônios.",
+		"Realizar contrações musculares.",
+		"Filtrar o sangue."
+	]
+},
+{
+	"id": 28,
+	"question": "Quem foi o autor da obra 'O Cortiço'?",
+	"options": [
+		"Aluísio Azevedo.",
+		"Machado de Assis.",
+		"José de Alencar.",
+		"Lima Barreto.",
+		"Jorge Amado.",
+		"Carlos Drummond"
+	]
+},
+{
+	"id": 29,
+	"question": "Qual é o principal constituinte da atmosfera terrestre em termos de volume?",
+	"options": [
+			"Nitrogênio.",
+			"Oxigênio.",
+			"Dióxido de carbono.",
+			"Argônio.",
+			"Gás metano.",
+			"Poluição"
+	]
+},
+{
+	"id": 30,
+	"question": "Quem é considerado o pai da filosofia ocidental?",
+	"options": [
+		"Sócrates.",
+		"Aristóteles.",
+		"Platão.",
+		"Pablo Marçal",
+		"Immanuel Kant."
+	]
+},
+{
+	"id": 31,
+	"question": "'Ser ou não ser, eis a questão'. \n Quem citou essa famosa frase?",
+	"options": [
+		"Hamlet",
+		"Shakespeare",
+		"William.",
+		"Platão.",
+		"Walter Scott."
+	]
+},
+{
+	"id": 32,
+	"question": "'Para atuar em uma situação, deve-se, antes de tudo, tirá-lo da invisibilidade'. \n Quem defente essa filosofia?",
+	"options": [
+		"Djamila Ribeiro.",
+		"Tratado de Tordesilhas.",
+		"Tratado de Paris.",
+		"Tratado de Maastricht.",
+		"Tratado de Roma."
+	]
+},
+{
+	"id": 33,
+	"question": "Qual é o nome do autor da obra 'Dom Casmurro'?",
+	"options": [
+		"Machado de Assis.",
+		"Guimarães Rosa.",
+		"Carlos Drummond de Andrade.",
+		"Cecília Meireles.",
+		"Clarice Lispector."
+	]
+},
+{
+	"id": 34,
+	"question": "Qual é o maior órgão do corpo humano?",
+	"options": [
+		"A pele.",
+		"O fígado.",
+		"O cérebro.",
+		"O coração.",
+		"O intestino."
+	]
+},
+{
+	"id": 35,
+	"question": "Qual é o resultado da soma dos ângulos internos de um triângulo?",
+	"options": [
+		"180 graus.",
+		"90 graus.",
+		"270 graus.",
+		"360 graus.",
+		"120 graus."
+	]
+},
+{
+	"id": 36,
+	"question": "Qual é o nome do processo pelo qual as plantas produzem seu próprio alimento?",
+	"options": [
+		"Fotossíntese.",
+		"Quimiossíntese.",
+		"Respiração celular.",
+		"Digestão.",
+		"Metabolismo."
+	]
+},
+{
+	"id": 37,
+	"question": "Qual é o nome do composto químico cuja fórmula é CO2?",
+	"options": [
+		"Dióxido de carbono.",
+		"Monóxido de carbono.",
+		"Ácido clorídrico.",
+		"Ácido sulfúrico.",
+		"Água oxigenada."
+	]
+},
+{
+	"id": 38,
+	"question": "Qual é a capital da Argentina?",
+	"options": [
+		"Buenos Aires.",
+		"Montevidéu.",
+		"Santiago.",
+		"Assunção.",
+		"Lima."
+	]
+},
+{
+	"id": 39,
+	"question": "Qual é o nome do processo pelo qual um líquido se transforma em gás?",
+	"options": [
+		"Ebulição.",
+		"Evaporação.",
+		"Condensação.",
+		"Sublimação.",
+		"Fusão."
+	]
+},
+{
+	"id": 40,
+	"question": "Qual é o nome do maior bioma brasileiro?",
+	"options": [
+		"Amazônia.",
+		"Cerrado.",
+		"Mata Atlântica.",
+		"Pantanal.",
+		"Caatinga."
+	]
+},
+{
+	"id": 41,
+	"question": "Qual é o nome do cientista que formulou a teoria da relatividade?",
+	"options": [
+		"Albert Einstein.",
+		"Isaac Newton.",
+		"Galileu Galilei.",
+		"Stephen Hawking.",
+		"Niels Bohr."
+	]
+},
+{
+	"id": 42,
+	"question": "Qual é o nome da cordilheira mais extensa do mundo?",
+	"options": [
+		"Cordilheira dos Andes.",
+		"Cordilheira dos Himalaias.",
+		"Cordilheira do Atlas.",
+		"Cordilheira do Cáucaso.",
+		"Cordilheira dos Alpes."
+	]
+},
+{
+	"id": 43,
+	"question": "A primeira Lei de Newton também é conhecida como:",
+	"options": [
+		"Lei da inércia.",
+		"Lei da ação e reação.",
+		"Lei da gravitação universal.",
+		"Lei dos movimentos.",
+		"Lei dos corpos em queda livre."
+	]
+},
+{
+	"id": 44,
+	"question": "Qual é o nome do processo pelo qual um organismo produz gametas (células reprodutivas)?",
+	"options": [
+		"Gametogênese.",
+		"Meiose.",
+		"Fotossíntese.",
+		"Mitose.",
+		"Polinização."
+	]
+},
+{
+	"id": 45,
+	"question": "Qual é o nome do gás que é essencial para a fotossíntese das plantas?",
+	"options": [
+		"Dióxido de carbono (CO2).",
+		"Oxigênio (O2).",
+		"Nitrogênio (N2).",
+		"Gás metano (CH4).",
+		"Ácido sulfídrico (H2S)."
+	]
+},
+{
+	"id": 46,
+	"question": "Quem foram os líderes do movimento conhecido como Revolta dos Malês?",
+	"options": [
+		"Líderes muçulmanos da Bahia.",
+		"Zumbi dos Palmares.",
+		"Frei Caneca.",
+		"Antônio Conselheiro.",
+		"Carlos Marighella."
+	]
+},
+{
+	"id": 47,
+	"question": "Qual é o nome do maior planeta do Sistema Solar?",
+	"options": [
+		"Júpiter.",
+		"Saturno.",
+		"Urano.",
+		"Netuno.",
+		"Terra."
+	]
+},
+{
+	"id": 48,
+	"question": "Qual é o nome da cor associada ao indicador universal de pH quando uma solução é neutra?",
+	"options": [
+		"Verde.",
+		"Vermelho.",
+		"Azul escuro.",
+		"Amarelo.",
+		"Roxo."
+	]
+},
+{
+	"id": 49,
+	"question": "Qual é o nome do filósofo grego considerado o pai da democracia?",
+	"options": [
+		"Clístenes.",
+		"Aristóteles.",
+		"Sólon.",
+		"Pitágoras.",
+		"Platão."
+	]
+},
+{
+	"id": 50,
+	"question": "Qual é o nome do composto químico cuja fórmula é NaCl?",
+	"options": [
+		"Cloreto de sódio.",
+		"Sulfato de sódio.",
+		"Nitrato de sódio.",
+		"Fosfato de sódio.",
+		"Bicarbonato de sódio."
+	]
 }
+
 ]
