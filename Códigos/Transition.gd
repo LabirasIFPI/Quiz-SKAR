@@ -19,15 +19,6 @@ func _ready():
 	duration = animacao.playback_speed
 	kill.start(timeToKill)
 
-
-# Inexecutável por enquanto
-#func playTransition(status, timer):
-#	animacao.play(status)
-#	kill.start(timer)
-#
-	
-
-
 func _on_ToKill_timeout() -> void:
 	self.queue_free()
 	

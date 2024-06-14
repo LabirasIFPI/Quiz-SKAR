@@ -91,12 +91,12 @@
 },
 {
 "id": 10,
-"question": "Qual é o processo pelo qual as plantas convertem a luz solar em energia?",
+"question": "Alterar pergunta",
 "options": [
-    "Fotossíntese",
-    "Respiração",
-    "Transpiração",
-    "Digestão"
+    "1",
+    "2",
+    "3",
+    "4"
 ]
 },
 {
@@ -114,7 +114,7 @@
 "question": "Qual é a capital da França?",
 "options": [
     "Paris",
-    "Londres",
+    "Mbappé",
     "Madrid",
     "Berlim",
     "Saint-Germain"
@@ -132,7 +132,7 @@
 },
 {
 "id": 14,
-"question": "Qual é o resultado da expressão matemática: 3 + 4 * 2 - 6 ÷ 2 ?",
+"question": "Qual é o resultado da expressão matemática: \n3 + 4 * 2 - 6 ÷ 2 ?",
 "options": [
     "8",
     "5",
@@ -191,7 +191,8 @@
     "Tratado de Tordesilhas",
     "Tratado de Paris",
     "Tratado de Washington",
-    "Tratado de Brest-Litovsk"
+    "Tratado de Brest-Litovsk",
+    "Tratado da Paz"
 ]
 },
 {
@@ -252,7 +253,7 @@
 },
 {
 "id": 25,
-"question": "Qual o principal que faz fronteira entre Estados Unidos e México?",
+"question": "Qual o principal rio que faz fronteira entre Estados Unidos e México?",
 "options": [
     "Rio Grande",
     "Rio Amazonas",

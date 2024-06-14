@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Assets/FreeGUI/itens_chalk/skar_draw.png" type="Texture" id=1]
 [ext_resource path="res://Códigos/ScriptEqueipe.gd" type="Script" id=2]
@@ -7,25 +7,45 @@
 [ext_resource path="res://Assets/FreeGUI/itens_chalk/board_whitout.png" type="Texture" id=5]
 [ext_resource path="res://Códigos/ButtonBehaviour.gd" type="Script" id=6]
 [ext_resource path="res://Assets/FreeGUI/itens_chalk/buttons_chalk3.png" type="Texture" id=7]
-[ext_resource path="res://Assets/Fontes/Chalk-Regular.ttf" type="DynamicFontData" id=8]
+[ext_resource path="res://Assets/Fontes/chalkiez/Chalkiez-Regular.ttf" type="DynamicFontData" id=8]
 [ext_resource path="res://Temas/bold_to_board.tres" type="DynamicFont" id=9]
-[ext_resource path="res://Cenas/Links.gd" type="Script" id=10]
+[ext_resource path="res://Códigos/Links.gd" type="Script" id=10]
 
 [sub_resource type="StyleBoxFlat" id=2]
 border_width_left = 10
 border_width_top = 10
-
-[sub_resource type="CapsuleShape2D" id=4]
-radius = 73.0
-height = 312.0
 
 [sub_resource type="DynamicFont" id=1]
 size = 95
 font_data = ExtResource( 3 )
 
 [sub_resource type="DynamicFont" id=3]
-size = 45
+size = 42
 font_data = ExtResource( 8 )
+
+[sub_resource type="StyleBoxFlat" id=6]
+
+[sub_resource type="StyleBoxFlat" id=5]
+bg_color = Color( 0.6, 0.6, 0.6, 0 )
+border_color = Color( 1, 1, 1, 0 )
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[sub_resource type="StyleBoxFlat" id=7]
+bg_color = Color( 0.6, 0.6, 0.6, 0 )
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[sub_resource type="StyleBoxFlat" id=8]
+bg_color = Color( 0.6, 0.6, 0.6, 0 )
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
 
 [node name="SceneEqueipe" type="Node2D"]
 script = ExtResource( 2 )
@@ -39,34 +59,6 @@ custom_styles/hover = SubResource( 2 )
 icon = ExtResource( 7 )
 flat = true
 script = ExtResource( 6 )
-
-[node name="Rav" type="Area2D" parent="Signals"]
-position = Vector2( -34, 25 )
-
-[node name="coli" type="CollisionShape2D" parent="Signals/Rav"]
-position = Vector2( 1344, 455 )
-shape = SubResource( 4 )
-
-[node name="Sof" type="Area2D" parent="Signals"]
-position = Vector2( -40, 23 )
-
-[node name="coli" type="CollisionShape2D" parent="Signals/Sof"]
-position = Vector2( 657, 447 )
-shape = SubResource( 4 )
-
-[node name="Ani" type="Area2D" parent="Signals"]
-position = Vector2( -35, 29 )
-
-[node name="coli" type="CollisionShape2D" parent="Signals/Ani"]
-position = Vector2( 1147, 446 )
-shape = SubResource( 4 )
-
-[node name="Kac" type="Area2D" parent="Signals"]
-position = Vector2( -40, 23 )
-
-[node name="coli" type="CollisionPolygon2D" parent="Signals/Kac"]
-position = Vector2( 928, 563 )
-polygon = PoolVector2Array( -126, -264, -132, 75, -69, 82, -65, -51, -34, -68, 42, 49, 99, 42, 98, -21, 18, -109, 114, -240, 110, -292, 65, -288, -57, -137, -60, -261, -82, -298, -114, -284 )
 
 [node name="Back" parent="." instance=ExtResource( 4 )]
 
@@ -104,10 +96,10 @@ margin_right = 57.0
 margin_bottom = 50.0
 
 [node name="rav" type="RichTextLabel" parent="Labels"]
-margin_left = 1499.0
-margin_top = 283.0
-margin_right = 1763.0
-margin_bottom = 663.0
+margin_left = 1421.0
+margin_top = 216.0
+margin_right = 1748.0
+margin_bottom = 774.0
 custom_fonts/bold_font = ExtResource( 9 )
 custom_fonts/normal_font = SubResource( 3 )
 bbcode_enabled = true
@@ -116,66 +108,79 @@ percent_visible = 0.0
 
 [node name="sof" type="RichTextLabel" parent="Labels"]
 margin_left = 186.0
-margin_top = 217.0
-margin_right = 488.0
-margin_bottom = 800.0
+margin_top = 195.0
+margin_right = 494.0
+margin_bottom = 832.0
 custom_fonts/bold_font = ExtResource( 9 )
 custom_fonts/normal_font = SubResource( 3 )
 bbcode_enabled = true
+visible_characters = 0
+percent_visible = 0.0
 
 [node name="anni" type="RichTextLabel" parent="Labels"]
-margin_left = 881.0
-margin_top = 722.0
-margin_right = 1323.0
-margin_bottom = 950.0
+margin_left = 801.0
+margin_top = 745.0
+margin_right = 1654.0
+margin_bottom = 944.0
 custom_fonts/bold_font = ExtResource( 9 )
 custom_fonts/normal_font = SubResource( 3 )
 bbcode_enabled = true
+visible_characters = 0
+percent_visible = 0.0
 
 [node name="kactus" type="RichTextLabel" parent="Labels"]
-margin_left = 642.0
-margin_top = 738.0
-margin_right = 875.0
-margin_bottom = 952.0
+margin_left = 517.0
+margin_top = 709.0
+margin_right = 782.0
+margin_bottom = 877.0
 custom_fonts/bold_font = ExtResource( 9 )
 custom_fonts/normal_font = SubResource( 3 )
 bbcode_enabled = true
+visible_characters = 0
+percent_visible = 0.0
 
 [node name="Links" type="Node2D" parent="."]
 script = ExtResource( 10 )
 
 [node name="linkRav" type="Button" parent="Links"]
-margin_left = 231.0
-margin_top = 218.0
-margin_right = 304.0
-margin_bottom = 287.0
-text = "ravenas`linkedin"
+self_modulate = Color( 1, 1, 1, 0 )
+margin_left = 1238.0
+margin_top = 254.0
+margin_right = 1376.0
+margin_bottom = 684.0
+custom_styles/pressed = SubResource( 6 )
+custom_styles/normal = SubResource( 5 )
+flat = true
 
 [node name="linkAni" type="Button" parent="Links"]
-margin_left = 232.0
-margin_top = 302.0
-margin_right = 305.0
-margin_bottom = 371.0
-text = "anisial`linkedin"
+self_modulate = Color( 1, 1, 1, 0 )
+margin_left = 1052.0
+margin_top = 257.0
+margin_right = 1164.0
+margin_bottom = 689.0
+custom_styles/normal = SubResource( 7 )
 
 [node name="linkSof" type="Button" parent="Links"]
-margin_left = 231.0
-margin_top = 387.0
-margin_right = 304.0
-margin_bottom = 456.0
-text = "sofia`linkedin"
+self_modulate = Color( 1, 1, 1, 0 )
+margin_left = 551.0
+margin_top = 236.0
+margin_right = 684.0
+margin_bottom = 685.0
+custom_styles/normal = SubResource( 8 )
 
 [node name="linkSKAR" type="Button" parent="Links"]
-margin_left = 233.0
-margin_top = 470.0
-margin_right = 306.0
-margin_bottom = 539.0
+self_modulate = Color( 1, 1, 1, 0 )
+margin_left = 768.0
+margin_top = 314.0
+margin_right = 957.0
+margin_bottom = 654.0
+flat = true
 
 [connection signal="pressed" from="Signals/out" to="." method="_on_out_pressed"]
-[connection signal="mouse_entered" from="Signals/Rav" to="." method="_on_Rav_mouse_entered"]
-[connection signal="mouse_entered" from="Signals/Sof" to="." method="_on_Sof_mouse_entered"]
-[connection signal="mouse_entered" from="Signals/Ani" to="." method="_on_Ani_mouse_entered"]
-[connection signal="mouse_entered" from="Signals/Kac" to="." method="_on_Kac_mouse_entered"]
+[connection signal="mouse_entered" from="Links/linkRav" to="." method="_on_linkRav_mouse_entered"]
 [connection signal="pressed" from="Links/linkRav" to="Links" method="_on_linkRav_pressed"]
+[connection signal="mouse_entered" from="Links/linkAni" to="." method="_on_linkAni_mouse_entered"]
 [connection signal="pressed" from="Links/linkAni" to="Links" method="_on_linkAni_pressed"]
+[connection signal="mouse_entered" from="Links/linkSof" to="." method="_on_linkSof_mouse_entered"]
 [connection signal="pressed" from="Links/linkSof" to="Links" method="_on_linkSof_pressed"]
+[connection signal="mouse_entered" from="Links/linkSKAR" to="." method="_on_linkSKAR_mouse_entered"]

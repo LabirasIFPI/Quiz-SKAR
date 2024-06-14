@@ -52,7 +52,8 @@ var scenesDict: Dictionary = {
 	"quiz": preload("res://Cenas/QuizMain.tscn"),
 	"tutorial": preload("res://Cenas/Tutorial.tscn"),
 	"fim" : preload("res://Cenas/FimDeJogo.tscn"),
-	"equipe" : preload ("res://Cenas/SceneEqueipe.tscn")
+	"equipe" : preload ("res://Cenas/SceneEqueipe.tscn"),
+	"contagem" : preload("res://Cenas/Aviso.tscn")
 	# TODO: Alimentar o dicionário com o restante das chaves.
 }
 

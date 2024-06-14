@@ -38,6 +38,8 @@ onready var optionScene: PackedScene = preload("res://Cenas/alternativa.tscn");
 
 var colorProgress: float = 0.0;
 
+enum TIPOS_DE_AVISO {ERRO, ACERTO, TEMPO_ESGOTADO}
+
 ## Obter índice do jogador oposto ao global.jogadorAtual.
 func obterJogadorOposto() -> int:
 	var _sinal = 1 - 2 * global.jogadorAtual; # se vermelho: -1, se azul: 1
@@ -54,12 +56,12 @@ func getRandomQuestion() -> Dictionary:
 	
 	var loops = 0
 	#displayedQuestion está armazenando o id da primeira pergunta escolhida no range somente
-	while displayedQuestionIds.has(questions[_randQuestionInd].id) and loops < 21:
+	while displayedQuestionIds.has(questions[_randQuestionInd].id):
 		_randQuestionInd = randi() % len(questions);
-		pergunta = questions[_randQuestionInd];
 		loops += 1
 		print("embaralhando")
 	
+	pergunta = questions[_randQuestionInd];	
 	return pergunta;
 
 func _ready() -> void:
@@ -111,16 +113,18 @@ func _process(delta: float) -> void:
 			if checarResposta(global.resposta):
 				global.playSound("right");
 				audio.stopClock()
-				aviso(1)
-				actualQuestionInd += 1;
-				gerarNovaPergunta();
+				exibirAviso(TIPOS_DE_AVISO.ACERTO);
+				$next_fortime.start(2)
 				adicionarPonto(global.jogadorAtual);
 				print("Acertou");
+				
+				yield(get_tree().create_timer(2.0), "timeout")
+				gerarNovaPergunta();				
 			else:
 				audio.stopClock()
 				global.playSound("wrong");
 				adicionarPonto(obterJogadorOposto());
-				aviso(0);
+				exibirAviso(TIPOS_DE_AVISO.ERRO);
 				$next_fortime.start(2)
 				print("Errrouuu");
 			global.jogadorAtual = -1;
@@ -201,12 +205,26 @@ func checkIfHasRightAnswer(_array):
 	return have
 		
 ## Atualiza avisos
-func aviso(arg):
-## Array de avisos a serem exibidos
-	var layer = $Perguntas
-	var notices: Array = ["Incorreta", "", "Seu tempo acabou!"]
+func exibirAviso(tipoAviso: int):
+	# Apagar o texto do aviso caso o tipo seja -1.
+	if tipoAviso < 0:
+		_label_aviso.text = "";
+		return;
+		
+	var layer = $Perguntas;
+	var notices: Array = [];
+		
+	match tipoAviso:
+		TIPOS_DE_AVISO.ERRO:	# Avisos de mensagem incorreta.
+			notices = ["Errou!", "Incorreto!", "Resposta errada!"];
+		TIPOS_DE_AVISO.ACERTO:	# Avisos de mensagem correta.
+			notices = ["Acertou!", "Correto!", "Certa resposta!"];
+		TIPOS_DE_AVISO.TEMPO_ESGOTADO:	# Avisos de tempo esgotado:
+			notices = ["Tempo esgotado!", "Acabou o tempo!", "Seu tempo acabou!"];
+	# Ocultar a pergunta que está sendo exibida.
 	layer.layer = -2
-	_label_aviso.text = notices[arg]
+	notices.shuffle();
+	_label_aviso.text = notices[0];
 	
 
 func limparExibicao():
@@ -244,7 +262,7 @@ func _on_TLPR_timeout() -> void:
 		adicionarPonto(ganhador);
 	
 	$TLPR.stop()
-	aviso(2)
+	exibirAviso(TIPOS_DE_AVISO.TEMPO_ESGOTADO)
 	$next_fortime.start(2)
 	
 	
@@ -363,10 +381,13 @@ func adicionarPonto(indJogador, qntPontos = 1):
 ## Retorna a pergunta novamente
 func _on_next_fortime_timeout() -> void:
 	global.jogadorAtual = -1;
-	aviso(1)
+	exibirAviso(-1)
 	$next_fortime.stop();
-	actualQuestionInd += 1;
+#	actualQuestionInd += 1;
 	gerarNovaPergunta();
+	# Adicionar pergunta gerada ao array de perguntas exibidas, para evitar que
+	# ela se repita.
+	displayedQuestionIds.append(perguntaExibida.id)
 	$TLPR.stop();
 
 ## Sinaliza quando o efeito de adição de pontos se encerrar.
@@ -379,6 +400,7 @@ func callGameOver():
 	global.getTransition(0,"fim")
 
 func get_questionsData() -> Array:
+	print("[get_questionsData] Obtendo banco de dados de perguntas.")
 	var file : File = File.new()
 	## Cainho para o arquivo de perguntas json.
 	var questions_file_path = "res://Data/questions.json"

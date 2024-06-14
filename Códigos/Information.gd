@@ -18,7 +18,7 @@ func _process(delta):
 	
 
 func _on_pass_pressed():
-	global.getTransition(0,"quiz")
+	global.getTransition(0,"contagem")
 
 ## Adiciona um valor à barra
 func _on_up_pressed():
