@@ -7,10 +7,6 @@ onready var _clock = get_node("clock")
 func _ready() -> void:
 	_song.play()
 	
-	
-func _process(delta: float) -> void:
-	pass
-	
 	## Começa musica principal
 func stopSong():
 	_song.stop()

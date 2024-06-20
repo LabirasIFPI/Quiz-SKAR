@@ -4,7 +4,7 @@
 [ext_resource path="res://Temas/Back.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Assets/Fontes/KGBrokenVesselsSketch.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://Assets/FreeGUI/itens_chalk/chalk_buttons1.png" type="Texture" id=4]
-[ext_resource path="res://Códigos/ButtonBehaviour.gd" type="Script" id=5]
+[ext_resource path="res://Códigos/red_buttonBehavior.gd" type="Script" id=5]
 [ext_resource path="res://Assets/FreeGUI/itens_chalk/window_chalk.png" type="Texture" id=6]
 [ext_resource path="res://Códigos/FimDeJogo.gd" type="Script" id=9]
 

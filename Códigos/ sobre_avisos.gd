@@ -7,7 +7,7 @@ func _ready() -> void:
 	global.playSound("countdown", 4.0)
 	$Timer.start(4)
 
-func _process(delta):
+func _process(_delta):
 	$aviso.percent_visible += .02
 	var _timeLeft: int = int($Timer.time_left);
 	_tempo.text = str(_timeLeft)

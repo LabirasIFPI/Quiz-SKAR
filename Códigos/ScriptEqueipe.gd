@@ -32,3 +32,7 @@ func _on_linkSof_mouse_entered() -> void:
 
 func _on_linkSKAR_mouse_entered() -> void:
 	$Labels/kactus.percent_visible += 0.005;
+
+
+func _on_pass_pressed():
+	$apagador_move.play("RESET")

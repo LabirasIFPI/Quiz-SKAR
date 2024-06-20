@@ -282,7 +282,6 @@ func input_signal_players():
 	
 	# Se apenas um jogador apertou:
 	if (_atual >= 0 and _atual < 2) and controle == true:
-		print("pode passar")
 		global.definirJogadorAtual(_atual);
 		colorProgress = 0.0;
 		$TLPR.start(10)
@@ -290,7 +289,6 @@ func input_signal_players():
 		#retirar
 		audio.startClock()
 	elif (_atual >= 0 and _atual < 2) and controle == false:
-		print("epa epa epa")
 		pass
 	else:
 		# Aconteceu de ninguém apertar, ou dos dois apertarem no mesmo instante.
@@ -318,7 +316,7 @@ func redIn():
 	$TLPR.start(10)
 	audio.startClock()
 
-
+## Muda o bg de acordo com o jogador na vez
 func changeBackgroundByPlayer():
 	var _bgText = get_node("CanvasLayer/CorRespondedor").texture.gradient as Gradient;
 	

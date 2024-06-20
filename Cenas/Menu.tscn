@@ -1,12 +1,14 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://Temas/Back.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Códigos/Menu.gd" type="Script" id=2]
 [ext_resource path="res://Assets/FreeGUI/itens_chalk/chalk_buttons2.png" type="Texture" id=3]
+[ext_resource path="res://Códigos/blue_buttonBehavior.gd" type="Script" id=4]
 [ext_resource path="res://Códigos/ButtonBehaviour.gd" type="Script" id=5]
 [ext_resource path="res://Assets/FreeGUI/itens_chalk/buttons_chalk6.png" type="Texture" id=6]
 [ext_resource path="res://Assets/FreeGUI/animations/chalk.png" type="Texture" id=7]
 [ext_resource path="res://Assets/FreeGUI/itens_chalk/chalk_buttons1.png" type="Texture" id=8]
+[ext_resource path="res://Códigos/red_buttonBehavior.gd" type="Script" id=9]
 [ext_resource path="res://Assets/Fontes/KGBrokenVesselsSketch.ttf" type="DynamicFontData" id=10]
 
 [sub_resource type="GradientTexture" id=4]
@@ -45,18 +47,6 @@ border_width_right = 10
 border_width_bottom = 15
 border_color = Color( 0.203922, 0.203922, 0.203922, 1 )
 corner_detail = 5
-
-[sub_resource type="StyleBoxFlat" id=9]
-bg_color = Color( 0, 0.670588, 1, 1 )
-draw_center = false
-corner_radius_top_left = 30
-corner_radius_top_right = 40
-corner_radius_bottom_right = 30
-corner_radius_bottom_left = 30
-shadow_color = Color( 0, 0.0509804, 0.160784, 0.6 )
-shadow_size = 20
-shadow_offset = Vector2( -15, 15 )
-anti_aliasing_size = 1.992
 
 [sub_resource type="DynamicFont" id=17]
 size = 65
@@ -175,16 +165,7 @@ icon = ExtResource( 3 )
 flat = true
 icon_align = 1
 expand_icon = true
-script = ExtResource( 5 )
-
-[node name="frame" type="Panel" parent="Botoes/iniciar"]
-visible = false
-margin_left = 32.0
-margin_top = -8.0
-margin_right = 490.0
-margin_bottom = 185.0
-rect_pivot_offset = Vector2( 180, 65 )
-custom_styles/panel = SubResource( 9 )
+script = ExtResource( 4 )
 
 [node name="tutorial" type="Button" parent="Botoes"]
 margin_left = 1484.0
@@ -220,7 +201,7 @@ text = "Equipe"
 icon = ExtResource( 8 )
 flat = true
 icon_align = 1
-script = ExtResource( 5 )
+script = ExtResource( 9 )
 
 [node name="teste" type="Node" parent="."]
 

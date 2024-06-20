@@ -5,9 +5,7 @@ extends Button
 func _ready():
 	# Conectar método pressed do botão a função _onPress.
 	self.connect("pressed", self, "_onPress");
-	WebSocket.connect("botaoA", self, "_onPress")
-	WebSocket.connect("botaoB", self, "_onPress")
-	WebSocket.connect("botaoC", self, "_onPress")
+	WebSocket.connect("vermelho", self, "_onPress")
 func _process(_delta):
 	# O botão sempre estará tentando voltar a sua escala original.
 	rect_scale = rect_scale.linear_interpolate(Vector2(1.0, 1.0), 0.168);

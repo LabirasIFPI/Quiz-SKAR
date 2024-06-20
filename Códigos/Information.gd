@@ -11,7 +11,7 @@ func _ready():
 	WebSocket.connect("botaoB", self, "_on_pass_pressed")
 	WebSocket.connect("botaoC", self, "_on_pass_pressed")
 
-func _process(delta):
+func _process(_delta):
 	if _label_info.percent_visible < 1:
 		_label_info.percent_visible += .006;
 	$upDownInfo/inf.text = str(global.maxPoints)

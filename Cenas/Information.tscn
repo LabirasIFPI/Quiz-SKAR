@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Códigos/Information.gd" type="Script" id=1]
 [ext_resource path="res://Temas/Back.tscn" type="PackedScene" id=2]
@@ -7,9 +7,11 @@
 [ext_resource path="res://Assets/FreeGUI/itens_chalk/buttons_chalk6.png" type="Texture" id=5]
 [ext_resource path="res://Assets/FreeGUI/itens_chalk/buttons_chalk1.png" type="Texture" id=6]
 [ext_resource path="res://Assets/FreeGUI/itens_chalk/buttons_chalk5.png" type="Texture" id=7]
+[ext_resource path="res://Códigos/blue_buttonBehavior.gd" type="Script" id=8]
 [ext_resource path="res://Temas/FonteAlternativa.tres" type="DynamicFont" id=9]
 [ext_resource path="res://Temas/new_styleboxflat.tres" type="StyleBox" id=10]
 [ext_resource path="res://Assets/Fontes/KGBrokenVesselsSketch.ttf" type="DynamicFontData" id=11]
+[ext_resource path="res://Códigos/red_buttonBehavior.gd" type="Script" id=12]
 
 [sub_resource type="DynamicFont" id=2]
 size = 100
@@ -45,7 +47,7 @@ custom_styles/hover = ExtResource( 10 )
 icon = ExtResource( 7 )
 flat = true
 expand_icon = true
-script = ExtResource( 3 )
+script = ExtResource( 8 )
 
 [node name="down" type="Button" parent="upDownInfo"]
 margin_left = 1121.0
@@ -58,7 +60,7 @@ custom_styles/hover = ExtResource( 10 )
 icon = ExtResource( 4 )
 flat = true
 expand_icon = true
-script = ExtResource( 3 )
+script = ExtResource( 12 )
 
 [node name="inf" type="Label" parent="upDownInfo"]
 margin_left = 924.0

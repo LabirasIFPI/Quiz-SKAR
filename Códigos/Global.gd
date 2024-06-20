@@ -38,7 +38,7 @@ var maxPoints = 5;
 var jogadorAtual = -1;
 
 
-## Dicionário que carrega estado das teclas pressionadas
+## Dicionário q192.168.43.92ue carrega estado das teclas pressionadas
 var keys: Dictionary = {
 	'B1': false,
 	'B2': false
@@ -77,7 +77,7 @@ func _ready():
 		print("Conectado")
 		
 		
-func _process(delta):
+func _process(_delta):
 	# Redefinir botões para false.
 	redefineButtons();
 	

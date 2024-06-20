@@ -57,22 +57,28 @@ func _writeWebsocket(txt):
 func _messageInterpreter(txt):		
 	var command = txt.split(' ')
 	# Avaliação das mensagens recebidas (ada botão emite um sinal diferente)
-	if command[0] == "B1" :
-		keys.B1 = true
-		emit_signal("azul");
-		
-	if command[0] == "B2":
-		emit_signal("vermelho");
-		keys.B2 = true
-		
-	if command[0] == "A":
-		emit_signal("botaoA");
-		
-	if command[0] == "B":
-		emit_signal("botaoB");
-		
-	if command[0] == "C":
-		emit_signal("botaoC");
-		
-	if command[0] == "A0":
-		emit_signal("zero");
+	if command.size() == 2:
+		print("grande")
+		if command[0] == "B1" :
+			keys.B1 = true
+			emit_signal("azul");
+			print("azul apertado")
+			
+		if command[0] == "B2":
+			emit_signal("vermelho");
+			print("vermelho apertado")
+			keys.B2 = true
+			
+		if command[0] == "A":
+			emit_signal("botaoA");
+			print("a apertou")
+			
+		if command[0] == "B":
+			emit_signal("botaoB");
+			print("b apertou")
+			
+		if command[1] == "C":
+			emit_signal("botaoC");
+			print("c apertou")
+		if command[0] == "A0":
+			emit_signal("zero");
