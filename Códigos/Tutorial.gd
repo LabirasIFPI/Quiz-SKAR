@@ -55,6 +55,8 @@ func updateScreen():
 
 func _process(_delta: float) -> void:
 	_label_texto.percent_visible += .02
+	if Input.is_action_just_pressed("ui_down"):
+		global.getTransition(0,"menu")
 		
 
 func DefinirTextoPorPagina():

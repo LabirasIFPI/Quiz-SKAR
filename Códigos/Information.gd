@@ -15,6 +15,8 @@ func _process(_delta):
 	if _label_info.percent_visible < 1:
 		_label_info.percent_visible += .006;
 	$upDownInfo/inf.text = str(global.maxPoints)
+	if Input.is_action_just_pressed("ui_down"):
+		global.getTransition(0,"contagem")
 	
 
 func _on_pass_pressed():

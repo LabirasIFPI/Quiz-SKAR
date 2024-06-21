@@ -4,6 +4,7 @@ var txt = ""
 var client
 var connected: bool = false
 
+#const ip = "192.168.101.212"
 const ip = "192.168.43.92"
 
 const port = 80
@@ -14,12 +15,12 @@ var keys: Dictionary = {
 }
 
 # Sinais de cada botao
-signal azul(Menu, Tutorial, Information, QuizMain, FimDeJogo);
-signal vermelho(Menu, Tutorial, Information, QuizMain, FimDeJogo);
-signal botaoA(Menu, Tutorial, Information, QuizMain, FimDeJogo);
-signal botaoB(Menu, Tutorial, Information, QuizMain, FimDeJogo);
-signal botaoC(Menu, Tutorial, Information, QuizMain, FimDeJogo);
-signal zero(Menu, Tutorial, Information, QuizMain, FimDeJogo)
+signal azul(Menu, Tutorial, Information, QuizMain, FimDeJogo, SceneEqueipe);
+signal vermelho(Menu, Tutorial, Information, QuizMain, FimDeJogo, SceneEqueipe);
+signal botaoA(Menu, Tutorial, Information, QuizMain, FimDeJogo, SceneEqueipe);
+signal botaoB(Menu, Tutorial, Information, QuizMain, FimDeJogo, SceneEqueipe);
+signal botaoC(Menu, Tutorial, Information, QuizMain, FimDeJogo, SceneEqueipe);
+signal zero(Menu, Tutorial, Information, QuizMain, FimDeJogo, SceneEqueipe)
 
 func _ready():
 	client = StreamPeerTCP.new()
@@ -77,8 +78,11 @@ func _messageInterpreter(txt):
 			emit_signal("botaoB");
 			print("b apertou")
 			
-		if command[1] == "C":
+		if command[0] == "C":
 			emit_signal("botaoC");
 			print("c apertou")
 		if command[0] == "A0":
 			emit_signal("zero");
+			
+#	if connected == true:
+#		print("Conexão estabelecida")

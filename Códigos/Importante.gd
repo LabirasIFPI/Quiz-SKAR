@@ -13,6 +13,8 @@ func _ready() -> void:
 	
 func _process(delta):
 	_info_label.percent_visible += .006
+	if WebSocket.connected == true:
+		$Midle/conexaoLabel.text = "conexão estabelecida!"
 
 
 func _on_ToPlay_timeout() -> void:
