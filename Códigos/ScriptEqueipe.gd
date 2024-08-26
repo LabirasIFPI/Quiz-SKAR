@@ -15,28 +15,14 @@ func _ready():
 
 
 func _process(delta):
-	$Links/pass/LabirasLogo.scale.linear_interpolate(Vector2(0.8, 0.8), 0.150);
-	teste(1, $Labels)
-	teste(2, $devDraw)
+	for devText in $Labels.get_children():
+		if devText.percent_visible != 0.0:
+			devText.percent_visible += 0.005;
+	if Input.is_action_just_pressed("ui_down"):
+		global.getTransition(0, "menu")
 
-func teste(funcao, father):
-	
-	match (funcao):
-		1: 
-			for devText in father.get_children():
-				if devText.percent_visible != 0.0:
-					devText.percent_visible += 0.005
-					
-		2:
-			for devIten in father.get_children():
-				if devIten.self_modulate.a !=1.0:
-					devIten.self_modulate.a -= 0.010
-			
-			
 func _on_out_pressed():
 	global.getTransition(0, "menu")
-
-
 
 
 func _on_linkRav_mouse_entered() -> void:
@@ -51,16 +37,12 @@ func _on_linkSof_mouse_entered() -> void:
 func _on_linkSKAR_mouse_entered() -> void:
 	$Labels/kactus.percent_visible += 0.005;
 
-#
-func HideAllDrawns():
-	$devDraw/Anni.self_modulate.a -= 0.005;
-	$devDraw/Kacto.self_modulate.a -= 0.005;
-	$devDraw/Rav.self_modulate.a -= 0.005
-	$devDraw/Sofia.self_modulate.a -= 0.005;
 
+func FindAllTexts():
+	$Labels/kactus.percent_visible += 0.005;
+	$Labels/sof.percent_visible += 0.005;
+	$Labels/anni.percent_visible += 0.005;
+	$Labels/rav.percent_visible += 0.005;
 
 func _on_pass_pressed():
-	HideAllDrawns()
-	$Labels.visible =0;
 	$apagador_move.play("RESET")
-	$Links/pass/LabirasLogo.scale = Vector2(1, 1)
