@@ -1,6 +1,6 @@
 extends Node2D
 
-
+enum  dev_iten {SHOW, HIDEN}
 
 func _ready():
 	global.getTransition(1)
@@ -15,11 +15,8 @@ func _ready():
 
 
 func _process(delta):
-	for devText in $Labels.get_children():
-		if devText.percent_visible != 0.0:
-			devText.percent_visible += 0.005;
-	if Input.is_action_just_pressed("ui_down"):
-		global.getTransition(0, "menu")
+	interactWithDevItens(0, $Labels )
+	interactWithDevItens(1, $Draws)
 
 func _on_out_pressed():
 	global.getTransition(0, "menu")
@@ -38,11 +35,23 @@ func _on_linkSKAR_mouse_entered() -> void:
 	$Labels/kactus.percent_visible += 0.005;
 
 
-func FindAllTexts():
-	$Labels/kactus.percent_visible += 0.005;
-	$Labels/sof.percent_visible += 0.005;
-	$Labels/anni.percent_visible += 0.005;
-	$Labels/rav.percent_visible += 0.005;
+func HideAllDraw():
+	for i in $Draws.get_children():
+		i.self_modulate.a -= 0.005
 
 func _on_pass_pressed():
 	$apagador_move.play("RESET")
+	HideAllDraw()
+	
+	# Para alterar o alpha e visibilidade dos nodes relacionados aos devs
+func interactWithDevItens(function, father):
+	match(function):
+		0:
+			for devText in father.get_children():
+				if devText.percent_visible !=0:
+					devText.percent_visible += 0.005
+		
+		1:
+			for devDraw in father.get_children():
+				if devDraw.self_modulate.a != 1:
+					devDraw.self_modulate.a -= 0.010
