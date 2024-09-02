@@ -2,7 +2,23 @@ extends Node2D
 
 enum  dev_iten {SHOW, HIDEN}
 
+# Configurações da tremida
+var shake_amount = 2.0  
+var shake_speed = 50.0    
+var shake_duration = 0.4 
+
+# Variáveis de controle
+var is_shaking = false
+var shaking_timer = 0.0
+var original_position = []
+
+
 func _ready():
+	$TimerPisca.start(0.2)
+	# Armazena a posição original do sprite
+	for i in $Draws.get_children():
+		original_position.append(i.position)
+
 	global.getTransition(1)
 	WebSocket.connect("botaoA", self,"_on_out_pressed")
 	WebSocket.connect("botaoB", self,"_on_out_pressed")
@@ -18,29 +34,45 @@ func _process(delta):
 	interactWithDevItens(0, $Labels )
 	interactWithDevItens(1, $Draws)
 
+
+#sai da tela 
 func _on_out_pressed():
 	global.getTransition(0, "menu")
 
-
+#Para todos os 'mouse_entred' a seguir: Serve como gatilho para inicar os texto e a tremida
 func _on_linkRav_mouse_entered() -> void:
 	$Labels/rav.percent_visible += 0.005;
+	#Analisa se a tremidinha já passou
+	if not is_shaking:
+		start_shaking($Draws/Rav, 2)
+
 
 func _on_linkAni_mouse_entered() -> void:
 	$Labels/anni.percent_visible += 0.005;
+	if not is_shaking:
+		start_shaking($Draws/Anni, 0)
+
 
 func _on_linkSof_mouse_entered() -> void:
 	$Labels/sof.percent_visible += 0.005;
+	if not is_shaking:
+		start_shaking($Draws/Sofia, 3)
+
 
 func _on_linkSKAR_mouse_entered() -> void:
 	$Labels/kactus.percent_visible += 0.005;
+	if not is_shaking:
+		start_shaking($Draws/Kacto, 1)
 
 
+# Esconde todos os desenhos de dev
 func HideAllDraw():
 	for i in $Draws.get_children():
 		i.self_modulate.a -= 0.005
 
+		
 func _on_pass_pressed():
-	$apagador_move.play("RESET")
+	$Animations/apagador_move.play("RESET")
 	HideAllDraw()
 	
 	# Para alterar o alpha e visibilidade dos nodes relacionados aos devs
@@ -55,3 +87,34 @@ func interactWithDevItens(function, father):
 			for devDraw in father.get_children():
 				if devDraw.self_modulate.a != 1:
 					devDraw.self_modulate.a -= 0.010
+
+func start_shaking(dev, number):
+	is_shaking = true
+	shaking_timer = shake_duration
+	# Chama o efeito de tremida
+	_shake(dev, number)
+
+
+#Treme a sprite
+func _shake(sprite, number):
+	if shaking_timer > 0:
+		# Calcula o deslocamento de sacudida usando uma função seno(obg, chat)
+		var shake_timer = (shake_duration - shaking_timer) * shake_speed
+		var shake_offset = sin(shake_timer) * shake_amount
+		# O resultado do calculo é aplicado na posição da sprite
+		sprite.position.x = original_position[number].x + shake_offset
+
+		shaking_timer -= get_process_delta_time()
+		# 'Loop' improvisado => para repetir a função enquato há tempo restando
+		yield(get_tree().create_timer(0.02), "timeout")
+		# Continua o efeito
+		_shake(sprite, number)
+	else:
+		# Reseta a posição do sprite depois do tremor pra posição original
+		sprite.position = original_position[number]
+		is_shaking = false
+
+
+func _on_TimerPisca_timeout():
+	$Animations/shadow.play("pisca")
+	$TimerPisca.start(5.0)
