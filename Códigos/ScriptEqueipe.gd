@@ -31,9 +31,9 @@ func _ready():
 
 
 func _process(delta):
-	interactWithDevItens(0, $Labels )
-	interactWithDevItens(1, $Draws)
-
+	interactWithDevItens(dev_iten.SHOW, $Labels )
+	interactWithDevItens(dev_iten.HIDEN, $Draws)
+	interactWithDevItens(dev_iten.HIDEN, $Labels)
 
 #sai da tela 
 func _on_out_pressed():
@@ -44,25 +44,25 @@ func _on_linkRav_mouse_entered() -> void:
 	$Labels/rav.percent_visible += 0.005;
 	#Analisa se a tremidinha já passou
 	if not is_shaking:
-		start_shaking($Draws/Rav, 2)
+		start_shaking($Draws/Rav, 3)
 
 
 func _on_linkAni_mouse_entered() -> void:
 	$Labels/anni.percent_visible += 0.005;
 	if not is_shaking:
-		start_shaking($Draws/Anni, 0)
+		start_shaking($Draws/Anni, 1)
 
 
 func _on_linkSof_mouse_entered() -> void:
 	$Labels/sof.percent_visible += 0.005;
 	if not is_shaking:
-		start_shaking($Draws/Sofia, 3)
+		start_shaking($Draws/Sofia, 4)
 
 
 func _on_linkSKAR_mouse_entered() -> void:
 	$Labels/kactus.percent_visible += 0.005;
 	if not is_shaking:
-		start_shaking($Draws/Kacto, 1)
+		start_shaking($Draws/Kacto, 2)
 
 
 # Esconde todos os desenhos de dev
@@ -70,10 +70,17 @@ func HideAllDraw():
 	for i in $Draws.get_children():
 		i.self_modulate.a -= 0.005
 
+func HideAllLabels():
+	for i in $Labels.get_children():
+		i.self_modulate.a -= 0.005
+
 		
 func _on_pass_pressed():
 	$Animations/apagador_move.play("RESET")
 	HideAllDraw()
+	HideAllLabels()
+	yield(get_tree().create_timer(0.8), "timeout")
+	EasterEgg()
 	
 	# Para alterar o alpha e visibilidade dos nodes relacionados aos devs
 func interactWithDevItens(function, father):
@@ -88,14 +95,21 @@ func interactWithDevItens(function, father):
 				if devDraw.self_modulate.a != 1:
 					devDraw.self_modulate.a -= 0.010
 
+
+func EasterEgg():
+	pass
+
+
+
+#Chama a tremida para o Sprite indicado
 func start_shaking(dev, number):
 	is_shaking = true
 	shaking_timer = shake_duration
-	# Chama o efeito de tremida
 	_shake(dev, number)
 
 
 #Treme a sprite
+#Obs: number é o numero que indica a posição da sprite em uma Array.Busco maneiras de aprimorar isso
 func _shake(sprite, number):
 	if shaking_timer > 0:
 		# Calcula o deslocamento de sacudida usando uma função seno(obg, chat)
@@ -107,7 +121,6 @@ func _shake(sprite, number):
 		shaking_timer -= get_process_delta_time()
 		# 'Loop' improvisado => para repetir a função enquato há tempo restando
 		yield(get_tree().create_timer(0.02), "timeout")
-		# Continua o efeito
 		_shake(sprite, number)
 	else:
 		# Reseta a posição do sprite depois do tremor pra posição original

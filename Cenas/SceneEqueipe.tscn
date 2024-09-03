@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://Assets/Logo/Labiras_Logo.png" type="Texture" id=1]
 [ext_resource path="res://Códigos/ScriptEqueipe.gd" type="Script" id=2]
@@ -16,6 +16,7 @@
 [ext_resource path="res://Assets/FreeGUI/esquipe/rav.png" type="Texture" id=14]
 [ext_resource path="res://Assets/FreeGUI/esquipe/anni.png" type="Texture" id=15]
 [ext_resource path="res://Assets/FreeGUI/esquipe/shadow_skar.png" type="Texture" id=16]
+[ext_resource path="res://Assets/FreeGUI/animations/chalk.png" type="Texture" id=17]
 
 [sub_resource type="DynamicFont" id=1]
 size = 95
@@ -84,7 +85,7 @@ tracks/1/keys = {
 resource_name = "pisca"
 length = 0.8
 tracks/0/type = "value"
-tracks/0/path = NodePath("ShadowSkar:visible")
+tracks/0/path = NodePath("../Draws/ShadowSkar:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -94,6 +95,33 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 1,
 "values": [ true, false, true, false ]
+}
+
+[sub_resource type="Animation" id=11]
+resource_name = "move_chalk"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 238, 187 ) ]
 }
 
 [node name="SceneEqueipe" type="Node2D"]
@@ -232,12 +260,16 @@ anims/RESET = SubResource( 9 )
 [node name="shadow" type="AnimationPlayer" parent="Animations"]
 anims/pisca = SubResource( 10 )
 
-[node name="ShadowSkar" type="Sprite" parent="Animations"]
+[node name="chalk_move" type="AnimationPlayer" parent="Animations"]
+root_node = NodePath("../../Chalk")
+anims/move_chalk = SubResource( 11 )
+
+[node name="Draws" type="Node2D" parent="."]
+
+[node name="ShadowSkar" type="Sprite" parent="Draws"]
 position = Vector2( 952, 418 )
 scale = Vector2( 0.415, 0.415 )
 texture = ExtResource( 16 )
-
-[node name="Draws" type="Node2D" parent="."]
 
 [node name="Anni" type="Sprite" parent="Draws"]
 position = Vector2( 1112, 453 )
@@ -263,11 +295,31 @@ texture = ExtResource( 12 )
 visible = false
 position = Vector2( 1664, 868 )
 rotation = -0.895319
-scale = Vector2( 1, 1 )
 texture = ExtResource( 11 )
 offset = Vector2( -75, 30 )
 
 [node name="TimerPisca" type="Timer" parent="."]
+
+[node name="Chalk" type="Sprite" parent="."]
+visible = false
+position = Vector2( 238, 187 )
+scale = Vector2( 0.3, 0.3 )
+texture = ExtResource( 17 )
+
+[node name="EasterEgg" type="Node2D" parent="."]
+
+[node name="thanks" type="RichTextLabel" parent="EasterEgg"]
+visible = false
+margin_left = 219.0
+margin_top = 146.0
+margin_right = 1729.0
+margin_bottom = 932.0
+custom_fonts/bold_font = ExtResource( 9 )
+custom_fonts/normal_font = SubResource( 3 )
+bbcode_enabled = true
+visible_characters = 0
+percent_visible = 0.0
+text = "Equipe  LABIRAS e tudo mais bla bla bla bla vls jnc c ocwnoinc eoicpenc ewewcejcmelckc cc oewiec wowiewjdew ceoeiec oewieew wwided  "
 
 [connection signal="mouse_entered" from="Links/linkRav" to="." method="_on_linkRav_mouse_entered"]
 [connection signal="pressed" from="Links/linkRav" to="Links" method="_on_linkRav_pressed"]
