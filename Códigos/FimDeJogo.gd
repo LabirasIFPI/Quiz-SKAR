@@ -8,6 +8,8 @@ onready var _shader = get_node("Back/shader")
 var players: Array = ["[color=#1E90FF]Azul", "[color=red]Vermelho"]
 
 func _ready() -> void:
+	#pra dizer que saiu do quiz
+	global.cena_main = false
 	global.getTransition(1)
 #	_shader.visible = false
 	

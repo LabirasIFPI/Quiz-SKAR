@@ -69,6 +69,10 @@ var sounds: Dictionary = {
 ## Modos da transição
 var transitioStatus: Array = ["transition_in", "transition_out"]
 
+
+var cena_main = false
+
+
 func _ready():
 	client = StreamPeerTCP.new()
 	client.connect_to_host(ip, port)
@@ -131,18 +135,16 @@ func _messageInterpreter(txt):
 	print("Interpretando mensagem: %s" % [txt]);
 	# A mensagem tem formato: "LALALA B1"
 	var command = txt.split(' ');
-	
-	if command[1] == "B1":
-		print("grande um")
+
 	# command[0] -> Identificador da pessoa
 	# command[1] -> Botão apertado
-	if command.size() == 2:
-		if command[1] == "B1":
-			keys.B1 = true;
-			emit_signal("botaoAzul");
-		if command[1] == "B2":
-			keys.B2 = true;
-			emit_signal("botaoVermelho");
+#	if command.size() == 2:
+#		if command[1] == "B1":
+#			keys.B1 = true;
+#			emit_signal("botaoAzul");
+#		if command[1] == "B2":
+#			keys.B2 = true;
+#			emit_signal("botaoVermelho");
 		
 		# O ideal seria ser assim:
 #		keys[command[1]] = true;

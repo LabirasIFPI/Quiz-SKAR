@@ -4,8 +4,10 @@ var txt = ""
 var client
 var connected: bool = false
 
+
+
 #const ip = "192.168.101.212"
-const ip = "192.168.43.92"
+const ip = "192.168.137.108"
 
 const port = 80
 var ledstate: int;
@@ -72,15 +74,26 @@ func _messageInterpreter(txt):
 			
 		if command[0] == "A":
 			emit_signal("botaoA");
+			print(global.cena_main)
+#			não pode pois smepre é 0 em todo lugar
 			print("a apertou")
-			
+			if global.cena_main == true:
+				global.resposta = 0
+				print("resposta:", global.resposta)
+	
 		if command[0] == "B":
 			emit_signal("botaoB");
 			print("b apertou")
+			if global.cena_main == true:
+				global.resposta = 1
 			
 		if command[0] == "C":
 			emit_signal("botaoC");
 			print("c apertou")
+			if global.cena_main == true:
+				global.resposta = 2
+			
+			
 		if command[0] == "A0":
 			emit_signal("zero");
 			

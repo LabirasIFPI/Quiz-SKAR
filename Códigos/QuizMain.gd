@@ -103,20 +103,21 @@ func _process(delta: float) -> void:
 	
 	# Detectar alternativa caso tenha um jogador ingressado.
 	if global.temJogadorNaVez():
-		global.resposta = detectarComando();
+		global.cena_main = true
+		print("JOGADOR NA VEZ")
+#		global.resposta = detectarComando();
 		if global.resposta != -1:
-			print("A resposta escolhida foi: ", global.resposta)
-			$TLPR.stop();
+			print("A resposta escolhida foi:>>>>>>>> ", global.resposta)
+			print(global.cena_main)
 			if checarResposta(global.resposta):
+				print(checarResposta(global.resposta))
+				$TLPR.stop();
 				global.playSound("right");
 				audio.stopClock()
 				exibirAviso(TIPOS_DE_AVISO.ACERTO);
-
 				adicionarPonto(global.jogadorAtual);
 				print("Acertou");
 				$next_fortime.start(2)
-#				yield(get_tree().create_timer(2.0), "timeout")
-#				gerarNovaPergunta();				
 			else:
 				audio.stopClock()
 				global.playSound("wrong");
@@ -124,10 +125,12 @@ func _process(delta: float) -> void:
 				exibirAviso(TIPOS_DE_AVISO.ERRO);
 				$next_fortime.start(2)
 				print("Errrouuu");
+
 			global.jogadorAtual = -1;
 		global.resposta = -1;
 		global.comando = -1;
-				
+		
+	else: global.cena_main = false
 	# Detectar fim de jogo:
 
 
@@ -187,9 +190,9 @@ func ajustTextSize():
 	var fonte  = _questionLabel.get_font("font")
 	fonte.size = 100
 	while _questionLabel.get_minimum_size().y > 360 and fonte.size > 50:
-		print("diminuindo fonte.size")
+#		print("diminuindo fonte.size")
 		fonte.size -= 1
-		print((_questionLabel.get_minimum_size().y))
+#		print((_questionLabel.get_minimum_size().y))
 
 
 ## Checa o array de alternativas e avalia se há correta nas 3 primeiras alternativas

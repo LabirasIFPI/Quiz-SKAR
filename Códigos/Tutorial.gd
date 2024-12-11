@@ -15,6 +15,7 @@ var informacoes: Array = [
 	"Este é um jogo para dois jogadores: o azul e o vermelho.\nSE POSICIONEM!",
 	"Responde a pergunta aquele que apertar primeiro o botão de sua respectiva cor. Cada pergunta tem seu tempo pra resposta, responda antes que o tempo acabe!",
 	"Estes botões representam sua resposta, sendo eles 'A','B' e'C'. Cada resposta correta soma ponto(s), uma resposta errada ou vazia irá somar ponto(s) ao seu oponente.",
+	"Os jogadores também podem ser representados pelas teclas do seu teclado! As alternativas podem ser decididas pelas teclas 'A','B' e 'C'.",
 	"Vence aquele que somar mais pontos no final da rodada. Bom JOGO e bons ESTUDOS!!!<3"
 ]
 
@@ -26,6 +27,7 @@ onready var images: Array = [
 	imagesNode.get_node("PessoaLuta"),
 	imagesNode.get_node("Caixa1"),
 	imagesNode.get_node("Caixa2"),
+	imagesNode.get_node("Teclas"),
 	imagesNode.get_node("Pessoas2")
 ]
 

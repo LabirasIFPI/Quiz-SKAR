@@ -26,6 +26,6 @@ func _on_ToKill_timeout() -> void:
 	if destinySceneKey == "":
 		return
 		
-	print("Tempo da transição encerrado. Indo para scene: ", destinySceneKey);
+#	print("Tempo da transição encerrado. Indo para scene: ", destinySceneKey);
 	var _scene = global.scenesDict.get(destinySceneKey);
 	get_tree().change_scene_to(_scene);
