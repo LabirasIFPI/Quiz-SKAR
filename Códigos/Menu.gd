@@ -12,10 +12,8 @@ func _ready() -> void:
 	WebSocket.connect("azul", self, "_on_iniciar_pressed")
 	WebSocket.connect("vermelho", self, "_on_equipe_pressed")
 	# Executam o botao "tutorial"
-	WebSocket.connect("botaoA", self, "_on_tutorial_pressed")
-	WebSocket.connect("botaoB", self, "_on_tutorial_pressed")
-	WebSocket.connect("botaoC", self, "_on_tutorial_pressed")
-	
+	WebSocket.connect("botaoPreto",self,"_on_tutorial_pressed")
+
 	# Toca musica principal do jogo
 #	audio.returnSong()
 func _process(_delta) -> void:

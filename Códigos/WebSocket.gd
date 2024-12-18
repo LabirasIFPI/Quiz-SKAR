@@ -7,7 +7,7 @@ var connected: bool = false
 
 
 #const ip = "192.168.101.212"
-const ip = "192.168.137.108"
+const ip = "192.168.146.57"
 
 const port = 80
 var ledstate: int;
@@ -22,7 +22,7 @@ signal vermelho(Menu, Tutorial, Information, QuizMain, FimDeJogo, SceneEqueipe);
 signal botaoA(Menu, Tutorial, Information, QuizMain, FimDeJogo, SceneEqueipe);
 signal botaoB(Menu, Tutorial, Information, QuizMain, FimDeJogo, SceneEqueipe);
 signal botaoC(Menu, Tutorial, Information, QuizMain, FimDeJogo, SceneEqueipe);
-signal zero(Menu, Tutorial, Information, QuizMain, FimDeJogo, SceneEqueipe)
+signal botaoPreto(Menu, Tutorial, Information, QuizMain, FimDeJogo, SceneEqueipe)
 
 func _ready():
 	client = StreamPeerTCP.new()
@@ -57,12 +57,12 @@ func _writeWebsocket(txt):
 	if connected and client.is_connected_to_host():
 		client.put_data(txt.to_ascii())
 					
-func _messageInterpreter(txt):		
+func _messageInterpreter(txt):
 	var command = txt.split(' ')
 	# Avaliação das mensagens recebidas (ada botão emite um sinal diferente)
 	if command.size() == 2:
 		print("grande")
-		if command[0] == "B1" :
+		if command[0] == "B1":
 			keys.B1 = true
 			emit_signal("azul");
 			print("azul apertado")
@@ -72,30 +72,13 @@ func _messageInterpreter(txt):
 			print("vermelho apertado")
 			keys.B2 = true
 			
-		if command[0] == "A":
-			emit_signal("botaoA");
-			print(global.cena_main)
-#			não pode pois smepre é 0 em todo lugar
-			print("a apertou")
+		# L de letra -> 0 = A, 1 = B, 2 = C.
+		if command[0] == "L":
+			emit_signal("botaoPreto");
 			if global.cena_main == true:
-				global.resposta = 0
-				print("resposta:", global.resposta)
+				global.resposta = command[1]
+				print("RESPOSTA:", global.resposta)
 	
-		if command[0] == "B":
-			emit_signal("botaoB");
-			print("b apertou")
-			if global.cena_main == true:
-				global.resposta = 1
-			
-		if command[0] == "C":
-			emit_signal("botaoC");
-			print("c apertou")
-			if global.cena_main == true:
-				global.resposta = 2
-			
-			
-		if command[0] == "A0":
-			emit_signal("zero");
 			
 #	if connected == true:
 #		print("Conexão estabelecida")

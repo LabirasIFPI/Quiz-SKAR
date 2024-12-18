@@ -36,9 +36,7 @@ func _ready():
 	# Direcionamento dos sinais
 	WebSocket.connect("azul", self, "_on_avancar_direita_pressed")
 	WebSocket.connect("vermelho", self, "_on_avancar_esquerda_pressed")
-	WebSocket.connect("botaoA", self, "_on_sair_pressed")
-	WebSocket.connect("botaoB", self, "_on_sair_pressed")
-	WebSocket.connect("botaoC", self, "_on_sair_pressed")
+	WebSocket.connect("botaoPreto",self,"_on_sair_pressed")
 	
 	_label_texto.percent_visible = 0;
 	updateScreen();

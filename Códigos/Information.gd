@@ -7,10 +7,7 @@ func _ready():
 # Direcionamento dos sinais
 	WebSocket.connect("azul", self, "_on_up_pressed")
 	WebSocket.connect("vermelho", self, "_on_down_pressed")
-	
-	WebSocket.connect("botaoA", self, "_on_pass_pressed")
-	WebSocket.connect("botaoB", self, "_on_pass_pressed")
-	WebSocket.connect("botaoC", self, "_on_pass_pressed")
+	WebSocket.connect("botaoPreto",self, "_on_pass_pressed")
 
 func _process(_delta):
 	if _label_info.percent_visible < 1:

@@ -20,9 +20,7 @@ func _ready():
 		original_position.append(i.position)
 
 	global.getTransition(1)
-	WebSocket.connect("botaoA", self,"_on_out_pressed")
-	WebSocket.connect("botaoB", self,"_on_out_pressed")
-	WebSocket.connect("botaoC", self,"_on_out_pressed")
+	WebSocket.connect("botaoPreto", self,"_on_out_pressed")
 	WebSocket.connect("azul", self, "FindAllTexts")
 	$Labels/rav.bbcode_text = "[b]Ravena: [/b] A mente criativa por tras do Quiz. Ela programou e deu vida ao jogo, alem de ser a artista responsável de cada arte do jogo, tornando-o visualmente deslumbrante!"
 	$Labels/anni.bbcode_text = "[b]Anísia: [/b] Trouxe o Quiz para o mundo real. Ela criou o circuito impresso essencial para o jogo e implementou a comunicação wifi, conectando o mundo fisico ao digital de forma brilhante!"
