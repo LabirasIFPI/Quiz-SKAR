@@ -125,7 +125,6 @@ func _process(delta: float) -> void:
 			global.resposta = -1;
 		
 	else: global.cena_main = false
-	# Detectar fim de jogo:
 
 
 	# Detectar entrada de jogadores na vez

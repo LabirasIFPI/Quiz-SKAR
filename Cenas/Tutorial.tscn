@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=2]
+[gd_scene load_steps=44 format=2]
 
 [ext_resource path="res://Assets/FreeGUI/itens_chalk/box2.png" type="Texture" id=1]
 [ext_resource path="res://Códigos/Tutorial.gd" type="Script" id=2]
@@ -29,6 +29,7 @@
 [ext_resource path="res://Assets/FreeGUI/itens_chalk/buttons_chalk5.png" type="Texture" id=27]
 [ext_resource path="res://Assets/Fontes/KGBrokenVesselsSketch.ttf" type="DynamicFontData" id=28]
 [ext_resource path="res://Temas/new_styleboxflat.tres" type="StyleBox" id=29]
+[ext_resource path="res://Assets/FreeGUI/tutorial_img/QRCODE.jpeg" type="Texture" id=30]
 
 [sub_resource type="DynamicFont" id=13]
 size = 50
@@ -364,7 +365,6 @@ margin_right = 40.0
 margin_bottom = 40.0
 
 [node name="caixa_onoff" type="Node2D" parent="PassosImagem"]
-visible = false
 position = Vector2( 953, 540 )
 scale = Vector2( 2, 2 )
 
@@ -396,6 +396,12 @@ position = Vector2( -263, 77.5 )
 scale = Vector2( 0.2, 0.2 )
 texture = ExtResource( 15 )
 offset = Vector2( 20, 20 )
+
+[node name="Qrcode" type="Sprite" parent="PassosImagem/caixa_onoff"]
+self_modulate = Color( 1, 1, 1, 0.611765 )
+position = Vector2( 242, 19.5 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 30 )
 
 [node name="Fundo1" type="Node2D" parent="PassosImagem"]
 visible = false
@@ -454,6 +460,7 @@ rect_pivot_offset = Vector2( 380, 510 )
 texture = ExtResource( 11 )
 
 [node name="Caixa1" type="Sprite" parent="PassosImagem"]
+visible = false
 position = Vector2( 1004, 653 )
 texture = ExtResource( 8 )
 
@@ -511,6 +518,7 @@ scale = Vector2( 0.2, 0.2 )
 texture = ExtResource( 15 )
 
 [node name="Teclas" type="Node2D" parent="PassosImagem"]
+visible = false
 
 [node name="Press0" type="Sprite" parent="PassosImagem/Teclas"]
 position = Vector2( 1386, 577 )
